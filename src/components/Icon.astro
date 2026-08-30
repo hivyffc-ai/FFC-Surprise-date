@@ -1,0 +1,30 @@
+---
+import { ICON_PATHS } from '@/lib/icon-paths';
+
+export interface Props {
+  name: keyof typeof ICON_PATHS;
+  class?: string;
+  fill?: string;
+  strokeWidth?: number;
+  [key: string]: any;
+}
+
+const { name, class: className = 'size-4', fill = 'none', strokeWidth = 2, ...rest } = Astro.props;
+const inner = ICON_PATHS[name];
+
+if (!inner) {
+  throw new Error(`Icon "${name}" not found in ICON_PATHS`);
+}
+---
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill={fill}
+  stroke="currentColor"
+  stroke-width={strokeWidth}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  {...rest}
+  set:html={inner}
+/>

@@ -1,0 +1,11 @@
+---
+import Gallery from '@/components/ffc-gallery.astro';
+
+export interface Props {
+  title?: string;
+  maxItems?: number;
+}
+
+const { title = 'Gallery', maxItems = 8 } = Astro.props;
+---
+<Gallery title={title} subtitle="See Our Celebrations" maxItems={maxItems} showFilters={false} />

@@ -1,0 +1,33 @@
+---
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FFCPackageDetailPage from '@/components/ffc-package-detail-page.astro';
+import { packages, siteConfig } from '@/lib/ffc-config';
+
+export function getStaticPaths() {
+  return packages.map((pkg) => ({
+    params: { slug: pkg.slug },
+    props: { package: pkg },
+  }));
+}
+
+const { package: pkg } = Astro.props;
+
+if (!pkg) {
+  return Astro.redirect('/packages', 302);
+}
+
+const title = `${pkg.name} — ${siteConfig.name}`;
+const description = `${pkg.shortDescription}. Starting at ₹${pkg.price.toLocaleString('en-IN')} — Includes 3-hour private celebration, welcome drink, decor & music.`;
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={`/packages/${pkg.slug}`}
+  ogImage={pkg.thumbnail}
+  ogImageAlt={`${pkg.name} — Celebration Setup at ${siteConfig.name}`}
+  noTemplate={true}
+>
+  <FFCPackageDetailPage package={pkg} />
+</BaseLayout>

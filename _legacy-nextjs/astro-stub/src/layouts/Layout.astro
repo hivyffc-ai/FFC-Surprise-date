@@ -1,0 +1,72 @@
+---
+import '../styles/globals.css';
+import { siteConfig } from '../lib/config';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  faqSchema?: Array<{ question: string; answer: string }>;
+  ogImage?: string;
+}
+
+const { title, description, canonical = Astro.url.href, breadcrumbs, faqSchema, ogImage = '/og-image.jpg' } = Astro.props;
+
+const localBusinessSchema = {
+  "@context": "https://schema.org", "@type": "Restaurant",
+  "name": siteConfig.name, "alternateName": siteConfig.brandName,
+  "description": siteConfig.tagline, "url": siteConfig.website,
+  "telephone": siteConfig.phone, "email": siteConfig.email,
+  "address": { "@type": "PostalAddress", "streetAddress": "Gotri Road", "addressLocality": "Vadodara", "addressRegion": "Gujarat", "postalCode": "390021", "addressCountry": "IN" },
+  "geo": { "@type": "GeoCoordinates", "latitude": "22.3072", "longitude": "73.1812" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": siteConfig.rating, "reviewCount": siteConfig.reviewCount, "bestRating": "5", "worstRating": "1" },
+  "priceRange": "₹₹",
+  "hasOfferCatalog": { "@type": "OfferCatalog", "name": `${siteConfig.serviceName} Packages in ${siteConfig.city}`, "itemListElement": [{ "@type": "Offer", "name": `${siteConfig.serviceName} Starting Package`, "price": "4700", "priceCurrency": "INR" }] },
+  "sameAs": [siteConfig.socialLinks.instagram, siteConfig.socialLinks.facebook]
+};
+
+const websiteSchema = { "@context": "https://schema.org", "@type": "WebSite", "name": siteConfig.name, "url": siteConfig.website };
+
+const breadcrumbSchema = breadcrumbs ? { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": breadcrumbs.map((item, idx) => ({ "@type": "ListItem", "position": idx + 1, "name": item.name, "item": item.url })) } : null;
+const faqSchemaObj = faqSchema && faqSchema.length > 0 ? { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faqSchema.map(f => ({ "@type": "Question", "name": f.question, "acceptedAnswer": { "@type": "Answer", "text": f.answer } })) } : null;
+---
+
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="geo.region" content={siteConfig.geo.region} />
+  <meta name="geo.placename" content={siteConfig.geo.placename} />
+  <meta name="geo.position" content={siteConfig.geo.position} />
+  <meta name="ICBM" content={siteConfig.geo.icbm} />
+  <meta property="og:type" content="website" /><meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} /><meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} /><meta property="og:locale" content="en_IN" />
+  <meta property="og:site_name" content={siteConfig.name} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} />
+  {siteConfig.tracking.googleVerification && !siteConfig.tracking.googleVerification.startsWith('TODO') && (
+    <meta name="google-site-verification" content={siteConfig.tracking.googleVerification} />
+  )}
+  <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.tracking.ga4}`}></script>
+  <script is:inline define:vars={{ GA_ID: siteConfig.tracking.ga4 }}>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+  </script>
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+  {faqSchemaObj && <script type="application/ld+json" set:html={JSON.stringify(faqSchemaObj)} />}
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body class="bg-white text-stone-900"><slot /></body>
+</html>

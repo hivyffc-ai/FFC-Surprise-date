@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import { serviceCategories, siteConfig } from '@/lib/ffc-config';
+---
+<BaseLayout
+  title={`All Romantic Celebration Services — ${siteConfig.name}`}
+  description={`Complete list of romantic celebration services at ${siteConfig.name}, ${siteConfig.city}. Birthday surprises, candlelight dinners, anniversary celebrations, proposals & date nights.`}
+  keywords={["romantic services", `${siteConfig.name.toLowerCase()} services`]}
+  canonicalPath="/services"
+  ogImageAlt={`${siteConfig.name} Services`}
+  noTemplate={false}
+>
+  <div class="min-h-screen bg-white">
+    <Header />
+    <section class="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-serif">
+            Our Services
+          </h1>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            {siteConfig.city}'s most-loved romantic celebration venue
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {serviceCategories.map((service) => (
+            <a href={`/${service.slug}`} class="group block bg-white rounded-xl shadow-sm hover:shadow-xl transition-all border border-primary/10 p-6">
+              <div class="text-4xl mb-3">{service.emoji}</div>
+              <h2 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+                {service.name}
+              </h2>
+              <p class="text-gray-600 text-sm">{service.description}</p>
+              <div class="mt-4 text-primary text-sm font-medium flex items-center gap-1">
+                Explore packages →
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+    <Footer />
+    <WhatsAppFloat />
+  </div>
+</BaseLayout>

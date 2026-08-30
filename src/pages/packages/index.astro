@@ -1,0 +1,50 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FFCPackagesPage from '@/components/ffc-packages-page.astro';
+import { packages, siteConfig } from '@/lib/ffc-config';
+
+const title = `Romantic Celebration Packages | ${siteConfig.name}`;
+const description = `Choose from 8 exclusive romantic celebration packages starting at ₹4,700. Private rooftop & glass house setups for birthdays, anniversaries, proposals & dates.`;
+
+const extraJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": `Romantic Celebration Packages at ${siteConfig.name}`,
+    "description": `Exclusive private celebration packages for couples in ${siteConfig.city}`,
+    "numberOfItems": packages.length,
+    "itemListElement": packages.map((pkg, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Product",
+        "name": pkg.name,
+        "description": pkg.shortDescription,
+        "url": `${siteConfig.website}/packages/${pkg.slug}`,
+        "image": `${siteConfig.website}${pkg.thumbnail}`,
+        "offers": {
+          "@type": "Offer",
+          "price": pkg.price.toString(),
+          "priceCurrency": "INR",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "LocalBusiness",
+            "name": siteConfig.name,
+            "address": siteConfig.address
+          }
+        }
+      }
+    }))
+  }
+];
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/packages"
+  ogImageAlt={`Celebration Packages at ${siteConfig.name}`}
+  noTemplate={true}
+  extraJsonLd={extraJsonLd}
+>
+  <FFCPackagesPage />
+</BaseLayout>

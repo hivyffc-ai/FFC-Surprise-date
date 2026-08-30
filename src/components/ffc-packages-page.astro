@@ -1,0 +1,99 @@
+---
+import Icon from '@/components/Icon.astro';
+import Card from '@/components/ui/card.astro';
+import Badge from '@/components/ui/badge.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import { packages, formatPrice } from '@/lib/ffc-config';
+
+const includedItems = [
+  { icon: '🕐', title: '3 Hours Private Time', desc: 'Exclusive private celebration' },
+  { icon: '🥂', title: 'Welcome Drink', desc: 'Refreshing start to your evening' },
+  { icon: '🍰', title: 'Celebration Cake', desc: 'Complimentary cake included' },
+  { icon: '🎶', title: 'Romantic Music', desc: 'Soft melodies throughout' },
+  { icon: '🕯️', title: 'Candle Setup', desc: 'Warm candlelight ambiance' },
+  { icon: '🎈', title: 'Decorations', desc: 'Beautiful thematic decor' },
+  { icon: '🛋️', title: 'Comfortable Seating', desc: 'Cozy seating arrangements' },
+  { icon: '📸', title: 'Photo-Ready Setup', desc: 'Instagram-worthy backdrops' },
+];
+---
+
+<div class="min-h-screen bg-white">
+  <Header />
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-amber-600 via-orange-500 to-amber-700 text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <Badge class="mb-4 bg-white/20 text-white border-white/30">
+        <Icon name="gift" class="h-4 w-4 mr-2" /> 8 Unique Setups
+      </Badge>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 font-serif">Our Packages</h1>
+      <p class="text-xl text-white/90 max-w-2xl mx-auto">
+        Choose from 8 stunning romantic setups designed to make your celebration unforgettable
+      </p>
+    </div>
+  </section>
+
+  <!-- Packages Grid -->
+  <section class="py-8 md:py-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+        {
+          packages.map((pkg, index) => (
+            <a href={`/packages/${pkg.slug}`}>
+              <Card class="overflow-hidden border-amber-100 hover:shadow-xl transition-all group h-full">
+                <div class="aspect-square bg-gradient-to-br from-amber-100 to-orange-100 relative overflow-hidden">
+                  <img
+                    src={pkg.thumbnail}
+                    alt={pkg.name}
+                    class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <Badge class="absolute top-2 left-2 md:top-4 md:left-4 bg-amber-600 text-white text-xs">
+                    Setup {index + 1}
+                  </Badge>
+                </div>
+
+                <Card slot="content" class="p-3 md:p-4 border-0 shadow-none">
+                  <h2 class="text-sm md:text-base lg:text-lg font-bold mb-1 group-hover:text-amber-600 transition-colors line-clamp-2">
+                    {pkg.name} {pkg.emoji}
+                  </h2>
+                  <p class="text-gray-600 text-xs md:text-sm mb-2 line-clamp-2 hidden md:block">
+                    {pkg.shortDescription}
+                  </p>
+
+                  <p class="text-lg md:text-xl font-bold text-amber-600">{formatPrice(pkg.price)}</p>
+                </Card>
+              </Card>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Included Section -->
+  <section class="py-16 bg-amber-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4 font-serif">What's Included in Every Package</h2>
+        <p class="text-gray-600">All our packages come with these essential elements</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          includedItems.map((item) => (
+            <div class="bg-white rounded-lg p-6 text-center shadow-sm">
+              <span class="text-4xl mb-3 block">{item.icon}</span>
+              <h3 class="font-semibold mb-1">{item.title}</h3>
+              <p class="text-sm text-gray-600">{item.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <WhatsAppFloat />
+</div>

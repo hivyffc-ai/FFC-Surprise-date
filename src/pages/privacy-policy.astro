@@ -1,0 +1,44 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { siteConfig } from '@/lib/ffc-config';
+---
+<BaseLayout
+  title={`Privacy Policy — ${siteConfig.name}`}
+  description={`Privacy policy of ${siteConfig.name}. Learn how we handle your personal data, booking information, and contact details.`}
+  canonicalPath="/privacy-policy"
+  noTemplate={false}
+>
+  <div class="min-h-screen bg-white">
+    <Header />
+    <div class="container mx-auto px-4 py-16 max-w-3xl">
+      <h1 class="text-3xl font-bold text-gray-900 mb-8 font-serif">Privacy Policy</h1>
+      <p class="text-sm text-gray-500 mb-8">Last updated: January 2025</p>
+
+      <div class="prose prose-gray max-w-none space-y-6 text-gray-700">
+        <section>
+          <h2 class="text-xl font-bold text-gray-900 mb-3">1. Information We Collect</h2>
+          <p>When you book a celebration or contact us at ${siteConfig.name}, we collect your name, phone number, preferred date and time, and occasion type. This information is used solely to confirm your booking and provide you our services.</p>
+        </section>
+        <section>
+          <h2 class="text-xl font-bold text-gray-900 mb-3">2. How We Use Your Information</h2>
+          <p>Your contact details are used to confirm your reservation via WhatsApp or phone call, send booking confirmations, and occasionally inform you about special offers related to your celebration type. We do not share, sell, or distribute your personal information to third parties.</p>
+        </section>
+        <section>
+          <h2 class="text-xl font-bold text-gray-900 mb-3">3. Data Storage</h2>
+          <p>Booking information is securely stored and retained for up to 12 months for service quality purposes. After this period, personal data is deleted from our records.</p>
+        </section>
+        <section>
+          <h2 class="text-xl font-bold text-gray-900 mb-3">4. WhatsApp Communications</h2>
+          <p>By submitting your phone number on our website or WhatsApp, you consent to receiving booking-related messages on WhatsApp. You can opt out at any time by messaging us "STOP".</p>
+        </section>
+        <section>
+          <h2 class="text-xl font-bold text-gray-900 mb-3">5. Cookies</h2>
+          <p>Our website uses minimal cookies for analytics purposes only. We do not use advertising cookies or cross-site tracking.</p>
+        </section>
+      </div>
+    </div>
+    <Footer />
+  </div>
+</BaseLayout>

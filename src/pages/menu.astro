@@ -1,0 +1,18 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FFCMenuPage from '@/components/ffc-menu-page.astro';
+import { siteConfig } from '@/lib/ffc-config';
+
+const title = `Food Menu — ${siteConfig.name} | Romantic Dining`;
+const description = `Explore the curated food & drink menu at ${siteConfig.name}, ${siteConfig.city}. Perfect for romantic dinners and couple celebrations.`;
+---
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={[`${siteConfig.name.toLowerCase()} menu`, `romantic menu ${siteConfig.city.toLowerCase()}`]}
+  canonicalPath="/menu"
+  ogImageAlt={`${siteConfig.name} Menu`}
+  noTemplate={false}
+>
+  <FFCMenuPage />
+</BaseLayout>

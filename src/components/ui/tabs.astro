@@ -1,0 +1,89 @@
+---
+import { cn } from '@/lib/utils';
+
+export interface Props {
+  tabs: { value: string; label: string }[];
+  defaultValue: string;
+  id?: string;
+  class?: string;
+  listClass?: string;
+  triggerClass?: string;
+  contentClass?: string;
+}
+
+const {
+  tabs,
+  defaultValue,
+  id = `tabs-${Math.random().toString(36).slice(2, 9)}`,
+  class: className,
+  listClass,
+  triggerClass,
+  contentClass,
+} = Astro.props;
+
+const triggerBase =
+  "data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4";
+---
+
+<div data-tabs-root={id} class={cn('flex flex-col gap-2', className)}>
+  <div
+    role="tablist"
+    class={cn(
+      'bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]',
+      listClass,
+    )}
+  >
+    {
+      tabs.map((tab) => (
+        <button
+          type="button"
+          role="tab"
+          data-tab-trigger={tab.value}
+          data-state={tab.value === defaultValue ? 'active' : 'inactive'}
+          class={cn(triggerBase, triggerClass)}
+        >
+          {tab.label}
+        </button>
+      ))
+    }
+  </div>
+
+  {
+    tabs.map((tab) => (
+      <div
+        data-tab-panel={tab.value}
+        class={cn('flex-1 outline-none', contentClass)}
+        hidden={tab.value !== defaultValue}
+      >
+        <slot name={`tab-${tab.value}`} />
+      </div>
+    ))
+  }
+</div>
+
+<script define:vars={{ id }}>
+  (function () {
+    const root = document.querySelector(`[data-tabs-root="${id}"]`);
+    if (!root) return;
+    const triggers = root.querySelectorAll('[data-tab-trigger]');
+    const panels = root.querySelectorAll('[data-tab-panel]');
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const value = trigger.getAttribute('data-tab-trigger');
+
+        triggers.forEach((t) => {
+          t.setAttribute('data-state', t === trigger ? 'active' : 'inactive');
+        });
+
+        panels.forEach((panel) => {
+          if (panel.getAttribute('data-tab-panel') === value) {
+            panel.removeAttribute('hidden');
+          } else {
+            panel.setAttribute('hidden', '');
+          }
+        });
+      });
+    });
+  })();
+</script>

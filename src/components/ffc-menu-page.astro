@@ -1,0 +1,228 @@
+---
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import BookNowButton from '@/components/BookNowButton.astro';
+import Card from '@/components/ui/card.astro';
+import Badge from '@/components/ui/badge.astro';
+import Button from '@/components/ui/button.astro';
+import Icon from '@/components/Icon.astro';
+import { menuItems, siteConfig } from '@/lib/ffc-config';
+---
+
+<div class="min-h-screen bg-white">
+  <Header />
+
+  {/* Hero Section */}
+  <section class="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-16 md:py-24">
+    <div class="container mx-auto px-4 text-center">
+      <Badge class="mb-4 bg-amber-500/20 text-amber-400 border-amber-500/30">
+        <Icon name="utensils" class="h-4 w-4 mr-2" /> Dining Experience
+      </Badge>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 font-serif">
+        LUNCH / DINNER MENU
+      </h1>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        Curated Cafe-Style Delicacies Crafted for Romantic Dates & Private Celebrations
+      </p>
+    </div>
+  </section>
+
+  {/* Menu Items */}
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      {/* Starters Section */}
+      <div class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold font-serif mb-2">🍽️ Main Course</h2>
+          <p class="text-gray-600">Delicious dishes crafted to complement the romantic ambiance</p>
+        </div>
+
+        <div class="space-y-6">
+          {menuItems.starters.map((item) => (
+            <Card class="border-amber-100 hover:shadow-lg transition-shadow">
+              <Card slot="content" class="p-6 border-0 shadow-none">
+                <div class="flex items-start gap-4">
+                  <span class="text-4xl">{item.emoji}</span>
+                  <div>
+                    <h3 class="text-xl font-semibold mb-2">{item.name}</h3>
+                    <p class="text-gray-600">{item.description}</p>
+                  </div>
+                </div>
+              </Card>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Desserts Section */}
+      <div class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold font-serif mb-2">🍫 Desserts</h2>
+          <p class="text-gray-600">Sweet endings for your romantic evening</p>
+        </div>
+
+        <div class="space-y-6">
+          {menuItems.desserts.map((item) => (
+            <Card class="border-amber-100 hover:shadow-lg transition-shadow">
+              <Card slot="content" class="p-6 border-0 shadow-none">
+                <div class="flex items-start gap-4">
+                  <span class="text-4xl">{item.emoji}</span>
+                  <div>
+                    <h3 class="text-xl font-semibold mb-2">{item.name}</h3>
+                    <p class="text-gray-600">{item.description}</p>
+                  </div>
+                </div>
+              </Card>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Add-ons Section */}
+      <div class="mb-16">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold font-serif mb-2">🎁 What You Will Get</h2>
+          <p class="text-gray-600">Cake & Champagne included</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          {menuItems.addOns.map((item) => (
+            <Card class="border-amber-100 bg-amber-50">
+              <Card slot="content" class="p-6 text-center border-0 shadow-none bg-transparent">
+                <span class="text-5xl mb-4 block">{item.emoji}</span>
+                <h3 class="text-xl font-semibold mb-2">{item.name}</h3>
+                <p class="text-gray-600 mb-2">{item.description}</p>
+                <p class="text-amber-600 font-bold text-lg">{item.price}</p>
+              </Card>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Experience Section */}
+  <section class="py-16 bg-gradient-to-br from-amber-50 to-orange-50">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold font-serif mb-2">✨ The Complete Experience</h2>
+        <p class="text-gray-600">What makes your celebration special</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {/* 3 Hours */}
+        <Card class="border-amber-200">
+          <Card slot="content" class="p-6 border-0 shadow-none">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
+                <Icon name="clock" class="h-6 w-6 text-amber-600" />
+              </div>
+              <h3 class="text-xl font-bold">3 Mesmerizing Hours</h3>
+            </div>
+            <p class="text-gray-600">
+              Three magical hours designed to create unforgettable memories, where every moment feels like a brushstroke on the canvas of your love story.
+            </p>
+          </Card>
+        </Card>
+
+        {/* Tent Decoration */}
+        <Card class="border-amber-200">
+          <Card slot="content" class="p-6 border-0 shadow-none">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
+                <Icon name="heart" class="h-6 w-6 text-amber-600" />
+              </div>
+              <h3 class="text-xl font-bold">Romantic Tent Decoration</h3>
+            </div>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-center gap-2">
+                <Icon name="check" class="h-4 w-4 text-amber-600" />
+                Trending Tent Setup for romantic evenings
+              </li>
+              <li class="flex items-center gap-2">
+                <Icon name="check" class="h-4 w-4 text-amber-600" />
+                Curtains, Flowers & Twinkling Lights
+              </li>
+              <li class="flex items-center gap-2">
+                <Icon name="check" class="h-4 w-4 text-amber-600" />
+                Unique Props & Lower Seating
+              </li>
+              <li class="flex items-center gap-2">
+                <Icon name="check" class="h-4 w-4 text-amber-600" />
+                Soft Candle Glow Ambiance
+              </li>
+            </ul>
+          </Card>
+        </Card>
+
+        {/* Dining Experience */}
+        <Card class="border-amber-200">
+          <Card slot="content" class="p-6 border-0 shadow-none">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
+                <Icon name="utensils" class="h-6 w-6 text-amber-600" />
+              </div>
+              <h3 class="text-xl font-bold">Dining Experience</h3>
+            </div>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-center gap-2">
+                <Icon name="check" class="h-4 w-4 text-amber-600" />
+                Mouth-Watering Dishes
+              </li>
+              <li class="flex items-center gap-2">
+                <Icon name="check" class="h-4 w-4 text-amber-600" />
+                Romantic Background Music
+              </li>
+              <li class="flex items-center gap-2">
+                <Icon name="check" class="h-4 w-4 text-amber-600" />
+                Perfect mood setting
+              </li>
+            </ul>
+          </Card>
+        </Card>
+
+        {/* Cancellation Policy */}
+        <Card class="border-amber-200">
+          <Card slot="content" class="p-6 border-0 shadow-none">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center">
+                <Icon name="gift" class="h-6 w-6 text-amber-600" />
+              </div>
+              <h3 class="text-xl font-bold">Cancellation Policy</h3>
+            </div>
+            <p class="text-gray-600 mb-4">
+              Rescheduling must be informed at least one day prior. Event can be rescheduled within one month, subject to availability.
+            </p>
+            <p class="text-amber-600 font-semibold">
+              * No Refund Policy Applicable
+            </p>
+          </Card>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA Section */}
+  <section class="py-16 bg-gradient-to-r from-amber-600 to-orange-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 font-serif">
+        Ready to Book Your Romantic Dining Experience?
+      </h2>
+      <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+        Reserve your table and let us create magical moments for you
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <BookNowButton pageTitle="Menu Page" class="text-lg px-8 py-6 bg-white text-amber-600 hover:bg-amber-50" />
+        <a href={`tel:${siteConfig.phone}`}>
+          <Button size="lg" class="bg-green-600 hover:bg-green-700 text-white text-lg px-8 py-6">
+            Call {siteConfig.phone}
+          </Button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <WhatsAppFloat />
+</div>

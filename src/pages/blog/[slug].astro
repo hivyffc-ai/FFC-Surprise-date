@@ -1,0 +1,32 @@
+---
+export const prerender = true;
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FFCBlogPostPage from '@/components/ffc-blog-post-page.astro';
+import { getAllBlogPosts, siteConfig } from '@/lib/ffc-config';
+
+export function getStaticPaths() {
+  return getAllBlogPosts().map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+if (!post) {
+  return Astro.redirect('/blog', 302);
+}
+
+const title = `${post.metaTitle} | ${siteConfig.name}`;
+---
+<BaseLayout
+  title={title}
+  description={post.metaDescription}
+  canonicalPath={`/blog/${post.slug}`}
+  ogImage={post.coverImage}
+  ogImageAlt={`${post.title} — ${siteConfig.name} Blog`}
+  noTemplate={false}
+>
+  <FFCBlogPostPage post={post} />
+</BaseLayout>

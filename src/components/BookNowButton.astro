@@ -1,0 +1,35 @@
+---
+import BookingForm from '@/components/BookingForm.astro';
+import Icon from '@/components/Icon.astro';
+
+export interface Props {
+  pageTitle?: string;
+  packageName?: string;
+  packageSlug?: string;
+  class?: string;
+}
+
+const { pageTitle = '', packageName = '', packageSlug = '', class: className = '' } = Astro.props;
+const dialogId = `book-now-dialog-${Math.random().toString(36).slice(2, 9)}`;
+---
+<button
+  type="button"
+  data-open-dialog={dialogId}
+  class={`inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium h-9 px-4 py-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white transition-all ${className}`}
+>
+  <Icon name="gift" class="h-5 w-5" />
+  Book Now
+</button>
+
+<dialog id={dialogId} class="max-w-md w-[calc(100%-2rem)] p-0 rounded-xl backdrop:bg-black/50 m-auto">
+  <BookingForm variant="modal" pageTitle={pageTitle} packageName={packageName} defaultPackageSlug={packageSlug} />
+</dialog>
+
+<script define:vars={{ dialogId }}>
+  const trigger = document.querySelector(`[data-open-dialog="${dialogId}"]`);
+  const dialog = document.getElementById(dialogId);
+  trigger?.addEventListener('click', () => dialog?.showModal());
+  dialog?.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+</script>

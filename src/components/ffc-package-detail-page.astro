@@ -1,0 +1,441 @@
+---
+import Icon from '@/components/Icon.astro';
+import Card from '@/components/ui/card.astro';
+import Badge from '@/components/ui/badge.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import { packages, formatPrice, type SetupPackage } from '@/lib/ffc-config';
+
+export interface Props {
+  package: SetupPackage;
+}
+
+const { package: pkg } = Astro.props;
+
+// Find ALL other packages except current one
+const relatedPackages = packages.filter((p) => p.id !== pkg.id);
+const imagesPerPage = 5;
+const totalPages = Math.ceil(pkg.images.length / imagesPerPage);
+const galleryId = `pkg-gallery-${pkg.id}`;
+---
+
+<div class="min-h-screen bg-white">
+  <Header />
+
+  <!-- Breadcrumb -->
+  <div class="bg-amber-50 py-4">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center gap-2 text-sm">
+        <a href="/" class="text-gray-500 hover:text-amber-600">Home</a>
+        <Icon name="chevron-right" class="h-4 w-4 text-gray-400" />
+        <a href="/packages" class="text-gray-500 hover:text-amber-600">Packages</a>
+        <Icon name="chevron-right" class="h-4 w-4 text-gray-400" />
+        <span class="text-amber-600 font-medium">{pkg.name}</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <section class="py-4 md:py-8 lg:py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-6 lg:gap-12">
+        <!-- Left Column - Images/Visual -->
+        <div data-gallery={galleryId}>
+          <!-- Main Image with Navigation Arrows -->
+          <div class="aspect-[4/5] sm:aspect-[4/5] md:aspect-[3/4] lg:aspect-[3/5] rounded-xl md:rounded-2xl overflow-hidden relative mb-3 md:mb-4 group max-h-[80vh] md:max-h-none">
+            {
+              pkg.images.map((image, index) => (
+                <img
+                  src={image || pkg.thumbnail}
+                  alt={pkg.name}
+                  data-main-image={index}
+                  class="absolute inset-0 w-full h-full object-contain scale-125 md:scale-100 md:object-cover"
+                  hidden={index !== 0}
+                />
+              ))
+            }
+
+            <!-- Navigation Arrows - Always visible on mobile -->
+            <button
+              type="button"
+              data-gallery-prev
+              class="absolute left-2 md:left-3 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg md:opacity-0 md:group-hover:opacity-100 transition-opacity z-10"
+            >
+              <Icon name="chevron-left" class="w-5 h-5 md:w-6 md:h-6 text-gray-800" />
+            </button>
+            <button
+              type="button"
+              data-gallery-next
+              class="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg md:opacity-0 md:group-hover:opacity-100 transition-opacity z-10"
+            >
+              <Icon name="chevron-right" class="w-5 h-5 md:w-6 md:h-6 text-gray-800" />
+            </button>
+
+            <!-- Image Counter -->
+            <div class="absolute bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 bg-black/60 text-white px-3 py-1 rounded-full text-xs md:text-sm z-10">
+              <span data-gallery-counter-current>1</span> / {pkg.images.length}
+            </div>
+          </div>
+
+          <!-- Thumbnail Slider -->
+          <div class="relative px-8 md:px-10">
+            <!-- Left Arrow -->
+            <button
+              type="button"
+              data-gallery-thumb-prev
+              disabled
+              class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-7 h-7 md:w-8 md:h-8 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-amber-50 transition-colors border border-gray-200 disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <Icon name="chevron-left" class="w-4 h-4 md:w-5 md:h-5 text-gray-600" />
+            </button>
+
+            <!-- Thumbnails Container -->
+            <div class="overflow-hidden">
+              <div data-gallery-thumb-track class="flex gap-2 transition-transform duration-300 ease-in-out">
+                {
+                  pkg.images.map((image, index) => (
+                    <button
+                      type="button"
+                      data-gallery-thumb={index}
+                      class={`flex-shrink-0 w-[calc(20%-6.4px)] aspect-[3/4] rounded-md md:rounded-lg overflow-hidden relative cursor-pointer transition-all ${index === 0 ? 'ring-2 ring-amber-500 scale-105' : 'opacity-70 hover:opacity-100'}`}
+                    >
+                      <img src={image} alt={`${pkg.name} - Image ${index + 1}`} class="absolute inset-0 w-full h-full object-cover" />
+                    </button>
+                  ))
+                }
+              </div>
+            </div>
+
+            <!-- Right Arrow -->
+            <button
+              type="button"
+              data-gallery-thumb-next
+              disabled={totalPages <= 1}
+              class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-7 h-7 md:w-8 md:h-8 bg-white shadow-lg rounded-full flex items-center justify-center hover:bg-amber-50 transition-colors border border-gray-200 disabled:opacity-30 disabled:cursor-not-allowed"
+            >
+              <Icon name="chevron-right" class="w-4 h-4 md:w-5 md:h-5 text-gray-600" />
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column - Details -->
+        <div class="mt-4 lg:mt-0">
+          <!-- Title & Tagline -->
+          <Badge class="mb-3 md:mb-4 bg-amber-100 text-amber-700 border-amber-200">
+            <Icon name="heart" class="h-3 w-3 md:h-4 md:w-4 mr-1 md:mr-2" /> Couples Only Experience
+          </Badge>
+
+          <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 font-serif">
+            {pkg.name} {pkg.emoji}
+          </h1>
+
+          <p class="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">
+            Creating the perfect mood for <strong>Every Celebration & Love Story</strong> ✨
+          </p>
+
+          <!-- Perfect For -->
+          <div class="mb-4 md:mb-6">
+            <p class="text-sm font-medium text-gray-700 mb-2">🎉 Perfect For</p>
+            <p class="text-gray-600 text-sm md:text-base">{pkg.perfectFor.join(' | ')}</p>
+          </div>
+
+          <!-- Tagline -->
+          <div class="bg-amber-50 rounded-lg p-3 md:p-4 mb-4 md:mb-6">
+            <p class="text-amber-800 italic text-sm md:text-base">
+              💍 {pkg.name} — where every occasion turns into a forever memory under the stars ✨🌙
+            </p>
+          </div>
+
+          <!-- Price -->
+          <div class="mb-4 md:mb-6">
+            <span class="text-2xl md:text-3xl font-bold text-amber-600">{formatPrice(pkg.price)}</span>
+          </div>
+
+          <!-- Booking Form Inline -->
+          <div class="mb-6 md:mb-8">
+            <BookingForm variant="sidebar" packageName={pkg.name} defaultPackageSlug={pkg.slug} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Package Description -->
+  <section class="py-8 md:py-12 bg-amber-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-xl md:text-2xl lg:text-3xl font-bold mb-6 md:mb-8 font-serif text-center">✨ What's Included</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+          {
+            pkg.features.map((feature) => (
+              <div class="flex items-start gap-3 bg-white rounded-lg p-3 md:p-4">
+                <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                  <Icon name="check" class="h-4 w-4 md:h-5 md:w-5 text-amber-600" />
+                </div>
+                <div>
+                  <p class="text-gray-700 text-sm md:text-base">{feature}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lunch/Dinner Menu -->
+  <section class="py-8 md:py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-xl md:text-2xl lg:text-3xl font-bold mb-2 font-serif text-center">🍽️ Lunch / Dinner Menu</h2>
+        <p class="text-gray-600 text-center mb-6 md:mb-8 text-sm md:text-base">
+          Curated Café-Style Delicacies Crafted for Romantic Dates & Private Celebrations
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+          <div class="bg-amber-50 rounded-lg p-4 border border-amber-100">
+            <h4 class="font-semibold text-amber-800 mb-1">🥤 Welcome Drink</h4>
+            <p class="text-gray-600 text-sm">A refreshing welcome to begin your romantic experience</p>
+          </div>
+          <div class="bg-amber-50 rounded-lg p-4 border border-amber-100">
+            <h4 class="font-semibold text-amber-800 mb-1">🧀 Cheese Fondue</h4>
+            <p class="text-gray-600 text-sm">Rich, velvety cheese fondue served with cheese balls, wedges, and nachos</p>
+          </div>
+          <div class="bg-amber-50 rounded-lg p-4 border border-amber-100">
+            <h4 class="font-semibold text-amber-800 mb-1">🌯 Paneer Tortilla</h4>
+            <p class="text-gray-600 text-sm">Soft tortilla filled with spicy paneer and chef's special seasoning</p>
+          </div>
+          <div class="bg-amber-50 rounded-lg p-4 border border-amber-100">
+            <h4 class="font-semibold text-amber-800 mb-1">🍟 Peri Peri Fries with Mac & Cheese</h4>
+            <p class="text-gray-600 text-sm">Creamy mac & cheese paired with peri-peri fries</p>
+          </div>
+          <div class="bg-amber-50 rounded-lg p-4 border border-amber-100">
+            <h4 class="font-semibold text-amber-800 mb-1">🍞 Tangy Loaf</h4>
+            <p class="text-gray-600 text-sm">Warm loaf served with cheesy garlic sauce</p>
+          </div>
+          <div class="bg-amber-50 rounded-lg p-4 border border-amber-100">
+            <h4 class="font-semibold text-amber-800 mb-1">🍫 Dessert with Chocolate Bite</h4>
+            <p class="text-gray-600 text-sm">A sweet ending with rich chocolate indulgence</p>
+          </div>
+        </div>
+
+        <!-- Cake & Champagne -->
+        <div class="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class={`rounded-xl p-4 md:p-6 text-center ${pkg.cakeIncluded ? 'bg-gradient-to-br from-green-100 to-emerald-100 border-2 border-green-200' : 'bg-gradient-to-br from-amber-100 to-orange-100'}`}>
+            <h4 class={`font-bold text-lg md:text-xl mb-2 ${pkg.cakeIncluded ? 'text-green-800' : 'text-amber-800'}`}>🎂 Cake & Champagne</h4>
+            {
+              pkg.cakeIncluded ? (
+                <>
+                  <p class="text-green-700 text-sm md:text-base font-semibold">
+                    ✅ <strong>Cake:</strong> Complimentary (FREE!)
+                  </p>
+                  <p class="text-gray-700 text-sm md:text-base mt-1">
+                    <strong>Champagne:</strong> ₹500/- (Non-Alcoholic Fruit Flavour)
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p class="text-amber-700 text-sm md:text-base">
+                    <strong>Cake:</strong> ₹500/- (Extra Cost)
+                  </p>
+                  <p class="text-gray-700 text-sm md:text-base mt-1">
+                    <strong>Champagne:</strong> ₹500/- (Non-Alcoholic Fruit Flavour)
+                  </p>
+                </>
+              )
+            }
+          </div>
+          <div class="bg-gradient-to-br from-amber-100 to-orange-100 rounded-xl p-4 md:p-6 text-center">
+            <h4 class="font-bold text-lg md:text-xl text-amber-800 mb-2">⏰ 3 Mesmerizing Hours</h4>
+            <p class="text-gray-700 text-sm md:text-base">Three magical hours designed to create unforgettable memories</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You Will Get - Decoration -->
+  <section class="py-8 md:py-12 bg-amber-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-xl md:text-2xl lg:text-3xl font-bold mb-6 md:mb-8 font-serif text-center">🏕️ Romantic Tent Decoration</h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+          <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+            <span class="text-3xl md:text-4xl mb-2 block">⛺</span>
+            <h4 class="font-semibold text-gray-800 text-sm md:text-base">Trending Tent Setup</h4>
+            <p class="text-gray-600 text-xs md:text-sm mt-1">Stylish tent for romantic evenings</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+            <span class="text-3xl md:text-4xl mb-2 block">🌸</span>
+            <h4 class="font-semibold text-gray-800 text-sm md:text-base">Curtains, Flowers & Lights</h4>
+            <p class="text-gray-600 text-xs md:text-sm mt-1">Magical ambiance</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+            <span class="text-3xl md:text-4xl mb-2 block">✨</span>
+            <h4 class="font-semibold text-gray-800 text-sm md:text-base">Unique Props</h4>
+            <p class="text-gray-600 text-xs md:text-sm mt-1">Elevate the atmosphere</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+            <span class="text-3xl md:text-4xl mb-2 block">🛋️</span>
+            <h4 class="font-semibold text-gray-800 text-sm md:text-base">Lower Seating</h4>
+            <p class="text-gray-600 text-xs md:text-sm mt-1">Comfortable open-roof seating</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+            <span class="text-3xl md:text-4xl mb-2 block">🕯️</span>
+            <h4 class="font-semibold text-gray-800 text-sm md:text-base">Candle Lights</h4>
+            <p class="text-gray-600 text-xs md:text-sm mt-1">Soft glow for intimacy</p>
+          </div>
+          <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+            <span class="text-3xl md:text-4xl mb-2 block">🎶</span>
+            <h4 class="font-semibold text-gray-800 text-sm md:text-base">Romantic Music</h4>
+            <p class="text-gray-600 text-xs md:text-sm mt-1">Perfect mood melodies</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Description -->
+  <section class="py-8 md:py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto prose prose-amber">
+        <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 font-serif">About This Setup</h2>
+        <div class="whitespace-pre-line text-gray-600 leading-relaxed text-sm md:text-base">{pkg.fullDescription}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cancellation Policy -->
+  <section class="py-8 md:py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 font-serif">📋 Cancellation Policy</h2>
+        <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200">
+          <p class="text-gray-600 mb-3 md:mb-4 text-sm md:text-base">
+            Rescheduling must be informed at least one day prior. Event can be rescheduled within one month, subject to availability.
+          </p>
+          <p class="text-amber-600 font-semibold text-sm md:text-base">* No Refund Policy Applicable</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Packages -->
+  <section class="py-8 md:py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-xl md:text-2xl font-bold mb-6 md:mb-8 font-serif text-center">You May Also Like</h2>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
+        {
+          relatedPackages.map((relPkg) => (
+            <a href={`/packages/${relPkg.slug}`}>
+              <Card class="h-full hover:shadow-lg transition-all hover:-translate-y-1 border-amber-100 group">
+                <div class="aspect-square md:aspect-video bg-gradient-to-br from-amber-100 to-orange-100 relative overflow-hidden">
+                  <img src={relPkg.thumbnail} alt={relPkg.name} class="absolute inset-0 w-full h-full object-cover" />
+                </div>
+                <Card slot="content" class="p-2 md:p-4 border-0 shadow-none">
+                  <h3 class="font-semibold text-sm md:text-lg mb-1 group-hover:text-amber-600 transition-colors line-clamp-2">
+                    {relPkg.name}
+                  </h3>
+                  <p class="text-gray-600 text-xs md:text-sm line-clamp-2 mb-1 md:mb-2 hidden md:block">
+                    {relPkg.shortDescription}
+                  </p>
+                  <p class="text-base md:text-xl font-bold text-amber-600">{formatPrice(relPkg.price)}</p>
+                </Card>
+              </Card>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <WhatsAppFloat />
+</div>
+
+<script define:vars={{ galleryId, totalImages: pkg.images.length, imagesPerPage, totalPages }}>
+  (function () {
+    const root = document.querySelector(`[data-gallery="${galleryId}"]`);
+    if (!root) return;
+
+    const mainImages = Array.from(root.querySelectorAll('[data-main-image]'));
+    const thumbButtons = Array.from(root.querySelectorAll('[data-gallery-thumb]'));
+    const thumbTrack = root.querySelector('[data-gallery-thumb-track]');
+    const counterEl = root.querySelector('[data-gallery-counter-current]');
+    const prevBtn = root.querySelector('[data-gallery-prev]');
+    const nextBtn = root.querySelector('[data-gallery-next]');
+    const thumbPrevBtn = root.querySelector('[data-gallery-thumb-prev]');
+    const thumbNextBtn = root.querySelector('[data-gallery-thumb-next]');
+
+    let selectedIndex = 0;
+    let thumbnailPage = 0;
+
+    function renderMainImage() {
+      mainImages.forEach((img, i) => {
+        if (i === selectedIndex) {
+          img.removeAttribute('hidden');
+        } else {
+          img.setAttribute('hidden', '');
+        }
+      });
+      if (counterEl) counterEl.textContent = String(selectedIndex + 1);
+    }
+
+    function renderThumbHighlight() {
+      thumbButtons.forEach((btn, i) => {
+        if (i === selectedIndex) {
+          btn.classList.remove('opacity-70', 'hover:opacity-100');
+          btn.classList.add('ring-2', 'ring-amber-500', 'scale-105');
+        } else {
+          btn.classList.remove('ring-2', 'ring-amber-500', 'scale-105');
+          btn.classList.add('opacity-70', 'hover:opacity-100');
+        }
+      });
+    }
+
+    function renderThumbTrack() {
+      if (thumbTrack) {
+        thumbTrack.style.transform = `translateX(-${thumbnailPage * 100}%)`;
+      }
+      if (thumbPrevBtn) thumbPrevBtn.disabled = thumbnailPage === 0;
+      if (thumbNextBtn) thumbNextBtn.disabled = thumbnailPage >= totalPages - 1;
+    }
+
+    function goTo(index) {
+      selectedIndex = index;
+      thumbnailPage = Math.floor(selectedIndex / imagesPerPage);
+      renderMainImage();
+      renderThumbHighlight();
+      renderThumbTrack();
+    }
+
+    prevBtn?.addEventListener('click', () => {
+      goTo(selectedIndex === 0 ? totalImages - 1 : selectedIndex - 1);
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      goTo(selectedIndex === totalImages - 1 ? 0 : selectedIndex + 1);
+    });
+
+    thumbButtons.forEach((btn, i) => {
+      btn.addEventListener('click', () => goTo(i));
+    });
+
+    thumbPrevBtn?.addEventListener('click', () => {
+      thumbnailPage = Math.max(0, thumbnailPage - 1);
+      renderThumbTrack();
+    });
+
+    thumbNextBtn?.addEventListener('click', () => {
+      thumbnailPage = Math.min(totalPages - 1, thumbnailPage + 1);
+      renderThumbTrack();
+    });
+
+    renderThumbTrack();
+  })();
+</script>

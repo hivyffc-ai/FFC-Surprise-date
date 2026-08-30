@@ -1,0 +1,35 @@
+---
+import BreadcrumbSchema from '@/components/breadcrumb-schema.astro';
+import LocalBusinessSchema from '@/components/local-business-schema.astro';
+import ServiceSchema from '@/components/service-schema.astro';
+import BreadcrumbNav from '@/components/breadcrumb-nav.astro';
+import RelatedServices from '@/components/related-services.astro';
+import { SEO_CONFIG } from '@/lib/seo-config';
+
+export interface Props {
+  serviceName: string;
+  serviceSlug: string;
+  description: string;
+  keywords?: string[];
+  relatedLinks?: { href: string; label: string }[];
+}
+
+const { serviceName, serviceSlug, description, relatedLinks = [] } = Astro.props;
+
+const breadcrumbItems = [
+  { name: 'Home', url: SEO_CONFIG.siteUrl },
+  { name: serviceName, url: `${SEO_CONFIG.siteUrl}/${serviceSlug}` },
+];
+---
+
+<BreadcrumbSchema items={breadcrumbItems} />
+<LocalBusinessSchema serviceName={`${serviceName} - ${SEO_CONFIG.siteName}`} description={description} />
+<ServiceSchema name={serviceName} description={description} />
+
+<BreadcrumbNav items={[{ label: serviceName }]} />
+
+<main>
+  <slot />
+</main>
+
+{relatedLinks.length > 0 && <RelatedServices links={relatedLinks} />}

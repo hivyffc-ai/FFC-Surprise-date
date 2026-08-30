@@ -1,0 +1,22 @@
+---
+export interface Props {
+  links: { href: string; label: string }[];
+}
+
+const { links } = Astro.props;
+---
+
+{
+  links && links.length > 0 && (
+    <div class="py-6 border-t border-gray-700">
+      <h3 class="text-sm font-semibold text-gray-300 mb-3">Popular Services</h3>
+      <div class="flex flex-wrap gap-2">
+        {links.map((link) => (
+          <a href={link.href} class="text-xs text-gray-400 hover:text-white transition-colors">
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  )
+}

@@ -1,0 +1,18 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FFCAboutPage from '@/components/ffc-about-page.astro';
+import { siteConfig } from '@/lib/ffc-config';
+
+const title = `About ${siteConfig.name} | ${siteConfig.city}'s Premier Romantic Venue`;
+const description = `${siteConfig.name} is ${siteConfig.city}'s most-loved private romantic celebration venue. Exclusive private setups for couples. Open daily 11 AM to 11 PM.`;
+---
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={[`about ${siteConfig.name.toLowerCase()}`, `romantic venue ${siteConfig.city.toLowerCase()}`]}
+  canonicalPath="/about"
+  ogImageAlt={`About ${siteConfig.name}`}
+  noTemplate={false}
+>
+  <FFCAboutPage />
+</BaseLayout>

@@ -1,0 +1,30 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FFCHomePage from '@/components/ffc-home-page.astro';
+import { siteConfig } from '@/lib/ffc-config';
+
+const title = `${siteConfig.name} | ${siteConfig.tagline || 'Best Romantic Celebration Venue'}`;
+const description = siteConfig.description;
+const keywords = [
+  siteConfig.name.toLowerCase(),
+  `${siteConfig.name.toLowerCase()} ${siteConfig.city.toLowerCase()}`,
+  `romantic cafe ${siteConfig.city.toLowerCase()}`,
+  `rooftop dinner ${siteConfig.city.toLowerCase()}`,
+  `candlelight dinner ${siteConfig.city.toLowerCase()}`,
+  `birthday surprise ${siteConfig.city.toLowerCase()}`,
+  `anniversary celebration ${siteConfig.city.toLowerCase()}`,
+  `proposal setup ${siteConfig.city.toLowerCase()}`,
+  `private dining ${siteConfig.city.toLowerCase()}`
+];
+---
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  canonicalPath="/"
+  ogImage="/og-image.svg"
+  ogImageAlt={`${siteConfig.name} - Best Romantic Celebration Venue in ${siteConfig.city}`}
+  noTemplate={true}
+>
+  <FFCHomePage />
+</BaseLayout>

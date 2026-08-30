@@ -1,0 +1,135 @@
+---
+import { siteConfig } from '@/lib/ffc-config';
+import Icon from '@/components/Icon.astro';
+
+const navigation = [
+  { name: 'Home', href: '/' },
+  { name: 'Our Packages', href: '/packages' },
+  { name: 'Menu', href: '/menu' },
+  { name: 'About us', href: '/about' },
+  { name: 'Virtual Tour', href: '/virtual-tour' },
+  { name: 'Contact us', href: '/contact' },
+];
+---
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-amber-100">
+  <nav class="container mx-auto px-4 py-2">
+    <div class="flex h-20 items-center justify-between">
+      <a href="/" class="flex flex-col">
+        <span class="text-xl md:text-2xl font-serif font-bold text-amber-700 leading-tight">Friends</span>
+        <span class="text-xl md:text-2xl font-serif font-bold text-amber-700 leading-tight">Factory</span>
+        <span class="text-xl md:text-2xl font-serif font-bold text-amber-700 leading-tight">Cafe</span>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8">
+        {navigation.map((item) => (
+          <a href={item.href} class="text-gray-700 hover:text-amber-600 font-medium transition-colors">
+            {item.name}
+          </a>
+        ))}
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div class="hidden md:flex items-center gap-3">
+          <Icon name="heart" class="h-8 w-8 text-amber-500" fill="currentColor" />
+          <div class="text-right">
+            <p class="text-xs text-gray-500">Call and Book in Minutes</p>
+            <a href={`tel:${siteConfig.phone}`} class="text-lg font-bold text-amber-600 hover:text-amber-700">
+              {siteConfig.phone}
+            </a>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          id="mobile-menu-trigger"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu-panel"
+          class="lg:hidden inline-flex items-center justify-center size-9 rounded-md hover:bg-accent hover:text-accent-foreground transition-all"
+        >
+          <Icon name="menu" class="h-6 w-6" />
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobile-menu-overlay" class="fixed inset-0 z-[60] bg-black/50 opacity-0 pointer-events-none transition-opacity duration-200 lg:hidden" data-state="closed"></div>
+  <div
+    id="mobile-menu-panel"
+    class="fixed inset-y-0 right-0 z-[70] w-[300px] sm:w-[400px] bg-background border-l shadow-lg translate-x-full transition-transform duration-200 lg:hidden"
+    data-state="closed"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Mobile menu"
+  >
+    <div class="flex flex-col h-full">
+      <div class="flex items-center justify-between py-4 px-4 border-b">
+        <span class="font-serif font-bold text-amber-700 text-xl">Friends Factory Cafe</span>
+        <button type="button" id="mobile-menu-close" aria-label="Close menu" class="inline-flex items-center justify-center size-9 rounded-md hover:bg-accent">
+          <Icon name="x" class="h-5 w-5" />
+        </button>
+      </div>
+
+      <nav class="flex-1 py-6 px-4">
+        <div class="space-y-1">
+          {navigation.map((item) => (
+            <a
+              href={item.href}
+              class="mobile-menu-link block px-4 py-3 text-lg font-medium text-gray-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors"
+            >
+              {item.name}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <div class="border-t py-4 px-4">
+        <a
+          href={`tel:${siteConfig.phone}`}
+          class="flex items-center gap-3 px-4 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
+        >
+          <Icon name="phone" class="h-5 w-5" />
+          <span class="font-medium">{siteConfig.phone}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function initMobileMenu() {
+    const trigger = document.getElementById('mobile-menu-trigger');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const overlay = document.getElementById('mobile-menu-overlay');
+    const panel = document.getElementById('mobile-menu-panel');
+    const links = document.querySelectorAll('.mobile-menu-link');
+    if (!trigger || !overlay || !panel) return;
+
+    function open() {
+      overlay!.classList.remove('opacity-0', 'pointer-events-none');
+      overlay!.dataset.state = 'open';
+      panel!.classList.remove('translate-x-full');
+      panel!.dataset.state = 'open';
+      trigger!.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      overlay!.classList.add('opacity-0', 'pointer-events-none');
+      overlay!.dataset.state = 'closed';
+      panel!.classList.add('translate-x-full');
+      panel!.dataset.state = 'closed';
+      trigger!.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    trigger.addEventListener('click', open);
+    closeBtn?.addEventListener('click', close);
+    overlay.addEventListener('click', close);
+    links.forEach((link) => link.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && panel!.dataset.state === 'open') close();
+    });
+  }
+
+  initMobileMenu();
+</script>

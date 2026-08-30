@@ -1,0 +1,173 @@
+---
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import BookNowButton from '@/components/BookNowButton.astro';
+import Badge from '@/components/ui/badge.astro';
+import Button from '@/components/ui/button.astro';
+import Card from '@/components/ui/card.astro';
+import Icon from '@/components/Icon.astro';
+import { packages } from '@/lib/ffc-config';
+---
+<div class="min-h-screen bg-white">
+  <Header />
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-amber-600 via-orange-500 to-amber-700 text-white py-16 md:py-24">
+    <div class="container mx-auto px-4 text-center">
+      <Badge class="mb-4 bg-white/20 text-white border-white/30">
+        <Icon name="camera" class="h-4 w-4 mr-2" /> Explore Our Spaces
+      </Badge>
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 font-serif">
+        Virtual Tour
+      </h1>
+      <p class="text-xl text-white/90 max-w-2xl mx-auto">
+        Take a sneak peek into our romantic celebration spaces before you book
+      </p>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-xs mx-auto">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold font-serif mb-4">Watch Our Space</h2>
+          <p class="text-gray-600">Experience the magic of Friends Factory Cafe</p>
+        </div>
+
+        <!-- Vertical Video -->
+        <div class="aspect-[9/16] bg-black rounded-2xl overflow-hidden shadow-2xl relative" data-virtual-tour-video-wrapper>
+          <video
+            class="w-full h-full object-cover"
+            controls
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="/images/video-thumbnails/virtual-tour-thumb.jpg"
+            data-tour-video
+          >
+            <source src="/videos/virtual-tour.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          <!-- Play Button Overlay -->
+          <button
+            type="button"
+            data-tour-play-btn
+            class="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors cursor-pointer"
+          >
+            <div class="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+              <Icon name="play" class="w-10 h-10 text-amber-600 ml-1" fill="currentColor" />
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="py-16 bg-amber-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold font-serif mb-4">Our Setups Gallery</h2>
+        <p class="text-gray-600">Explore our 8 unique celebration spaces</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {packages.map((pkg) => (
+          <a href={`/packages/${pkg.slug}`}>
+            <Card class="overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 group">
+              <div class="aspect-square bg-gradient-to-br from-amber-100 to-orange-100 relative overflow-hidden">
+                <img
+                  src={pkg.thumbnail}
+                  alt={pkg.name}
+                  class="absolute inset-0 w-full h-full object-cover"
+                />
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span class="text-white font-semibold">View Details</span>
+                </div>
+              </div>
+              <Card slot="content" class="p-4">
+                <h3 class="font-semibold text-sm line-clamp-1 group-hover:text-amber-600 transition-colors">
+                  {pkg.name}
+                </h3>
+              </Card>
+            </Card>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Ambiance Features -->
+  <section class="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold font-serif mb-4">The Ambiance</h2>
+        <p class="text-gray-400">Every detail crafted for romance</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
+        {[
+          { emoji: '🕯️', title: 'Candles' },
+          { emoji: '💡', title: 'Fairy Lights' },
+          { emoji: '🌹', title: 'Flowers' },
+          { emoji: '🎈', title: 'Balloons' },
+          { emoji: '🎶', title: 'Music' },
+          { emoji: '✨', title: 'Décor' },
+        ].map((item) => (
+          <div class="text-center">
+            <span class="text-5xl mb-3 block">{item.emoji}</span>
+            <p class="font-medium">{item.title}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-amber-50">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4 font-serif">
+        Ready to Experience It In Person?
+      </h2>
+      <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+        The real magic is best experienced in person. Book your celebration today!
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/packages">
+          <Button size="lg" class="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white">
+            View All Packages <Icon name="chevron-right" class="h-5 w-5 ml-2" />
+          </Button>
+        </a>
+        <BookNowButton pageTitle="Virtual Tour" class="text-lg px-8 py-6" />
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <WhatsAppFloat />
+</div>
+
+<script>
+  function setupVirtualTourVideo(wrapper: HTMLElement) {
+    const video = wrapper.querySelector<HTMLVideoElement>('[data-tour-video]');
+    const playBtn = wrapper.querySelector<HTMLButtonElement>('[data-tour-play-btn]');
+    if (!video || !playBtn) return;
+
+    playBtn.addEventListener('click', () => {
+      video.play();
+    });
+
+    video.addEventListener('play', () => {
+      playBtn.classList.add('hidden');
+    });
+    video.addEventListener('pause', () => {
+      playBtn.classList.remove('hidden');
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-virtual-tour-video-wrapper]').forEach(setupVirtualTourVideo);
+</script>

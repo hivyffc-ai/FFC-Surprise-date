@@ -1,0 +1,393 @@
+---
+import { siteConfig, packages } from '@/lib/ffc-config';
+import Icon from '@/components/Icon.astro';
+
+export interface Props {
+  pageTitle?: string;
+  variant?: 'default' | 'hero' | 'sidebar' | 'modal';
+  packageName?: string;
+  defaultPackageSlug?: string;
+  formId?: string;
+}
+
+const {
+  pageTitle = '',
+  variant = 'default',
+  packageName = '',
+  defaultPackageSlug = '',
+  formId = `booking-form-${Math.random().toString(36).slice(2, 9)}`,
+} = Astro.props;
+
+const momentOptions = [
+  { value: 'birthday', label: 'Birthday Celebration' },
+  { value: 'anniversary', label: 'Anniversary' },
+  { value: 'proposal', label: 'Proposal / Ring Ceremony' },
+  { value: 'candlelight-dinner', label: 'Candlelight Dinner' },
+  { value: 'surprise', label: 'Surprise Date' },
+  { value: 'pre-wedding-shoot', label: 'Pre-Wedding Shoot' },
+  { value: 'baby-moments', label: 'Baby Moments (Pregnancy Announcement)' },
+  { value: 'other', label: 'Other Special Occasion' },
+];
+
+const timeSlots = [
+  { value: 'lunch-12-3', label: '12 PM to 3 PM (Lunch - Indoor)' },
+  { value: 'lunch-1-4', label: '1 PM to 4 PM (Lunch - Indoor)' },
+  { value: 'lunch-2-5', label: '2 PM to 5 PM (Lunch - Indoor)' },
+  { value: 'evening-4-7', label: '4 PM to 7 PM (Evening - Indoor)' },
+  { value: 'evening-5-8', label: '5 PM to 8 PM (Evening - Indoor)' },
+  { value: 'evening-6-9', label: '6 PM to 9 PM (Evening - Indoor)' },
+  { value: 'dinner-7-10', label: '7 PM to 10 PM (Dinner - Indoor/Rooftop)' },
+  { value: 'dinner-730-1030', label: '7:30 PM to 10:30 PM (Dinner - Indoor/Rooftop)' },
+  { value: 'dinner-8-11', label: '8 PM to 11 PM (Dinner - Indoor/Rooftop)' },
+];
+
+const today = new Date().toISOString().split('T')[0];
+
+const cardClasses =
+  (variant === 'modal' ? 'border-0 shadow-none' : 'shadow-lg') +
+  (variant === 'hero' ? ' bg-white/60 backdrop-blur-md border-white/20' : '') +
+  ' overflow-hidden bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6';
+---
+<div id={formId} class={cardClasses} data-booking-form data-page-title={pageTitle} data-package-name={packageName}>
+  <div data-form-body>
+    {variant !== 'modal' && (
+      <div class={`${variant === 'hero' ? 'bg-gradient-to-r from-amber-600/95 to-orange-600/95' : 'bg-gradient-to-r from-amber-600 to-orange-600'} p-4 text-white -mt-6`}>
+        <h3 class="text-xl flex items-center gap-2 font-semibold leading-none">
+          <Icon name="gift" class="h-5 w-5" />
+          Reserve Your Moment
+        </h3>
+        <p class="text-white/80 mt-1 text-sm">Fill in details &amp; we'll contact you on WhatsApp</p>
+      </div>
+    )}
+
+    {variant === 'modal' && (
+      <div class="flex justify-between items-center p-4 border-b -mt-6">
+        <div>
+          <h3 class="text-xl text-amber-600 font-semibold leading-none">Reserve Now</h3>
+          <p class="text-muted-foreground text-sm">Get instant confirmation on WhatsApp</p>
+        </div>
+        <button type="button" data-close-modal class="inline-flex items-center justify-center size-9 rounded-md hover:bg-accent hover:text-accent-foreground">
+          <Icon name="x" class="h-5 w-5" />
+        </button>
+      </div>
+    )}
+
+    <div class="p-6">
+      <form data-booking-form-el class="space-y-4" novalidate>
+        <div class="space-y-2">
+          <label for={`${formId}-name`} class="flex items-center gap-2 text-sm leading-none font-medium">
+            <Icon name="user" class="h-4 w-4 text-amber-600" />
+            Your Name *
+          </label>
+          <input
+            id={`${formId}-name`}
+            name="name"
+            placeholder="Enter your full name"
+            class="border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm"
+          />
+          <p class="text-red-500 text-sm hidden" data-error-for="name"></p>
+        </div>
+
+        <div class="space-y-2">
+          <label for={`${formId}-phone`} class="flex items-center gap-2 text-sm leading-none font-medium">
+            <Icon name="phone" class="h-4 w-4 text-amber-600" />
+            Phone Number *
+          </label>
+          <input
+            id={`${formId}-phone`}
+            name="phone"
+            type="tel"
+            maxlength="10"
+            placeholder="10-digit mobile number"
+            class="border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm"
+          />
+          <p class="text-red-500 text-sm hidden" data-error-for="phone"></p>
+        </div>
+
+        <div class="space-y-2">
+          <label for={`${formId}-city`} class="flex items-center gap-2 text-sm leading-none font-medium">
+            <Icon name="map-pin" class="h-4 w-4 text-amber-600" />
+            City *
+          </label>
+          <input
+            id={`${formId}-city`}
+            name="city"
+            placeholder="Enter your city"
+            value="Vadodara"
+            class="border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm"
+          />
+          <p class="text-red-500 text-sm hidden" data-error-for="city"></p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label class="flex items-center gap-2 text-sm font-medium">📦 Package</label>
+            <select
+              name="selectedPackage"
+              class="border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm"
+            >
+              <option value="">Select package</option>
+              {packages.map((pkg) => (
+                <option value={pkg.slug} selected={pkg.slug === defaultPackageSlug}>
+                  {pkg.emoji} {pkg.name} - ₹{pkg.price.toLocaleString('en-IN')}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div class="space-y-2">
+            <label class="flex items-center gap-2 text-sm font-medium">
+              <Icon name="gift" class="h-4 w-4 text-amber-600" />
+              Your Moment *
+            </label>
+            <select
+              name="occasion"
+              class="border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm"
+            >
+              <option value="">Select moment</option>
+              {momentOptions.map((option) => (
+                <option value={option.value}>{option.label}</option>
+              ))}
+            </select>
+            <p class="text-red-500 text-sm hidden" data-error-for="occasion"></p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label for={`${formId}-date`} class="flex items-center gap-2 text-sm font-medium">
+              <Icon name="calendar" class="h-4 w-4 text-amber-600" />
+              Select Date *
+            </label>
+            <input
+              id={`${formId}-date`}
+              name="occasionDate"
+              type="date"
+              min={today}
+              class="border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm"
+            />
+            <p class="text-red-500 text-sm hidden" data-error-for="occasionDate"></p>
+          </div>
+
+          <div class="space-y-2">
+            <label class="flex items-center gap-2 text-sm font-medium">
+              <Icon name="clock" class="h-4 w-4 text-amber-600" />
+              Preferred Time *
+            </label>
+            <select
+              name="preferredTime"
+              class="border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] md:text-sm"
+            >
+              <option value="">Select time</option>
+              {timeSlots.map((slot) => (
+                <option value={slot.value}>{slot.label}</option>
+              ))}
+            </select>
+            <p class="text-red-500 text-sm hidden" data-error-for="preferredTime"></p>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          data-submit-btn
+          class="inline-flex w-full items-center justify-center gap-2 rounded-md bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white py-5 text-base font-semibold mt-2 transition-all disabled:pointer-events-none disabled:opacity-50"
+        >
+          <Icon name="message-circle" class="h-5 w-5" data-icon-idle />
+          <svg data-icon-loading class="h-5 w-5 animate-spin hidden" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="4"/></svg>
+          <span data-submit-label>Lock Your Date - Message on WhatsApp</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div data-form-success class="hidden py-12 text-center px-6">
+    <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-amber-100">
+      <Icon name="check-circle" class="h-8 w-8 text-amber-600" />
+    </div>
+    <h3 class="text-xl font-semibold mb-2">Booking Request Sent!</h3>
+    <p class="text-muted-foreground">We've opened WhatsApp for you. Complete your booking there!</p>
+  </div>
+</div>
+
+<script>
+  const WHATSAPP_NUMBER_ATTR = 'data-whatsapp-number';
+
+  function validatePhone(v: string) {
+    return /^[6-9]\d{9}$/.test(v);
+  }
+
+  function setupBookingForm(root: HTMLElement) {
+    const form = root.querySelector<HTMLFormElement>('[data-booking-form-el]');
+    const body = root.querySelector<HTMLElement>('[data-form-body]');
+    const success = root.querySelector<HTMLElement>('[data-form-success]');
+    const closeBtn = root.querySelector<HTMLElement>('[data-close-modal]');
+    if (!form || !body || !success) return;
+
+    const pageTitle = root.dataset.pageTitle || '';
+    const packageName = root.dataset.packageName || '';
+
+    const momentLabels: Record<string, string> = {
+      birthday: 'Birthday Celebration',
+      anniversary: 'Anniversary',
+      proposal: 'Proposal / Ring Ceremony',
+      'candlelight-dinner': 'Candlelight Dinner',
+      surprise: 'Surprise Date',
+      'pre-wedding-shoot': 'Pre-Wedding Shoot',
+      'baby-moments': 'Baby Moments (Pregnancy Announcement)',
+      other: 'Other Special Occasion',
+    };
+
+    function clearErrors() {
+      form!.querySelectorAll('[data-error-for]').forEach((el) => {
+        el.textContent = '';
+        el.classList.add('hidden');
+      });
+      form!.querySelectorAll('input, select').forEach((el) => el.classList.remove('border-red-500'));
+    }
+
+    function showError(field: string, message: string) {
+      const el = form!.querySelector(`[data-error-for="${field}"]`);
+      const input = form!.querySelector(`[name="${field}"]`);
+      if (el) {
+        el.textContent = message;
+        el.classList.remove('hidden');
+      }
+      input?.classList.add('border-red-500');
+    }
+
+    function validate(data: Record<string, string>) {
+      let valid = true;
+      if (!data.name || data.name.trim().length < 2) {
+        showError('name', 'Name must be at least 2 characters');
+        valid = false;
+      }
+      if (!data.phone || !validatePhone(data.phone)) {
+        showError('phone', 'Enter valid Indian mobile number');
+        valid = false;
+      }
+      if (!data.city || data.city.trim().length < 1) {
+        showError('city', 'Please enter your city');
+        valid = false;
+      }
+      if (!data.occasionDate) {
+        showError('occasionDate', 'Please select a date');
+        valid = false;
+      }
+      if (!data.preferredTime) {
+        showError('preferredTime', 'Please select preferred time');
+        valid = false;
+      }
+      if (!data.occasion) {
+        showError('occasion', 'Please select your moment');
+        valid = false;
+      }
+      return valid;
+    }
+
+    const timeLabels: Record<string, string> = {
+      'lunch-12-3': '12 PM to 3 PM (Lunch - Indoor)',
+      'lunch-1-4': '1 PM to 4 PM (Lunch - Indoor)',
+      'lunch-2-5': '2 PM to 5 PM (Lunch - Indoor)',
+      'evening-4-7': '4 PM to 7 PM (Evening - Indoor)',
+      'evening-5-8': '5 PM to 8 PM (Evening - Indoor)',
+      'evening-6-9': '6 PM to 9 PM (Evening - Indoor)',
+      'dinner-7-10': '7 PM to 10 PM (Dinner - Indoor/Rooftop)',
+      'dinner-730-1030': '7:30 PM to 10:30 PM (Dinner - Indoor/Rooftop)',
+      'dinner-8-11': '8 PM to 11 PM (Dinner - Indoor/Rooftop)',
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearErrors();
+
+      const fd = new FormData(form);
+      const data: Record<string, string> = {};
+      fd.forEach((value, key) => (data[key] = String(value)));
+
+      if (!validate(data)) return;
+
+      const submitBtn = form.querySelector<HTMLButtonElement>('[data-submit-btn]');
+      const idleIcon = form.querySelector('[data-icon-idle]');
+      const loadingIcon = form.querySelector('[data-icon-loading]');
+      const label = form.querySelector('[data-submit-label]');
+      submitBtn?.setAttribute('disabled', 'true');
+      idleIcon?.classList.add('hidden');
+      loadingIcon?.classList.remove('hidden');
+      if (label) label.textContent = 'Sending...';
+
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      const occasionLabel = momentLabels[data.occasion] || data.occasion;
+      const timeLabel = timeLabels[data.preferredTime] || data.preferredTime;
+
+      let message = `*New Booking Inquiry - Friends Factory Cafe*\n\n`;
+      message += `*Name:* ${data.name}\n`;
+      message += `*Phone:* ${data.phone}\n`;
+      message += `*City:* ${data.city}\n`;
+      message += `*Date:* ${data.occasionDate}\n`;
+      message += `*Preferred Time:* ${timeLabel}\n`;
+      message += `*Occasion:* ${occasionLabel}\n`;
+
+      const selectedPackageEl = form.querySelector<HTMLSelectElement>('[name="selectedPackage"]');
+      const selectedPackageLabel =
+        selectedPackageEl && selectedPackageEl.value
+          ? selectedPackageEl.options[selectedPackageEl.selectedIndex].textContent
+          : '';
+
+      if (data.selectedPackage && selectedPackageLabel) {
+        message += `\n*Selected Package:* ${selectedPackageLabel}\n`;
+      } else if (packageName) {
+        message += `\n*Package:* ${packageName}\n`;
+      }
+
+      if (pageTitle) {
+        message += `\n*Interested In:* ${pageTitle}\n`;
+      }
+
+      message += `\nLooking forward to creating beautiful memories!`;
+
+      const whatsappNumber = document.body.getAttribute(WHATSAPP_NUMBER_ATTR) || '';
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+
+      fetch('https://crm.bookmymoment.in/api/leads/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          phone: data.phone,
+          occasion_type: data.occasion,
+          preferred_date: data.occasionDate,
+          outlet: document.body.getAttribute('data-site-city') || '',
+          lead_source: window.location.hostname,
+          source_domain: window.location.hostname,
+          enquiry_channel: 'form',
+          notes: data.selectedPackage ? `Package: ${selectedPackageLabel || data.selectedPackage}` : undefined,
+        }),
+      }).catch(() => {});
+
+      body.classList.add('hidden');
+      success.classList.remove('hidden');
+
+      setTimeout(() => {
+        success.classList.add('hidden');
+        body.classList.remove('hidden');
+        form.reset();
+        submitBtn?.removeAttribute('disabled');
+        idleIcon?.classList.remove('hidden');
+        loadingIcon?.classList.add('hidden');
+        if (label) label.textContent = 'Lock Your Date - Message on WhatsApp';
+        clearErrors();
+        const dialog = root.closest('dialog');
+        if (dialog) dialog.close();
+      }, 3000);
+    });
+
+    closeBtn?.addEventListener('click', () => {
+      const dialog = root.closest('dialog');
+      if (dialog) dialog.close();
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-booking-form]').forEach(setupBookingForm);
+</script>

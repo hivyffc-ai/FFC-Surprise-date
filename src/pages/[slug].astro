@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import FFCServiceCategoryPage from '@/components/ffc-service-category-page.astro';
+import FFCAreaPage from '@/components/ffc-area-page.astro';
+import FFCKeywordPage from '@/components/ffc-keyword-page.astro';
+import {
+  serviceCategories,
+  vadodaraAreas as areasList,
+  getServiceBySlug,
+  getAreaBySlug,
+  type ServiceCategory,
+  type ServiceKeyword,
+} from '@/lib/ffc-config';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  const paths: { params: { slug: string } }[] = [];
+
+  for (const service of serviceCategories) {
+    paths.push({ params: { slug: service.slug } });
+
+    for (const keyword of service.keywords) {
+      paths.push({ params: { slug: keyword.slug } });
+    }
+  }
+
+  for (const area of areasList) {
+    paths.push({ params: { slug: area.slug } });
+  }
+
+  return paths;
+}
+
+const { slug } = Astro.params;
+
+const service = serviceCategories.find((s) => s.slug === slug);
+const area = areasList.find((a) => a.slug === slug);
+
+let keyword: ServiceKeyword | undefined;
+let parentService: ServiceCategory | undefined;
+
+if (!service && !area) {
+  for (const s of serviceCategories) {
+    const kw = s.keywords.find((k) => k.slug === slug);
+    if (kw) {
+      keyword = kw;
+      parentService = s;
+      break;
+    }
+  }
+}
+
+if (!service && !area && !keyword) {
+  return Astro.redirect('/', 302);
+}
+
+let title = '';
+let description = '';
+let keywordsList: string[] = [];
+
+if (service) {
+  title = service.metaTitle;
+  description = service.metaDescription;
+  keywordsList = [service.name, `${service.name} Vadodara`];
+} else if (area) {
+  title = area.uniqueContent?.heroSubtitle || `${area.name} Celebration Venue | Friends Factory Cafe`;
+  description = area.uniqueContent?.introduction || `Best private romantic celebration venue in ${area.name}, Vadodara.`;
+  keywordsList = [`${area.name} celebration`, `${area.name} romantic cafe`];
+} else if (keyword) {
+  title = keyword.metaTitle;
+  description = keyword.metaDescription;
+  keywordsList = [keyword.title, `${keyword.title} Vadodara`];
+}
+---
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywordsList}
+  canonicalPath={`/${slug}`}
+  noTemplate={true}
+>
+  {
+    service && (
+      <FFCServiceCategoryPage service={service} />
+    )
+  }
+  {
+    area && (
+      <FFCAreaPage area={area} />
+    )
+  }
+  {
+    keyword && parentService && (
+      <FFCKeywordPage keyword={keyword} service={parentService} />
+    )
+  }
+</BaseLayout>

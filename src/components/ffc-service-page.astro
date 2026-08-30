@@ -1,0 +1,299 @@
+---
+import Icon from '@/components/Icon.astro';
+import Button from '@/components/ui/button.astro';
+import Card from '@/components/ui/card.astro';
+import Badge from '@/components/ui/badge.astro';
+import Accordion from '@/components/ui/accordion.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import FFCGalleryCompact from '@/components/ffc-gallery-compact.astro';
+import type { ServiceCategory } from '@/lib/ffc-config';
+import { packages, vadodaraAreas, siteConfig, formatPrice } from '@/lib/ffc-config';
+
+export interface Props {
+  service: ServiceCategory;
+}
+
+const { service } = Astro.props;
+
+// Get related packages
+const relatedPackages = packages.slice(0, 4);
+
+const whyChooseItems = [
+  { emoji: '🔒', title: '100% Private', desc: 'Exclusive booking for couples' },
+  { emoji: '🌙', title: 'Stunning Setup', desc: 'Rooftop & glass house options' },
+  { emoji: '🍽️', title: 'Delicious Food', desc: 'Curated café-style menu' },
+  { emoji: '📸', title: 'Photo-Ready', desc: 'Instagram-worthy décor' },
+];
+
+const faqItems = [
+  {
+    question: `How can I book a ${service.name.toLowerCase()} at Friends Factory Cafe?`,
+    answer: `Booking is easy! Call us at ${siteConfig.phone}, WhatsApp us, or fill out our online form. We recommend booking 2-3 days in advance.`,
+  },
+  {
+    question: `What is included in the ${service.name.toLowerCase()} package?`,
+    answer: 'Our packages include 3 hours of private celebration, welcome drink, celebration cake, romantic decorations, comfortable seating, and soft music.',
+  },
+  {
+    question: 'Is the venue completely private?',
+    answer: "Yes! Our venue is exclusively for couples. You'll have complete privacy during your celebration with no other guests present.",
+  },
+  {
+    question: 'Can I customize the decorations?',
+    answer: "Absolutely! We love creating personalized experiences. Share your ideas and preferences, and we'll make them happen.",
+  },
+];
+---
+
+<div class="min-h-screen bg-white">
+  <Header />
+
+  {/* Breadcrumb */}
+  <div class="bg-amber-50 py-4">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center gap-2 text-sm">
+        <a href="/" class="text-gray-500 hover:text-amber-600">Home</a>
+        <Icon name="chevron-right" class="h-4 w-4 text-gray-400" />
+        <a href="/services" class="text-gray-500 hover:text-amber-600">Services</a>
+        <Icon name="chevron-right" class="h-4 w-4 text-gray-400" />
+        <span class="text-amber-600 font-medium">{service.name}</span>
+      </nav>
+    </div>
+  </div>
+
+  {/* Hero Section */}
+  <section class="bg-gradient-to-br from-amber-600 via-orange-500 to-amber-700 text-white py-16 md:py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-center lg:text-left">
+          <Badge class="mb-4 bg-white/20 text-white border-white/30">
+            {service.emoji} {service.name}
+          </Badge>
+          <h1 class="text-4xl md:text-5xl font-bold mb-6 font-serif">
+            {service.name} in Vadodara
+          </h1>
+          <p class="text-xl text-white/90 mb-8 max-w-xl">
+            {service.description}
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href={`tel:${siteConfig.phone}`}>
+              <Button size="lg" class="bg-white text-amber-600 hover:bg-amber-50 w-full sm:w-auto">
+                <Icon name="phone" class="h-5 w-5 mr-2" />
+                Call Now
+              </Button>
+            </a>
+            <a href={`https://wa.me/${siteConfig.whatsapp}`} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" class="bg-green-600 hover:bg-green-700 text-white w-full sm:w-auto">
+                <Icon name="message-circle" class="h-5 w-5 mr-2" />
+                WhatsApp
+              </Button>
+            </a>
+          </div>
+
+          <div class="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
+            <span class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-sm">
+              <Icon name="star" class="h-4 w-4" /> 4.9 Rated
+            </span>
+            <span class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-sm">
+              <Icon name="check" class="h-4 w-4" /> 100% Private
+            </span>
+          </div>
+        </div>
+
+        {/* Hero Visual */}
+        <div class="hidden lg:flex justify-center">
+          <div class="w-80 h-80 rounded-full bg-white/10 flex items-center justify-center">
+            <span class="text-[8rem]">{service.emoji}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Why Choose Section */}
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4 font-serif">
+          Why Choose Friends Factory Cafe for {service.name}?
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        {whyChooseItems.map((item) => (
+          <Card class="border-amber-100 text-center">
+            <Card slot="content" class="p-6">
+              <span class="text-4xl mb-4 block">{item.emoji}</span>
+              <h3 class="font-semibold mb-2">{item.title}</h3>
+              <p class="text-gray-600 text-sm">{item.desc}</p>
+            </Card>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Packages for this Service */}
+  <section class="py-16 bg-amber-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4 font-serif">
+          {service.name} Packages
+        </h2>
+        <p class="text-gray-600">Choose from our romantic celebration packages</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relatedPackages.map((pkg) => (
+          <a href={`/packages/${pkg.slug}`}>
+            <Card class="h-full hover:shadow-lg transition-all hover:-translate-y-1 border-amber-100 group">
+              <div class="aspect-video bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
+                <span class="text-5xl">{pkg.emoji}</span>
+              </div>
+              <Card slot="content" class="p-4">
+                <h3 class="font-semibold mb-1 group-hover:text-amber-600 transition-colors line-clamp-1">
+                  {pkg.name}
+                </h3>
+                <p class="text-gray-600 text-sm line-clamp-2 mb-2">
+                  {pkg.shortDescription}
+                </p>
+                <p class="text-lg font-bold text-amber-600">
+                  {formatPrice(pkg.price)}
+                </p>
+              </Card>
+            </Card>
+          </a>
+        ))}
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="/packages">
+          <Button class="bg-amber-600 hover:bg-amber-700">
+            View All Packages <Icon name="chevron-right" class="h-4 w-4 ml-2" />
+          </Button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* Keywords/Related Pages */}
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4 font-serif">
+          Popular {service.name} Services
+        </h2>
+        <p class="text-gray-600">Explore our specialized {service.name.toLowerCase()} services in Vadodara</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        {service.keywords.map((keyword) => (
+          <a href={`/${keyword.slug}`} class="block">
+            <Card class="border-amber-100 hover:border-amber-300 hover:shadow-md transition-all group">
+              <Card slot="content" class="p-4">
+                <h3 class="font-medium group-hover:text-amber-600 transition-colors flex items-center justify-between">
+                  {keyword.title}
+                  <Icon name="chevron-right" class="h-4 w-4 text-gray-400 group-hover:text-amber-600" />
+                </h3>
+              </Card>
+            </Card>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Areas Section */}
+  <section class="py-16 bg-amber-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <Badge class="mb-4 bg-amber-100 text-amber-700 border-amber-200">
+          <Icon name="map-pin" class="h-4 w-4 mr-2" /> Service Areas
+        </Badge>
+        <h2 class="text-3xl font-bold mb-4 font-serif">
+          {service.name} Across Vadodara
+        </h2>
+        <p class="text-gray-600">We serve all areas of Vadodara</p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+        {vadodaraAreas.slice(0, 15).map((area) => (
+          <a
+            href={`/${area.slug}`}
+            class="px-4 py-2 bg-white rounded-full text-gray-700 hover:bg-amber-600 hover:text-white transition-colors border border-amber-200 text-sm"
+          >
+            {service.name} in {area.name}
+          </a>
+        ))}
+        <a
+          href="/areas"
+          class="px-4 py-2 bg-amber-600 rounded-full text-white hover:bg-amber-700 transition-colors text-sm"
+        >
+          View All Areas
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* Booking Form Section */}
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div>
+          <h2 class="text-3xl font-bold mb-6 font-serif">
+            Book Your {service.name}
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Ready to create unforgettable memories? Fill out the form and our team will contact you shortly.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <Icon name="check" class="h-5 w-5 text-amber-600" />
+              <span>No commitment booking request</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <Icon name="check" class="h-5 w-5 text-amber-600" />
+              <span>Quick WhatsApp confirmation</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <Icon name="check" class="h-5 w-5 text-amber-600" />
+              <span>Flexible rescheduling available</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <BookingForm pageTitle={`${service.name} Page`} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ Section */}
+  <section class="py-16 bg-amber-50">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4 font-serif">
+          {service.name} FAQs
+        </h2>
+      </div>
+
+      <Accordion
+        name={`service-faq-${service.slug}`}
+        items={faqItems}
+        itemClass="bg-white rounded-lg border border-amber-100 px-6"
+      />
+    </div>
+  </section>
+
+  {/* Gallery Section */}
+  <FFCGalleryCompact title={`${service.name} Gallery`} maxItems={8} />
+
+  <Footer />
+  <WhatsAppFloat />
+</div>

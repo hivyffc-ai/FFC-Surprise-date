@@ -1,0 +1,545 @@
+---
+import Icon from '@/components/Icon.astro';
+import Button from '@/components/ui/button.astro';
+import Card from '@/components/ui/card.astro';
+import Badge from '@/components/ui/badge.astro';
+import Accordion from '@/components/ui/accordion.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import BookNowButton from '@/components/BookNowButton.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import FFCGalleryCompact from '@/components/ffc-gallery-compact.astro';
+import type { AreaConfig } from '@/lib/ffc-config';
+import { packages, serviceCategories, vadodaraAreas, siteConfig, formatPrice } from '@/lib/ffc-config';
+import { getAreaContent } from '@/lib/ffc-area-content';
+
+export interface Props {
+  area: AreaConfig;
+}
+
+const { area } = Astro.props;
+
+// Get nearby areas (excluding current)
+const nearbyAreas = vadodaraAreas.filter((a) => a.slug !== area.slug).slice(0, 8);
+
+// Get unique content for this area (if available)
+const uniqueContent = getAreaContent(area.slug);
+
+const defaultFaqs = [
+  {
+    question: `How do couples from ${area.name} reach Friends Factory Cafe?`,
+    answer: `Friends Factory Cafe is conveniently located in Vadodara and easily accessible from ${area.name}. You can reach us by car, auto, or cab in a short time. Contact us for exact directions.`,
+  },
+  {
+    question: 'Do you offer pickup services?',
+    answer: "Currently, we don't offer pickup services, but we can help guide you with the best routes from your location.",
+  },
+  {
+    question: 'What are the booking options available?',
+    answer: `Couples from ${area.name} can book via WhatsApp, phone call, or our online form. We recommend booking 2-3 days in advance for your preferred slot.`,
+  },
+  {
+    question: 'Is the venue private?',
+    answer: 'Yes! Your celebration is 100% private. No other guests will be present during your booking slot.',
+  },
+];
+
+const faqItems = uniqueContent?.faqs || defaultFaqs;
+
+const whatWeOffer = [
+  'Birthday Surprise Celebrations',
+  'Candlelight Dinner Dates',
+  'Anniversary Celebrations',
+  'Romantic Proposal Setups',
+  'Surprise Date Nights',
+  'Pre-Wedding Photoshoots',
+  'Baby Moment Celebrations',
+  'Custom Celebrations',
+];
+---
+
+<div class="min-h-screen bg-white">
+  <Header />
+
+  {/* Breadcrumb */}
+  <div class="bg-amber-50 py-4">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center gap-2 text-sm">
+        <a href="/" class="text-gray-500 hover:text-amber-600">Home</a>
+        <Icon name="chevron-right" class="h-4 w-4 text-gray-400" />
+        <a href="/areas" class="text-gray-500 hover:text-amber-600">Areas</a>
+        <Icon name="chevron-right" class="h-4 w-4 text-gray-400" />
+        <span class="text-amber-600 font-medium">{area.name}</span>
+      </nav>
+    </div>
+  </div>
+
+  {/* Hero Section */}
+  <section class="bg-gradient-to-br from-amber-600 via-orange-500 to-amber-700 text-white py-16 md:py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-center lg:text-left">
+          <Badge class="mb-4 bg-white/20 text-white border-white/30">
+            <Icon name="map-pin" class="h-4 w-4 mr-2" /> {area.name}, Vadodara
+          </Badge>
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-serif">
+            Romantic Celebrations in {area.name}
+          </h1>
+          <p class="text-lg md:text-xl text-white/90 mb-8 max-w-xl">
+            {uniqueContent?.heroSubtitle || `Friends Factory Cafe brings premium romantic celebration experiences to couples in ${area.name}, Vadodara. Book birthday surprises, candlelight dinners, anniversaries & more!`}
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <BookNowButton
+              pageTitle={`${area.name} Area Page`}
+              class="bg-white text-amber-600 hover:bg-amber-50 text-lg px-8 py-6"
+            />
+            <a href={`tel:${siteConfig.phone}`}>
+              <Button size="lg" class="bg-green-600 hover:bg-green-700 text-white w-full sm:w-auto">
+                <Icon name="phone" class="h-5 w-5 mr-2" />
+                {siteConfig.phone}
+              </Button>
+            </a>
+          </div>
+
+          {/* Dynamic Hero Badges - Unique per area */}
+          <div class="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
+            {uniqueContent?.heroBadges ? (
+              uniqueContent.heroBadges.map((badge) => (
+                <span class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-sm">
+                  {badge}
+                </span>
+              ))
+            ) : (
+              <>
+                <span class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-sm">
+                  <Icon name="star" class="h-4 w-4" /> 4.9★ Rating
+                </span>
+                <span class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-sm">
+                  <Icon name="check" class="h-4 w-4" /> 100% Private
+                </span>
+                <span class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-sm">
+                  <Icon name="heart" class="h-4 w-4" /> Couples Only
+                </span>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Hero Visual */}
+        <div class="hidden lg:flex justify-center">
+          <div class="w-72 h-72 rounded-full bg-white/10 flex items-center justify-center">
+            <div class="text-center">
+              <Icon name="map-pin" class="h-16 w-16 mx-auto mb-2" />
+              <span class="text-2xl font-serif">{area.name}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Top Services in This Area - Dynamic per area */}
+  {uniqueContent?.topServicesInArea && (
+    <section class="py-16 bg-amber-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4 font-serif">
+            Most Popular in {area.name}
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            What {area.name} couples celebrate most with us
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {uniqueContent.topServicesInArea.map((service) => (
+            <Card class="border-amber-200 hover:shadow-lg transition-all">
+              <Card slot="content" class="p-6 text-center">
+                <span class="text-4xl mb-4 block">{service.emoji}</span>
+                <Badge class="mb-3 bg-amber-100 text-amber-700">{service.popularity}</Badge>
+                <h3 class="font-semibold text-lg mb-2">{service.name}</h3>
+                <p class="text-gray-600 text-sm">{service.description}</p>
+              </Card>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* Services in This Area */}
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4 font-serif">
+          Our Services in {area.name}
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          {uniqueContent?.servicesDescription || `All celebration services available for couples in ${area.name}`}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        {serviceCategories.map((service) => (
+          <a href={`/${service.slug}`}>
+            <Card class="h-full hover:shadow-lg transition-all border-amber-100 group text-center">
+              <Card slot="content" class="p-4 md:p-6">
+                <span class="text-4xl md:text-5xl mb-3 md:mb-4 block">{service.emoji}</span>
+                <h3 class="font-semibold text-sm md:text-lg mb-1 md:mb-2 group-hover:text-amber-600 transition-colors line-clamp-2">
+                  {service.name}
+                </h3>
+                <p class="text-gray-600 text-xs md:text-sm line-clamp-1 hidden md:block">
+                  in {area.name}
+                </p>
+              </Card>
+            </Card>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Content & Booking */}
+  <section class="py-16 bg-amber-50">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-3 gap-12">
+        {/* Main Content */}
+        <div class="lg:col-span-2">
+          <article class="prose prose-lg max-w-none">
+            <h2 class="text-2xl font-bold mb-6 font-serif">
+              Romantic Celebrations Near {area.name}
+            </h2>
+
+            {/* Unique Introduction Content */}
+            {uniqueContent ? (
+              <div class="text-gray-600 mb-6 whitespace-pre-line">
+                {uniqueContent.introduction}
+              </div>
+            ) : (
+              <>
+                <p class="text-gray-600 mb-6">
+                  Are you looking for the perfect romantic celebration venue near {area.name}, Vadodara? Friends Factory Cafe is your destination for creating unforgettable moments with your loved one.
+                </p>
+                <p class="text-gray-600 mb-6">
+                  Whether you're celebrating a birthday, anniversary, proposal, or simply want a romantic candlelight dinner, our venue offers stunning rooftop setups and elegant glass houses that provide the perfect ambiance for your special moments.
+                </p>
+              </>
+            )}
+
+            {/* About the Area - Only if unique content exists */}
+            {uniqueContent?.aboutArea && (
+              <div class="bg-white rounded-xl p-6 mb-8 border border-amber-100">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                  <Icon name="map-pin" class="h-5 w-5 text-amber-600" />
+                  About {area.name}
+                </h3>
+                <p class="text-gray-600">{uniqueContent.aboutArea}</p>
+              </div>
+            )}
+
+            <div class="bg-white rounded-xl p-6 mb-8">
+              <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <Icon name="gift" class="h-5 w-5 text-amber-600" />
+                What We Offer in {area.name}
+              </h3>
+              <div class="grid md:grid-cols-2 gap-3">
+                {whatWeOffer.map((item) => (
+                  <div class="flex items-center gap-2">
+                    <Icon name="check" class="h-4 w-4 text-amber-600 flex-shrink-0" />
+                    <span class="text-gray-700">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Location Advantage - Only if unique content exists */}
+            {uniqueContent?.locationAdvantage && (
+              <div class="mb-8">
+                <h3 class="text-xl font-bold mb-4">
+                  Getting to Friends Factory Cafe from {area.name}
+                </h3>
+                <p class="text-gray-600">{uniqueContent.locationAdvantage}</p>
+              </div>
+            )}
+
+            <h3 class="text-xl font-bold mb-4">
+              Why Couples in {area.name} Love Us
+            </h3>
+
+            <ul class="space-y-3 mb-8">
+              {uniqueContent?.whyChooseUs ? (
+                uniqueContent.whyChooseUs.map((item) => (
+                  <li class="flex items-start gap-3">
+                    <span class="text-amber-600 font-bold">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))
+              ) : (
+                <>
+                  <li class="flex items-start gap-3">
+                    <span class="text-amber-600 font-bold">•</span>
+                    <span><strong>Convenient Location:</strong> Easy access from {area.name} and all parts of Vadodara.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="text-amber-600 font-bold">•</span>
+                    <span><strong>100% Privacy:</strong> Your celebration is completely private with exclusive booking.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="text-amber-600 font-bold">•</span>
+                    <span><strong>8 Unique Setups:</strong> Choose from rooftop and glass house experiences.</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="text-amber-600 font-bold">•</span>
+                    <span><strong>All-Inclusive Packages:</strong> Food, decorations, music, and more included.</span>
+                  </li>
+                </>
+              )}
+            </ul>
+
+            {/* Testimonial - Only if unique content exists */}
+            {uniqueContent?.testimonial && (
+              <div class="bg-amber-100 rounded-xl p-6 mb-8">
+                <Icon name="quote" class="h-8 w-8 text-amber-600 mb-4" />
+                <p class="text-gray-700 italic mb-4">{uniqueContent.testimonial.text}</p>
+                <div class="flex items-center gap-2">
+                  <div class="flex">
+                    {Array.from({ length: uniqueContent.testimonial.rating }).map(() => (
+                      <Icon name="star" class="h-4 w-4 text-amber-500" fill="currentColor" />
+                    ))}
+                  </div>
+                  <span class="font-semibold">{uniqueContent.testimonial.name}</span>
+                  <span class="text-gray-500">- {uniqueContent.testimonial.location}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Nearby Landmarks - Only if unique content exists */}
+            {uniqueContent?.nearbyLandmarks && (
+              <div class="bg-white rounded-xl p-6 mb-8 border border-amber-100">
+                <h3 class="text-xl font-bold mb-4">Nearby Landmarks from {area.name}</h3>
+                <div class="flex flex-wrap gap-2">
+                  {uniqueContent.nearbyLandmarks.map((landmark) => (
+                    <span class="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-sm">
+                      {landmark}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Area Specialty - Only if unique content exists */}
+            {uniqueContent?.areaSpecialty && (
+              <div class="bg-gradient-to-r from-amber-100 to-orange-100 rounded-xl p-6 mb-8 border border-amber-200">
+                <h3 class="text-xl font-bold mb-3 text-amber-800">{uniqueContent.areaSpecialty.title}</h3>
+                <p class="text-gray-700 mb-3">{uniqueContent.areaSpecialty.description}</p>
+                <p class="text-amber-700 font-medium flex items-center gap-2">
+                  <Icon name="star" class="h-4 w-4" /> {uniqueContent.areaSpecialty.highlightFeature}
+                </p>
+              </div>
+            )}
+
+            {/* Popular Occasions in Area - Only if unique content exists */}
+            {uniqueContent?.popularOccasions && (
+              <div class="bg-white rounded-xl p-6 mb-8 border border-amber-100">
+                <h3 class="text-xl font-bold mb-4">What {area.name} Couples Celebrate</h3>
+                <div class="space-y-4">
+                  {uniqueContent.popularOccasions.map((occ) => (
+                    <div class="flex items-center justify-between border-b border-amber-100 pb-3 last:border-0">
+                      <div>
+                        <p class="font-medium text-gray-800">{occ.occasion}</p>
+                        <p class="text-sm text-gray-500">Peak: {occ.peakMonth}</p>
+                      </div>
+                      <Badge class="bg-amber-100 text-amber-700">{occ.percentage}</Badge>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Booking Insights - Only if unique content exists */}
+            {uniqueContent?.bookingInsights && (
+              <div class="bg-amber-50 rounded-xl p-6 mb-8 border border-amber-200">
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                  <Icon name="gift" class="h-5 w-5 text-amber-600" />
+                  {area.name} Booking Insights
+                </h3>
+                <div class="space-y-3 text-sm">
+                  <p><strong>Preferred Slot:</strong> {uniqueContent.bookingInsights.preferredSlot}</p>
+                  <p><strong>Advance Booking:</strong> {uniqueContent.bookingInsights.averageAdvanceBooking}</p>
+                  <p><strong>Popular Package:</strong> {uniqueContent.bookingInsights.popularPackage}</p>
+                  <p class="bg-white p-3 rounded-lg border border-amber-200 mt-4">
+                    <strong class="text-amber-700">💡 Insider Tip:</strong> {uniqueContent.bookingInsights.insiderTip}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Local Tips - Only if unique content exists */}
+            {uniqueContent?.localTips && (
+              <div class="bg-white rounded-xl p-6 mb-8 border border-amber-100">
+                <h3 class="text-xl font-bold mb-4">Local Tips for {area.name} Couples</h3>
+                <ul class="space-y-2">
+                  {uniqueContent.localTips.map((tip) => (
+                    <li class="flex items-start gap-2 text-gray-700">
+                      <span class="text-amber-600">💡</span>
+                      <span class="text-sm">{tip}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Additional Reviews - Only if unique content exists */}
+            {uniqueContent?.additionalReviews && (
+              <div class="bg-white rounded-xl p-6 mb-8 border border-amber-100">
+                <h3 class="text-xl font-bold mb-4">More Reviews from {area.name}</h3>
+                <div class="space-y-4">
+                  {uniqueContent.additionalReviews.map((review) => (
+                    <div class="border-b border-amber-100 pb-4 last:border-0">
+                      <div class="flex mb-2">
+                        {Array.from({ length: review.rating }).map(() => (
+                          <Icon name="star" class="h-3 w-3 text-amber-500" fill="currentColor" />
+                        ))}
+                      </div>
+                      <p class="text-gray-700 text-sm italic mb-2">"{review.text}"</p>
+                      <p class="text-gray-500 text-sm font-medium">— {review.name}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Closing Text */}
+            {uniqueContent?.closingText && (
+              <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6 mb-8 border border-amber-200">
+                <p class="text-gray-700 font-medium">{uniqueContent.closingText}</p>
+                {uniqueContent.callToAction && (
+                  <p class="mt-4 text-amber-700 font-semibold">{uniqueContent.callToAction}</p>
+                )}
+              </div>
+            )}
+          </article>
+
+          {/* Packages */}
+          <div class="mt-12">
+            <h2 class="text-2xl font-bold mb-6 font-serif">
+              Popular Packages for {area.name} Couples
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              {packages.slice(0, 4).map((pkg) => (
+                <a href={`/packages/${pkg.slug}`}>
+                  <Card class="h-full hover:shadow-lg transition-all hover:-translate-y-1 border-amber-100 group bg-white">
+                    <div class="aspect-video bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
+                      <span class="text-5xl">{pkg.emoji}</span>
+                    </div>
+                    <Card slot="content" class="p-4">
+                      <h3 class="font-semibold mb-1 group-hover:text-amber-600 transition-colors">
+                        {pkg.name}
+                      </h3>
+                      <p class="text-gray-600 text-sm line-clamp-2 mb-2">
+                        {pkg.shortDescription}
+                      </p>
+                      <p class="text-lg font-bold text-amber-600">
+                        {formatPrice(pkg.price)}
+                      </p>
+                    </Card>
+                  </Card>
+                </a>
+              ))}
+            </div>
+
+            <div class="text-center mt-6">
+              <a href="/packages">
+                <Button class="bg-amber-600 hover:bg-amber-700">
+                  View All Packages <Icon name="chevron-right" class="h-4 w-4 ml-2" />
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Sidebar */}
+        <div class="lg:col-span-1">
+          <div class="sticky top-24 space-y-6">
+            {/* Booking Form */}
+            <BookingForm pageTitle={`${area.name} Area`} />
+
+            {/* Quick Contact */}
+            <Card class="border-green-200 bg-green-50">
+              <Card slot="content" class="p-6 text-center">
+                <Icon name="message-circle" class="h-10 w-10 text-green-600 mx-auto mb-3" />
+                <h3 class="font-semibold mb-2">Quick Booking</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                  Instant response on WhatsApp
+                </p>
+                <a
+                  href={`https://wa.me/${siteConfig.whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors w-full justify-center"
+                >
+                  <Icon name="message-circle" class="h-5 w-5" />
+                  WhatsApp Now
+                </a>
+              </Card>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Nearby Areas */}
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-bold mb-4 font-serif">
+          Also Serving Nearby Areas
+        </h2>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+        {nearbyAreas.map((nearbyArea) => (
+          <a
+            href={`/${nearbyArea.slug}`}
+            class="px-4 py-2 bg-amber-50 rounded-full text-gray-700 hover:bg-amber-600 hover:text-white transition-colors border border-amber-200"
+          >
+            {nearbyArea.name}
+          </a>
+        ))}
+        <a
+          href="/areas"
+          class="px-4 py-2 bg-amber-600 rounded-full text-white hover:bg-amber-700 transition-colors"
+        >
+          View All Areas
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section class="py-16 bg-amber-50">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-bold mb-4 font-serif">
+          FAQs - Celebrations in {area.name}
+        </h2>
+      </div>
+
+      <Accordion
+        name={`area-faq-${area.slug}`}
+        items={faqItems}
+        itemClass="bg-white rounded-lg border border-amber-100 px-6"
+      />
+    </div>
+  </section>
+
+  {/* Gallery Section */}
+  <FFCGalleryCompact title={`Celebrations in ${area.name}`} maxItems={8} />
+
+  <Footer />
+  <WhatsAppFloat />
+</div>

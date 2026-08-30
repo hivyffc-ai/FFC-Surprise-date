@@ -1,0 +1,18 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FFCVirtualTourPage from '@/components/ffc-virtual-tour-page.astro';
+import { siteConfig } from '@/lib/ffc-config';
+
+const title = `Virtual Tour — ${siteConfig.name} | Rooftop & Glass House`;
+const description = `Take a virtual tour of ${siteConfig.name}, ${siteConfig.city}. Explore our private rooftop and glass house setups before booking.`;
+---
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={[`${siteConfig.name.toLowerCase()} virtual tour`, `romantic venue tour ${siteConfig.city.toLowerCase()}`]}
+  canonicalPath="/virtual-tour"
+  ogImageAlt={`${siteConfig.name} Virtual Tour`}
+  noTemplate={false}
+>
+  <FFCVirtualTourPage />
+</BaseLayout>

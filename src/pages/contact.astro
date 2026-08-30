@@ -1,0 +1,18 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FFCContactPage from '@/components/ffc-contact-page.astro';
+import { siteConfig } from '@/lib/ffc-config';
+
+const title = `Contact & Book — ${siteConfig.name} | ${siteConfig.phone}`;
+const description = `Book your romantic celebration at ${siteConfig.name}, ${siteConfig.city}. Call or WhatsApp ${siteConfig.phone}. Open daily 11 AM–11 PM. ${siteConfig.address}`;
+---
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={[`contact ${siteConfig.name.toLowerCase()}`, `book romantic dinner ${siteConfig.city.toLowerCase()}`, `${siteConfig.name.toLowerCase()} phone number`]}
+  canonicalPath="/contact"
+  ogImageAlt={`Contact ${siteConfig.name}`}
+  noTemplate={false}
+>
+  <FFCContactPage />
+</BaseLayout>

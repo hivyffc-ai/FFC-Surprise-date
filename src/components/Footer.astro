@@ -1,0 +1,154 @@
+---
+import { siteConfig, serviceCategories, vadodaraAreas } from '@/lib/ffc-config';
+import Icon from '@/components/Icon.astro';
+
+const navigation = [
+  { name: 'Home', href: '/' },
+  { name: 'Our Packages', href: '/packages' },
+  { name: 'Menu', href: '/menu' },
+  { name: 'About us', href: '/about' },
+  { name: 'Virtual Tour', href: '/virtual-tour' },
+  { name: 'Contact us', href: '/contact' },
+];
+
+const serviceLinks = [
+  { name: 'Birthday Surprise', href: '/birthday-surprise' },
+  { name: 'Anniversary', href: '/anniversary-celebration' },
+  { name: 'Proposal', href: '/proposal' },
+  { name: 'Candlelight Dinner', href: '/candlelight-dinner' },
+  { name: 'Surprise Date', href: '/surprise-date' },
+  { name: 'Pre-Wedding Shoot', href: '/pre-wedding-shoot' },
+  { name: 'Baby Moments', href: '/baby-moments' },
+  { name: "Valentine's Week", href: '/valentines-week' },
+];
+
+const allKeywords = serviceCategories.flatMap((category) =>
+  category.keywords.map((keyword) => ({
+    slug: keyword.slug,
+    title: keyword.title,
+    serviceSlug: category.slug,
+  })),
+);
+
+const visibleKeywordsInitial = allKeywords.slice(0, 20);
+const hiddenKeywords = allKeywords.slice(20);
+const visibleAreasInitial = vadodaraAreas.slice(0, 15);
+const hiddenAreas = vadodaraAreas.slice(15);
+const year = new Date().getFullYear();
+---
+<footer class="bg-gray-900 text-white">
+  <div class="container mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div>
+        <h3 class="text-2xl font-serif font-bold text-amber-400 mb-4">Friends Factory Cafe</h3>
+        <p class="text-gray-400 mb-6">{siteConfig.tagline}</p>
+        <div class="flex items-center gap-2">
+          <Icon name="heart" class="h-5 w-5 text-amber-500" fill="currentColor" />
+          <span class="text-gray-300">Couples Only Experience</span>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          {navigation.map((item) => (
+            <li><a href={item.href} class="text-gray-400 hover:text-amber-400 transition-colors">{item.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Our Services</h4>
+        <ul class="space-y-2">
+          {serviceLinks.map((item) => (
+            <li><a href={item.href} class="text-gray-400 hover:text-amber-400 transition-colors">{item.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+        <div class="space-y-4">
+          <div>
+            <p class="text-gray-500 text-sm">Phone</p>
+            <a href={`tel:${siteConfig.phone}`} class="text-amber-400 font-medium hover:text-amber-300">{siteConfig.phone}</a>
+          </div>
+          <div>
+            <p class="text-gray-500 text-sm">Email</p>
+            <a href={`mailto:${siteConfig.email}`} class="text-amber-400 hover:text-amber-300">{siteConfig.email}</a>
+          </div>
+          <div>
+            <p class="text-gray-500 text-sm">Location</p>
+            <p class="text-gray-300">{siteConfig.address}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-800 mt-12 pt-8">
+      <h4 class="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">Popular Services in Vadodara</h4>
+      <div class="flex flex-wrap gap-x-4 gap-y-1">
+        {visibleKeywordsInitial.map((keyword) => (
+          <a href={`/${keyword.slug}`} class="text-xs text-gray-500 hover:text-amber-400 transition-colors">{keyword.title}</a>
+        ))}
+        {hiddenKeywords.map((keyword) => (
+          <a href={`/${keyword.slug}`} class="footer-extra-keyword hidden text-xs text-gray-500 hover:text-amber-400 transition-colors">{keyword.title}</a>
+        ))}
+      </div>
+      {allKeywords.length > 20 && (
+        <button type="button" id="footer-toggle-keywords" class="mt-3 text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1">
+          <span id="footer-toggle-keywords-label">Show All {allKeywords.length} Services</span>
+          <Icon name="chevron-down" class="h-3 w-3" id="footer-toggle-keywords-icon" />
+        </button>
+      )}
+    </div>
+
+    <div class="border-t border-gray-800 mt-8 pt-8">
+      <h4 class="text-sm font-semibold text-gray-400 mb-4 uppercase tracking-wider">Areas We Serve in Vadodara</h4>
+      <div class="flex flex-wrap gap-x-4 gap-y-1">
+        {visibleAreasInitial.map((area) => (
+          <a href={`/${area.slug}`} class="text-xs text-gray-500 hover:text-amber-400 transition-colors">{area.name}</a>
+        ))}
+        {hiddenAreas.map((area) => (
+          <a href={`/${area.slug}`} class="footer-extra-area hidden text-xs text-gray-500 hover:text-amber-400 transition-colors">{area.name}</a>
+        ))}
+      </div>
+      {vadodaraAreas.length > 15 && (
+        <button type="button" id="footer-toggle-areas" class="mt-3 text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1">
+          <span id="footer-toggle-areas-label">Show All {vadodaraAreas.length} Areas</span>
+          <Icon name="chevron-down" class="h-3 w-3" id="footer-toggle-areas-icon" />
+        </button>
+      )}
+    </div>
+
+    <div class="border-t border-gray-800 mt-8 pt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-gray-500 text-sm">© {year} Friends Factory Cafe. All rights reserved.</p>
+        <div class="flex items-center gap-6">
+          <a href="/privacy" class="text-gray-500 hover:text-gray-300 text-sm">Privacy Policy</a>
+          <a href="/terms" class="text-gray-500 hover:text-gray-300 text-sm">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script define:vars={{ totalKeywords: allKeywords.length, totalAreas: vadodaraAreas.length }}>
+  function setupToggle(toggleId, itemClass, labelId, iconId, totalCount, singular) {
+    const toggle = document.getElementById(toggleId);
+    const label = document.getElementById(labelId);
+    const icon = document.getElementById(iconId);
+    const items = document.querySelectorAll(`.${itemClass}`);
+    if (!toggle || !label) return;
+    let expanded = false;
+    toggle.addEventListener('click', () => {
+      expanded = !expanded;
+      items.forEach((el) => el.classList.toggle('hidden', !expanded));
+      label.textContent = expanded ? 'Show Less' : `Show All ${totalCount} ${singular}`;
+      icon?.classList.toggle('rotate-180', expanded);
+    });
+  }
+
+  setupToggle('footer-toggle-keywords', 'footer-extra-keyword', 'footer-toggle-keywords-label', 'footer-toggle-keywords-icon', totalKeywords, 'Services');
+  setupToggle('footer-toggle-areas', 'footer-extra-area', 'footer-toggle-areas-label', 'footer-toggle-areas-icon', totalAreas, 'Areas');
+</script>

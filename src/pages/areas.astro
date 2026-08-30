@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import { siteConfig, vadodaraAreas as areasList } from '@/lib/ffc-config';
+---
+<BaseLayout
+  title={`Areas We Serve in ${siteConfig.city} — ${siteConfig.name}`}
+  description={`${siteConfig.name} serves romantic celebrations across all major areas of ${siteConfig.city}. Private rooftop & glass house venue near you.`}
+  canonicalPath="/areas"
+  ogImageAlt={`Areas Served by ${siteConfig.name}`}
+  noTemplate={false}
+>
+  <div class="min-h-screen bg-white">
+    <Header />
+    <section class="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-serif">
+            Areas We Serve in {siteConfig.city}
+          </h1>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Romantic celebrations for couples from every corner of {siteConfig.city}
+          </p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {areasList.map((area) => (
+            <a
+              href={`/${area.slug}`}
+              class="group bg-white rounded-lg border border-primary/10 px-4 py-3 hover:bg-primary/5 hover:border-primary/30 transition-all text-center"
+            >
+              <span class="text-gray-700 group-hover:text-primary font-medium text-sm">{area.name}</span>
+              <div class="text-xs text-gray-400 mt-0.5">{siteConfig.city}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+    <Footer />
+    <WhatsAppFloat />
+  </div>
+</BaseLayout>

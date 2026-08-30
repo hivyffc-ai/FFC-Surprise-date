@@ -1,0 +1,172 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import BookingForm from '../components/BookingForm';
+import { siteConfig, packages, vadodaraAreas } from '../lib/config';
+
+const faqItems = [
+  { q: `What is a Surprise Date in Vadodara at Friends Factory Cafe?`, a: `A Surprise Date is a fully planned romantic event where we handle all decoration, ambiance, and arrangements secretly on your behalf. Your partner walks into a beautifully set scene — roses, candles, fairy lights — while you take all the credit!` },
+  { q: `How much does a Surprise Date cost in Vadodara?`, a: `Our Surprise Date packages start from ₹4,700 (Romantic Surprise Setup) and go up to ₹6,900 (Grand Surprise Celebration). All packages include decoration, a romantic meal, and personal assistance.` },
+  { q: `Can I arrange a surprise proposal at Friends Factory Cafe?`, a: `Absolutely! Our Proposal Surprise Setup package is perfect for popping the question. We can arrange a rose bouquet, ring placement, personalized banner, and photography assistance to make the moment perfect.` },
+  { q: `How secret is the planning process?`, a: `Completely secret. We communicate only with you throughout the planning. Your partner won't know anything until they walk in. We also provide guidance on how to bring them in without giving it away.` },
+  { q: `What occasions can I plan a Surprise Date for?`, a: `Birthday surprises, anniversary surprises, proposals, Valentine's Day, first-date recreations, "just because" romantic gestures — any occasion is perfect for a surprise date!` },
+  { q: `How much time is needed to set up a Surprise Date?`, a: `Our team typically needs 1–2 hours to complete the setup. We'll coordinate with you on the arrival time so everything is fresh and perfect when your partner arrives.` },
+];
+
+const breadcrumbs = [{ name: 'Home', item: siteConfig.website }];
+const waBookUrl = `https://wa.me/${siteConfig.whatsapp}?text=Hi Friends Factory Cafe! I'd like to plan a Surprise Date in Vadodara. Please share availability.`;
+---
+
+<Layout
+  title={`Surprise Date Vadodara | Romantic Setup ₹4,700 | Friends Factory Cafe`}
+  description={`Plan the perfect Surprise Date in Vadodara at Friends Factory Cafe. Proposal setups, anniversary surprises, and romantic experiences from ₹4,700. Book via WhatsApp. 4.8★.`}
+  canonical={siteConfig.website + '/'}
+  breadcrumbs={breadcrumbs}
+  faqSchema={faqItems}
+>
+  <Header />
+
+  <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-br from-stone-50 via-white to-cyan-50/30">
+    <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(circle at 25% 40%, var(--primary) 0%, transparent 50%), radial-gradient(circle at 75% 60%, var(--accent) 0%, transparent 50%);"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-sm font-medium text-stone-600 mb-6">
+            <span>💝</span><span>Vadodara's Best Surprise Date Venue</span>
+          </div>
+          <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-900 leading-tight mb-6">
+            Perfect
+            <span class="gradient-text block">Surprise Date</span>
+            in Vadodara
+          </h1>
+          <p class="text-lg text-stone-600 leading-relaxed mb-8 max-w-lg">
+            We plan every detail secretly so you can focus on the moment. Proposal setups, anniversary surprises, and romantic experiences at Friends Factory Cafe from <strong>₹4,700</strong>.
+          </p>
+          <div class="flex flex-wrap gap-4 mb-8">
+            <a href={waBookUrl} target="_blank" rel="noopener" class="btn-primary inline-flex items-center gap-2">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Plan the Surprise
+            </a>
+            <a href="#packages" class="inline-flex items-center gap-2 border border-stone-300 text-stone-700 hover:border-primary hover:text-primary px-6 py-3 rounded-xl font-medium transition-all">View Packages ↓</a>
+          </div>
+          <div class="flex items-center gap-6 text-sm text-stone-500">
+            <div class="flex items-center gap-1.5"><span class="text-yellow-500">★★★★★</span><span>{siteConfig.rating} ({siteConfig.reviewCount}+ reviews)</span></div>
+            <div class="flex items-center gap-1.5"><span>📍</span><span>Gotri, Vadodara</span></div>
+          </div>
+        </div>
+        <div class="lg:pl-8">
+          <BookingForm phone={siteConfig.phone} whatsapp={siteConfig.whatsapp} variant="hero" client:load />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mb-4">How We Plan Your Surprise</h2>
+        <p class="text-stone-500 max-w-xl mx-auto">Three steps — you book, we execute, they're amazed</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { step: '01', icon: '🤫', title: 'Book in Secret', desc: 'Share the date and your special person\'s name via WhatsApp. All communication is strictly with you.' },
+          { step: '02', icon: '🌹', title: 'We Set the Scene', desc: 'Our team decorates with roses, fairy lights, candles, and personalised touches — everything ready before you arrive.' },
+          { step: '03', icon: '😍', title: 'Reveal & Celebrate', desc: 'Walk in together to a breathtaking setup. Watch their face light up while we capture the moment.' },
+        ].map(s => (
+          <div class="glass rounded-2xl p-8 card-hover text-center">
+            <div class="text-4xl mb-4">{s.icon}</div>
+            <div class="text-xs font-bold text-stone-400 tracking-widest mb-2">STEP {s.step}</div>
+            <h3 class="font-serif text-xl font-bold text-stone-900 mb-3">{s.title}</h3>
+            <p class="text-stone-500 text-sm leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="packages" class="py-20 bg-gradient-to-b from-stone-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mb-4">Surprise Date <span class="gradient-text">Packages</span></h2>
+        <p class="text-stone-500 max-w-xl mx-auto">Every package includes full decoration, surprise setup, and a complete romantic meal</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {packages.map((pkg, i) => (
+          <div class={`rounded-2xl p-6 card-hover ${i === 2 ? 'bg-gradient-to-br from-primary to-accent text-white shadow-xl scale-[1.02]' : 'glass'}`}>
+            {i === 2 && <div class="text-xs font-bold uppercase tracking-widest mb-3 opacity-80">⭐ Most Popular</div>}
+            <div class="text-3xl mb-3">{pkg.emoji}</div>
+            <h3 class={`font-serif text-xl font-bold mb-2 ${i === 2 ? 'text-white' : 'text-stone-900'}`}>{pkg.name}</h3>
+            <div class={`text-2xl font-bold mb-3 ${i === 2 ? 'text-white' : 'gradient-text'}`}>{pkg.price}</div>
+            <p class={`text-sm leading-relaxed mb-5 ${i === 2 ? 'text-white/85' : 'text-stone-500'}`}>{pkg.description}</p>
+            <a href={`https://wa.me/${siteConfig.whatsapp}?text=Hi! I'd like to book the ${pkg.name} Surprise Date package in Vadodara.`} target="_blank" rel="noopener"
+              class={`block text-center py-2.5 rounded-xl text-sm font-medium transition-all ${i === 2 ? 'bg-white text-primary hover:bg-stone-100' : 'btn-primary'}`}>Book This Package</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mb-3">Surprise Dates Across Vadodara</h2>
+        <p class="text-stone-500">We serve all major areas of Vadodara</p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+        {vadodaraAreas.map(area => (
+          <a href={`/${area.slug}-surprise-date/`} class="text-center text-sm py-2.5 px-3 rounded-lg border border-stone-100 hover:border-primary/30 hover:bg-primary/5 text-stone-600 hover:text-primary transition-all">{area.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-20 bg-stone-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-stone-900 mb-4">Frequently Asked Questions</h2>
+        <p class="text-stone-500">Everything about Surprise Dates at Friends Factory Cafe</p>
+      </div>
+      <div class="space-y-4">
+        {faqItems.map((item, i) => (
+          <div class="glass rounded-xl overflow-hidden">
+            <button class="w-full text-left flex items-center justify-between px-6 py-4 font-medium text-stone-900 hover:text-primary transition-colors faq-btn" data-index={i}>
+              <span>{item.q}</span>
+              <svg class="w-5 h-5 shrink-0 ml-4 faq-icon transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-answer hidden px-6 pb-5 text-stone-500 text-sm leading-relaxed">{item.a}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-gradient-to-r from-primary to-accent">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">Create a Moment They'll Never Forget</h2>
+      <p class="text-white/85 text-lg mb-8">Book your Surprise Date in Vadodara today. We handle every detail.</p>
+      <a href={waBookUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-xl hover:bg-stone-100 transition-colors shadow-xl">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Book Now on WhatsApp
+      </a>
+      <p class="text-white/60 text-sm mt-4">Free booking • Instant confirmation • ₹4,700 onwards</p>
+    </div>
+  </section>
+
+  <Footer />
+  <WhatsAppFloat />
+</Layout>
+
+<script>
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector('.faq-icon') as HTMLElement;
+      const isOpen = !answer.classList.contains('hidden');
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+      document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotate-180'));
+      if (!isOpen) { answer.classList.remove('hidden'); icon.classList.add('rotate-180'); }
+    });
+  });
+</script>

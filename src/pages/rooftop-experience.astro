@@ -1,0 +1,89 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import BookNowButton from '@/components/BookNowButton.astro';
+import { packages, siteConfig } from '@/lib/ffc-config';
+
+const title = `Private Rooftop Dining Experience | ${siteConfig.name}`;
+const description = `Experience ${siteConfig.city}'s most romantic private rooftop at ${siteConfig.name}. Exclusive 3-hour setups, panoramic views, welcome drinks & decor.`;
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/rooftop-experience"
+  ogImageAlt={`Private Rooftop Dining Experience at ${siteConfig.name}`}
+  noTemplate={false}
+>
+  <div class="min-h-screen bg-white">
+    <Header />
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-primary to-secondary text-white py-20">
+      <div class="container mx-auto px-4 text-center max-w-4xl">
+        <p class="text-white/80 font-medium mb-4 uppercase tracking-wider text-sm">{siteConfig.city}'s Most Romantic Venue</p>
+        <h1 class="text-4xl md:text-6xl font-bold font-serif mb-6 leading-tight">
+          Private Rooftop Experience
+        </h1>
+        <p class="text-xl text-white/90 mb-4 max-w-2xl mx-auto">
+          An exclusive 3-hour celebration under the open sky — candlelight, views, and zero interruptions.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 text-sm text-white/90 mb-8">
+          <span>📍 {siteConfig.city}</span>
+          <span>⏰ Evening slots available</span>
+          <span>👫 2–3 guests max</span>
+        </div>
+        <BookNowButton size="lg" text="Book Your Rooftop Slot" />
+      </div>
+    </section>
+
+    <!-- Why Rooftop -->
+    <section class="py-16 bg-primary/5">
+      <div class="container mx-auto px-4 max-w-4xl">
+        <h2 class="text-3xl font-bold font-serif text-center mb-10">Why Choose Our Rooftop?</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {[
+            { emoji: "🔒", title: "100% Private", desc: "You get the entire rooftop. No other guests, no strangers. Just you and your loved one." },
+            { emoji: "🕯️", title: "Fully Decorated", desc: "Candles, fairy lights, rose petals, balloons — set up fresh before you arrive." },
+            { emoji: "🥂", title: "Welcome Drinks", desc: "Every package includes refreshments and customized service." },
+          ].map((item) => (
+            <div class="text-center bg-white rounded-xl p-6 shadow-sm">
+              <div class="text-4xl mb-3">{item.emoji}</div>
+              <h3 class="font-bold text-gray-900 mb-2">{item.title}</h3>
+              <p class="text-gray-600 text-sm">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Packages -->
+    <section class="py-16">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <h2 class="text-3xl font-bold font-serif text-center mb-4">Rooftop Packages</h2>
+        <p class="text-gray-600 text-center mb-10">Choose your setup — every package is private, decorated, and unforgettable</p>
+        <div class="grid md:grid-cols-2 gap-6">
+          {packages.map((pkg) => (
+            <a href={`/packages/${pkg.slug}`} class="group flex gap-4 bg-white border border-primary/10 rounded-xl p-4 hover:shadow-lg transition-all">
+              <img src={pkg.thumbnail} alt={pkg.name} class="w-24 h-24 object-cover rounded-lg flex-shrink-0" loading="lazy" />
+              <div>
+                <h3 class="font-bold text-gray-900 group-hover:text-primary transition-colors mb-1">{pkg.name}</h3>
+                <p class="text-gray-500 text-sm mb-2 line-clamp-2">{pkg.shortDescription}</p>
+                <p class="text-primary font-bold">₹{pkg.price.toLocaleString('en-IN')}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="text-center mt-8">
+          <a href="/packages" class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:opacity-90 transition-opacity">
+            View All Packages →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+    <WhatsAppFloat />
+  </div>
+</BaseLayout>

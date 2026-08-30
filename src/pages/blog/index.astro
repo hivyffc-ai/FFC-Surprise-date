@@ -1,0 +1,19 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import FFCBlogPage from '@/components/ffc-blog-page.astro';
+import { getAllBlogPosts, siteConfig } from '@/lib/ffc-config';
+
+const posts = getAllBlogPosts();
+
+const title = `Romantic Celebration Blog | ${siteConfig.name}`;
+const description = `Expert tips, ideas & guides for romantic celebrations in ${siteConfig.city}. Candlelight dinner ideas, birthday surprise tips & proposal inspiration.`;
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/blog"
+  ogImageAlt={`${siteConfig.name} Blog`}
+  noTemplate={true}
+>
+  <FFCBlogPage />
+</BaseLayout>

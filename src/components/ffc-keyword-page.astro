@@ -1,0 +1,414 @@
+---
+import Icon from '@/components/Icon.astro';
+import Button from '@/components/ui/button.astro';
+import Card from '@/components/ui/card.astro';
+import Badge from '@/components/ui/badge.astro';
+import Accordion from '@/components/ui/accordion.astro';
+import BookingForm from '@/components/BookingForm.astro';
+import BookNowButton from '@/components/BookNowButton.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import type { ServiceCategory, ServiceKeyword } from '@/lib/ffc-config';
+import { packages, vadodaraAreas, siteConfig, formatPrice } from '@/lib/ffc-config';
+import { generateKeywordPageContent } from '@/lib/ffc-unique-content';
+import { getKeywordContent } from '@/lib/ffc-keyword-content';
+
+export interface Props {
+  service: ServiceCategory;
+  keyword: ServiceKeyword;
+}
+
+const { service, keyword } = Astro.props;
+
+// Get related packages
+const relatedPackages = packages.slice(0, 4);
+
+// Get related keywords (excluding current)
+const relatedKeywords = service.keywords.filter((k) => k.slug !== keyword.slug).slice(0, 6);
+
+// TRY to get truly unique handcrafted content first
+const handcraftedContent = getKeywordContent(keyword.slug);
+
+// Fall back to generated content if no handcrafted content exists
+const generatedContent = generateKeywordPageContent(service, keyword);
+
+// Use handcrafted content if available, otherwise use generated
+const hasUniqueContent = !!handcraftedContent;
+
+const faqItems = hasUniqueContent ? handcraftedContent!.faqs : generatedContent.faqContent;
+---
+
+<div class="min-h-screen bg-white">
+  <Header />
+
+  {/* Breadcrumb */}
+  <div class="bg-amber-50 py-4">
+    <div class="container mx-auto px-4">
+      <nav class="flex items-center gap-2 text-sm flex-wrap">
+        <a href="/" class="text-gray-500 hover:text-amber-600">Home</a>
+        <Icon name="chevron-right" class="h-4 w-4 text-gray-400" />
+        <a href="/services" class="text-gray-500 hover:text-amber-600">Services</a>
+        <Icon name="chevron-right" class="h-4 w-4 text-gray-400" />
+        <a href={`/${service.slug}`} class="text-gray-500 hover:text-amber-600">{service.name}</a>
+        <Icon name="chevron-right" class="h-4 w-4 text-gray-400" />
+        <span class="text-amber-600 font-medium">{keyword.title}</span>
+      </nav>
+    </div>
+  </div>
+
+  {/* Hero Section */}
+  <section class="bg-gradient-to-br from-amber-600 via-orange-500 to-amber-700 text-white py-16 md:py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-center lg:text-left">
+          <Badge class="mb-4 bg-white/20 text-white border-white/30">
+            {service.emoji} Friends Factory Cafe
+          </Badge>
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 font-serif">
+            {keyword.h1}
+          </h1>
+          <p class="text-lg md:text-xl text-white/90 mb-8 max-w-xl">
+            {hasUniqueContent ? handcraftedContent!.heroSubtitle : `Create magical ${keyword.title.toLowerCase()} moments at Friends Factory Cafe. Premium romantic celebration venue with stunning setups and unforgettable experiences.`}
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <BookNowButton
+              pageTitle={keyword.title}
+              class="bg-white text-amber-600 hover:bg-amber-50 text-lg px-8 py-6"
+            />
+            <a href={`tel:${siteConfig.phone}`}>
+              <Button size="lg" class="bg-green-600 hover:bg-green-700 text-white w-full sm:w-auto">
+                <Icon name="phone" class="h-5 w-5 mr-2" />
+                {siteConfig.phone}
+              </Button>
+            </a>
+          </div>
+
+          <div class="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
+            <span class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-sm">
+              <Icon name="star" class="h-4 w-4" /> 4.9★ Rating
+            </span>
+            <span class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-sm">
+              <Icon name="check" class="h-4 w-4" /> 100% Private
+            </span>
+            <span class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-sm">
+              <Icon name="heart" class="h-4 w-4" /> Couples Only
+            </span>
+          </div>
+        </div>
+
+        {/* Hero Visual */}
+        <div class="hidden lg:flex justify-center">
+          <div class="w-72 h-72 rounded-full bg-white/10 flex items-center justify-center">
+            <span class="text-[7rem]">{service.emoji}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Main Content */}
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid lg:grid-cols-3 gap-12">
+        {/* Main Content */}
+        <div class="lg:col-span-2">
+          <article class="prose prose-lg max-w-none">
+            <h2 class="text-2xl font-bold mb-6 font-serif">
+              {keyword.title} at Friends Factory Cafe
+            </h2>
+
+            {/* Introduction - from unique content */}
+            <div class="text-gray-600 mb-6 whitespace-pre-line">
+              {hasUniqueContent ? handcraftedContent!.introduction : generatedContent.introduction}
+            </div>
+
+            <div class="bg-amber-50 rounded-xl p-6 mb-8">
+              <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <Icon name="gift" class="h-5 w-5 text-amber-600" />
+                What's Included in Your {keyword.title}
+              </h3>
+              <div class="grid md:grid-cols-2 gap-3">
+                {(hasUniqueContent
+                  ? handcraftedContent!.features
+                  : [
+                      '3 Mesmerizing Hours of Private Celebration',
+                      'Welcome Drink & Celebration Cake',
+                      'Romantic Decorations & Setup',
+                      'Candle-Lit Ambiance',
+                      'Soft Romantic Music',
+                      'Photo-Ready Backdrop',
+                      'Delicious Café-Style Food',
+                      'Panoramic City Views',
+                    ]
+                ).map((item) => (
+                  <div class="flex items-center gap-2">
+                    <Icon name="check" class="h-4 w-4 text-amber-600 flex-shrink-0" />
+                    <span class="text-gray-700">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Dynamic content sections */}
+            {(hasUniqueContent ? handcraftedContent!.sections : generatedContent.sections).map((section) => (
+              <div class="mb-8">
+                <h3 class="text-xl font-bold mb-4">{section.heading}</h3>
+                <div class="text-gray-600 whitespace-pre-line">
+                  {section.content}
+                </div>
+              </div>
+            ))}
+
+            {/* Process Section - only for handcrafted content */}
+            {hasUniqueContent && handcraftedContent!.process && (
+              <div class="mb-8">
+                <h3 class="text-xl font-bold mb-4">How to Book Your {keyword.title}</h3>
+                <div class="space-y-4">
+                  {handcraftedContent!.process.map((step, idx) => (
+                    <div class="flex gap-4">
+                      <div class="flex-shrink-0 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        {idx + 1}
+                      </div>
+                      <div>
+                        <h4 class="font-semibold text-gray-900">{step.step}</h4>
+                        <p class="text-gray-600">{step.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <h3 class="text-xl font-bold mb-4">
+              Why Choose Friends Factory Cafe for {keyword.title}?
+            </h3>
+
+            <ul class="space-y-3 mb-8">
+              {(hasUniqueContent ? handcraftedContent!.whyChooseUs : generatedContent.whyChooseUs).map((item) => (
+                <li class="flex items-start gap-3">
+                  <Icon name="check" class="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div class="bg-gray-50 rounded-xl p-6 mb-8">
+              <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <Icon name="clock" class="h-5 w-5 text-amber-600" />
+                Available Time Slots
+              </h3>
+              <div class="grid md:grid-cols-2 gap-3">
+                <div class="bg-white rounded-lg p-3 border border-gray-200">
+                  <p class="font-semibold">Lunch</p>
+                  <p class="text-gray-600 text-sm">12:00 PM - 3:00 PM</p>
+                </div>
+                <div class="bg-white rounded-lg p-3 border border-gray-200">
+                  <p class="font-semibold">Evening</p>
+                  <p class="text-gray-600 text-sm">4:00 PM - 7:00 PM</p>
+                </div>
+                <div class="bg-white rounded-lg p-3 border border-gray-200">
+                  <p class="font-semibold">Dinner</p>
+                  <p class="text-gray-600 text-sm">7:00 PM - 10:00 PM</p>
+                </div>
+                <div class="bg-white rounded-lg p-3 border border-gray-200">
+                  <p class="font-semibold">Late Night</p>
+                  <p class="text-gray-600 text-sm">10:00 PM - 1:00 AM</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Testimonials */}
+            <div class="bg-amber-50 rounded-xl p-6 mb-8">
+              <h3 class="text-xl font-bold mb-4">💬 What Couples Say About {keyword.title}</h3>
+              {hasUniqueContent ? (
+                <div class="space-y-3">
+                  <p class="text-gray-600 italic">"{handcraftedContent!.testimonial.text}"</p>
+                  <div class="flex items-center gap-2">
+                    <span class="font-semibold text-gray-900">— {handcraftedContent!.testimonial.name}</span>
+                    <span class="text-gray-500">|</span>
+                    <span class="text-gray-600 text-sm">{handcraftedContent!.testimonial.location}</span>
+                  </div>
+                  <div class="flex items-center gap-1 text-amber-500">
+                    {Array.from({ length: 5 }).map(() => (
+                      <Icon name="star" class="h-4 w-4" fill="currentColor" />
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div class="text-gray-600 italic whitespace-pre-line">
+                  {generatedContent.testimonialContent}
+                </div>
+              )}
+            </div>
+          </article>
+
+          {/* Packages */}
+          <div class="mt-12">
+            <h2 class="text-2xl font-bold mb-6 font-serif">
+              {keyword.title} Packages
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              {relatedPackages.map((pkg) => (
+                <a href={`/packages/${pkg.slug}`}>
+                  <Card class="h-full hover:shadow-lg transition-all hover:-translate-y-1 border-amber-100 group">
+                    <div class="aspect-video bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
+                      <span class="text-5xl">{pkg.emoji}</span>
+                    </div>
+                    <Card slot="content" class="p-4">
+                      <h3 class="font-semibold mb-1 group-hover:text-amber-600 transition-colors">
+                        {pkg.name}
+                      </h3>
+                      <p class="text-gray-600 text-sm line-clamp-2 mb-2">
+                        {pkg.shortDescription}
+                      </p>
+                      <p class="text-lg font-bold text-amber-600">
+                        {formatPrice(pkg.price)}
+                      </p>
+                    </Card>
+                  </Card>
+                </a>
+              ))}
+            </div>
+
+            <div class="text-center mt-6">
+              <a href="/packages">
+                <Button variant="outline" class="border-amber-600 text-amber-600 hover:bg-amber-50">
+                  View All Packages <Icon name="chevron-right" class="h-4 w-4 ml-2" />
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Sidebar */}
+        <div class="lg:col-span-1">
+          <div class="sticky top-24 space-y-6">
+            {/* Booking Form */}
+            <BookingForm pageTitle={keyword.title} />
+
+            {/* Quick Contact */}
+            <Card class="border-green-200 bg-green-50">
+              <Card slot="content" class="p-6 text-center">
+                <Icon name="message-circle" class="h-10 w-10 text-green-600 mx-auto mb-3" />
+                <h3 class="font-semibold mb-2">Quick Booking</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                  Get instant response on WhatsApp
+                </p>
+                <a
+                  href={`https://wa.me/${siteConfig.whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors w-full justify-center"
+                >
+                  <Icon name="message-circle" class="h-5 w-5" />
+                  WhatsApp Now
+                </a>
+              </Card>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Related Keywords */}
+  <section class="py-16 bg-amber-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-bold mb-4 font-serif">
+          Related {service.name} Services
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        {relatedKeywords.map((kw) => (
+          <a href={`/${kw.slug}`}>
+            <Card class="border-amber-100 hover:border-amber-300 hover:shadow-md transition-all group">
+              <Card slot="content" class="p-4">
+                <h3 class="font-medium group-hover:text-amber-600 transition-colors flex items-center justify-between">
+                  {kw.title}
+                  <Icon name="chevron-right" class="h-4 w-4 text-gray-400 group-hover:text-amber-600" />
+                </h3>
+              </Card>
+            </Card>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Areas */}
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <Badge class="mb-4 bg-amber-100 text-amber-700 border-amber-200">
+          <Icon name="map-pin" class="h-4 w-4 mr-2" /> Service Areas
+        </Badge>
+        <h2 class="text-2xl font-bold mb-4 font-serif">
+          {keyword.title} Across Vadodara
+        </h2>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+        {vadodaraAreas.slice(0, 12).map((area) => (
+          <a
+            href={`/${area.slug}`}
+            class="px-4 py-2 bg-amber-50 rounded-full text-gray-700 hover:bg-amber-600 hover:text-white transition-colors border border-amber-200 text-sm"
+          >
+            {area.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section class="py-16 bg-amber-50">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-bold mb-4 font-serif">
+          FAQs about {keyword.title}
+        </h2>
+      </div>
+
+      <Accordion
+        name={`keyword-faq-${keyword.slug}`}
+        items={faqItems}
+        itemClass="bg-white rounded-lg border border-amber-100 px-6"
+      />
+    </div>
+  </section>
+
+  {/* CTA Section */}
+  <section class="py-16 bg-gradient-to-br from-amber-600 to-orange-600 text-white">
+    <div class="container mx-auto px-4 text-center max-w-3xl">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4 font-serif">
+        Ready for Your {keyword.title}?
+      </h2>
+      <p class="text-white/90 mb-8 whitespace-pre-line">
+        {hasUniqueContent ? handcraftedContent!.closingText : generatedContent.closingCta}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <BookNowButton
+          pageTitle={keyword.title}
+          class="bg-white text-amber-600 hover:bg-amber-50 text-lg px-8 py-6"
+        />
+        <a href={`tel:${siteConfig.phone}`}>
+          <Button size="lg" class="bg-green-600 hover:bg-green-700 text-white w-full sm:w-auto">
+            <Icon name="phone" class="h-5 w-5 mr-2" />
+            Call Now: {siteConfig.phone}
+          </Button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* Gallery Section */}
+  {/* TODO: import Gallery.astro (FFCGalleryCompact equivalent) from src/components once converted, e.g. <Gallery title={`${keyword.title} Gallery`} maxItems={8} /> */}
+
+  <Footer />
+  <WhatsAppFloat />
+</div>

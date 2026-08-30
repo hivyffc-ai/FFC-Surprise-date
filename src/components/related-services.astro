@@ -1,0 +1,26 @@
+---
+import { SEO_CONFIG } from '@/lib/seo-config';
+
+export interface Props {
+  links: { href: string; label: string }[];
+}
+
+const { links } = Astro.props;
+---
+
+{
+  links && links.length > 0 && (
+    <section class="py-8 border-t border-gray-200 mt-8">
+      <h2 class="text-xl font-semibold mb-4">
+        Related {SEO_CONFIG.niche} Services in {SEO_CONFIG.location}
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {links.map((link) => (
+          <a href={link.href} class="text-blue-600 hover:text-blue-800 hover:underline text-sm p-2 rounded-lg hover:bg-blue-50 transition-colors">
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
