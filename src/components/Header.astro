@@ -11,18 +11,18 @@ const navigation = [
   { name: 'Contact us', href: '/contact' },
 ];
 ---
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-amber-100">
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-indigo-100">
   <nav class="container mx-auto px-4 py-2">
     <div class="flex h-20 items-center justify-between">
       <a href="/" class="flex flex-col">
-        <span class="text-xl md:text-2xl font-serif font-bold text-amber-700 leading-tight">Friends</span>
-        <span class="text-xl md:text-2xl font-serif font-bold text-amber-700 leading-tight">Factory</span>
-        <span class="text-xl md:text-2xl font-serif font-bold text-amber-700 leading-tight">Cafe</span>
+        <span class="text-xl md:text-2xl font-serif font-bold text-indigo-700 leading-tight">Friends</span>
+        <span class="text-xl md:text-2xl font-serif font-bold text-indigo-700 leading-tight">Factory</span>
+        <span class="text-xl md:text-2xl font-serif font-bold text-indigo-700 leading-tight">Cafe</span>
       </a>
 
       <div class="hidden lg:flex items-center gap-8">
         {navigation.map((item) => (
-          <a href={item.href} class="text-gray-700 hover:text-amber-600 font-medium transition-colors">
+          <a href={item.href} class="text-gray-700 hover:text-indigo-600 font-medium transition-colors">
             {item.name}
           </a>
         ))}
@@ -30,10 +30,10 @@ const navigation = [
 
       <div class="flex items-center gap-4">
         <div class="hidden md:flex items-center gap-3">
-          <Icon name="heart" class="h-8 w-8 text-amber-500" fill="currentColor" />
+          <Icon name="heart" class="h-8 w-8 text-indigo-500" fill="currentColor" />
           <div class="text-right">
             <p class="text-xs text-gray-500">Call and Book in Minutes</p>
-            <a href={`tel:${siteConfig.phone}`} class="text-lg font-bold text-amber-600 hover:text-amber-700">
+            <a href={`tel:${siteConfig.phone}`} class="text-lg font-bold text-indigo-600 hover:text-indigo-700">
               {siteConfig.phone}
             </a>
           </div>
@@ -64,7 +64,7 @@ const navigation = [
   >
     <div class="flex flex-col h-full">
       <div class="flex items-center justify-between py-4 px-4 border-b">
-        <span class="font-serif font-bold text-amber-700 text-xl">Friends Factory Cafe</span>
+        <span class="font-serif font-bold text-indigo-700 text-xl">Friends Factory Cafe</span>
         <button type="button" id="mobile-menu-close" aria-label="Close menu" class="inline-flex items-center justify-center size-9 rounded-md hover:bg-accent">
           <Icon name="x" class="h-5 w-5" />
         </button>
@@ -75,7 +75,7 @@ const navigation = [
           {navigation.map((item) => (
             <a
               href={item.href}
-              class="mobile-menu-link block px-4 py-3 text-lg font-medium text-gray-700 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors"
+              class="mobile-menu-link block px-4 py-3 text-lg font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
             >
               {item.name}
             </a>
@@ -86,7 +86,7 @@ const navigation = [
       <div class="border-t py-4 px-4">
         <a
           href={`tel:${siteConfig.phone}`}
-          class="flex items-center gap-3 px-4 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
+          class="flex items-center gap-3 px-4 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
         >
           <Icon name="phone" class="h-5 w-5" />
           <span class="font-medium">{siteConfig.phone}</span>

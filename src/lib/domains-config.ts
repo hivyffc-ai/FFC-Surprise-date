@@ -111,7 +111,7 @@ export const domains: DomainConfig[] = [
       darkBg: "bg-pink-900",
       text: "text-pink-600"
     },
-    heroImages: ["/images/hero/birthday1.jpg", "/images/hero/birthday2.jpg", "/images/hero/birthday3.jpg"],
+    heroImages: ["/images/hero/birthday1.webp", "/images/hero/birthday2.webp", "/images/hero/birthday3.webp"],
     keywords: [
       { slug: "birthday-surprise-for-boyfriend-surat", title: "Birthday Surprise for Boyfriend", h1: "Best Birthday Surprise for Boyfriend in Surat", metaTitle: "Birthday Surprise for Boyfriend in Surat | Romantic Celebration", metaDescription: "Plan the perfect birthday surprise for your boyfriend in Surat. Romantic decorations, cake, and intimate celebration at our couple-friendly cafe." },
       { slug: "birthday-surprise-for-girlfriend-surat", title: "Birthday Surprise for Girlfriend", h1: "Romantic Birthday Surprise for Girlfriend in Surat", metaTitle: "Birthday Surprise for Girlfriend Surat | Make Her Day Special", metaDescription: "Create unforgettable birthday memories for your girlfriend in Surat with balloon decorations, cake, flowers and romantic setup." },
@@ -155,13 +155,13 @@ export const domains: DomainConfig[] = [
       primary: "#F59E0B", // Amber/Golden
       secondary: "#FBBF24",
       accent: "#D97706",
-      gradient: "from-amber-500 to-orange-600",
-      gradientHover: "from-amber-600 to-orange-700",
-      lightBg: "bg-amber-50",
-      darkBg: "bg-amber-900",
-      text: "text-amber-600"
+      gradient: "from-indigo-500 to-orange-600",
+      gradientHover: "from-indigo-600 to-orange-700",
+      lightBg: "bg-indigo-50",
+      darkBg: "bg-indigo-900",
+      text: "text-indigo-600"
     },
-    heroImages: ["/images/hero/candle1.jpg", "/images/hero/candle2.jpg", "/images/hero/candle3.jpg"],
+    heroImages: ["/images/hero/candle1.webp", "/images/hero/candle2.webp", "/images/hero/candle3.webp"],
     keywords: [
       { slug: "candlelight-dinner-in-surat", title: "Candlelight Dinner", h1: "Candlelight Dinner in Surat", metaTitle: "Candlelight Dinner in Surat | Romantic Dining Experience", metaDescription: "Book the perfect candlelight dinner in Surat for couples. Romantic ambiance, delicious food, and intimate setting." },
       { slug: "romantic-dinner-surat", title: "Romantic Dinner", h1: "Romantic Dinner in Surat", metaTitle: "Romantic Dinner Surat | Best Couple Dining", metaDescription: "Enjoy a romantic dinner in Surat with candlelight, flowers, and exquisite cuisine for couples." },
@@ -211,7 +211,7 @@ export const domains: DomainConfig[] = [
       darkBg: "bg-red-900",
       text: "text-red-600"
     },
-    heroImages: ["/images/hero/date1.jpg", "/images/hero/date2.jpg", "/images/hero/date3.jpg"],
+    heroImages: ["/images/hero/date1.webp", "/images/hero/date2.webp", "/images/hero/date3.webp"],
     keywords: [
       { slug: "surprise-date-in-surat", title: "Surprise Date", h1: "Surprise Date in Surat", metaTitle: "Surprise Date in Surat | Romantic Experience", metaDescription: "Plan a surprise date in Surat for your partner. Romantic setup, private venue, and memorable moments." },
       { slug: "romantic-date-ideas-surat", title: "Romantic Date Ideas", h1: "Romantic Date Ideas in Surat", metaTitle: "Romantic Date Ideas Surat | Best Options", metaDescription: "Get the best romantic date ideas in Surat for couples seeking special experiences." },
@@ -261,7 +261,7 @@ export const domains: DomainConfig[] = [
       darkBg: "bg-gray-800",
       text: "text-gray-600"
     },
-    heroImages: ["/images/hero/anniversary1.jpg", "/images/hero/anniversary2.jpg", "/images/hero/anniversary3.jpg"],
+    heroImages: ["/images/hero/anniversary1.webp", "/images/hero/anniversary2.webp", "/images/hero/anniversary3.webp"],
     keywords: [
       { slug: "anniversary-dinner-in-surat", title: "Anniversary Dinner", h1: "Anniversary Dinner in Surat", metaTitle: "Anniversary Dinner in Surat | Celebrate Your Love", metaDescription: "Book a romantic anniversary dinner in Surat with special decorations and intimate setting." },
       { slug: "anniversary-celebration-for-couples-surat", title: "Anniversary Celebration for Couples", h1: "Anniversary Celebration for Couples in Surat", metaTitle: "Anniversary Celebration for Couples Surat | Special Day", metaDescription: "Plan a special anniversary celebration for couples in Surat with romantic setup." },
@@ -311,7 +311,7 @@ export const domains: DomainConfig[] = [
       darkBg: "bg-purple-900",
       text: "text-purple-600"
     },
-    heroImages: ["/images/hero/anniversary1.jpg", "/images/hero/anniversary2.jpg", "/images/hero/anniversary3.jpg"],
+    heroImages: ["/images/hero/anniversary1.webp", "/images/hero/anniversary2.webp", "/images/hero/anniversary3.webp"],
     keywords: [
       { slug: "anniversary-dinner-in-vadodara", title: "Anniversary Dinner", h1: "Anniversary Dinner in Vadodara", metaTitle: "Anniversary Dinner in Vadodara | Celebrate Your Love", metaDescription: "Book a romantic anniversary dinner in Vadodara with special decorations and intimate setting." },
       { slug: "anniversary-celebration-for-couples-vadodara", title: "Anniversary Celebration for Couples", h1: "Anniversary Celebration for Couples in Vadodara", metaTitle: "Anniversary Celebration for Couples Vadodara | Special Day", metaDescription: "Plan a special anniversary celebration for couples in Vadodara with romantic setup." },
@@ -361,7 +361,7 @@ export const domains: DomainConfig[] = [
       darkBg: "bg-violet-900",
       text: "text-violet-600"
     },
-    heroImages: ["/images/hero/date1.jpg", "/images/hero/date2.jpg", "/images/hero/date3.jpg"],
+    heroImages: ["/images/hero/date1.webp", "/images/hero/date2.webp", "/images/hero/date3.webp"],
     keywords: [
       { slug: "surprise-date-in-vadodara", title: "Surprise Date", h1: "Surprise Date in Vadodara", metaTitle: "Surprise Date in Vadodara | Romantic Experience", metaDescription: "Plan a surprise date in Vadodara for your partner. Romantic setup, private venue, and memorable moments." },
       { slug: "romantic-date-ideas-vadodara", title: "Romantic Date Ideas", h1: "Romantic Date Ideas in Vadodara", metaTitle: "Romantic Date Ideas Vadodara | Best Options", metaDescription: "Get the best romantic date ideas in Vadodara for couples seeking special experiences." },
@@ -411,7 +411,7 @@ export const domains: DomainConfig[] = [
       darkBg: "bg-blue-950",
       text: "text-blue-700"
     },
-    heroImages: ["/images/hero/rooftop1.jpg", "/images/hero/rooftop2.jpg", "/images/hero/rooftop3.jpg"],
+    heroImages: ["/images/hero/rooftop1.webp", "/images/hero/rooftop2.webp", "/images/hero/rooftop3.webp"],
     keywords: [
       { slug: "rooftop-date-in-vadodara", title: "Rooftop Date", h1: "Rooftop Date in Vadodara", metaTitle: "Rooftop Date in Vadodara | Sky High Romance", metaDescription: "Enjoy a romantic rooftop date in Vadodara with stunning city views and intimate ambiance." },
       { slug: "rooftop-dinner-for-couples-vadodara", title: "Rooftop Dinner for Couples", h1: "Rooftop Dinner for Couples in Vadodara", metaTitle: "Rooftop Dinner for Couples Vadodara | Romantic Evening", metaDescription: "Book a rooftop dinner for couples in Vadodara with beautiful decorations and views." },
@@ -461,7 +461,7 @@ export const domains: DomainConfig[] = [
       darkBg: "bg-orange-900",
       text: "text-orange-600"
     },
-    heroImages: ["/images/hero/candle1.jpg", "/images/hero/candle2.jpg", "/images/hero/candle3.jpg"],
+    heroImages: ["/images/hero/candle1.webp", "/images/hero/candle2.webp", "/images/hero/candle3.webp"],
     keywords: [
       { slug: "candlelight-dinner-in-vadodara", title: "Candlelight Dinner", h1: "Candlelight Dinner in Vadodara", metaTitle: "Candlelight Dinner in Vadodara | Romantic Dining Experience", metaDescription: "Book the perfect candlelight dinner in Vadodara for couples. Romantic ambiance, delicious food, and intimate setting." },
       { slug: "romantic-dinner-vadodara", title: "Romantic Dinner", h1: "Romantic Dinner in Vadodara", metaTitle: "Romantic Dinner Vadodara | Best Couple Dining", metaDescription: "Enjoy a romantic dinner in Vadodara with candlelight, flowers, and exquisite cuisine for couples." },
@@ -511,7 +511,7 @@ export const domains: DomainConfig[] = [
       darkBg: "bg-teal-900",
       text: "text-teal-600"
     },
-    heroImages: ["/images/hero/birthday1.jpg", "/images/hero/birthday2.jpg", "/images/hero/birthday3.jpg"],
+    heroImages: ["/images/hero/birthday1.webp", "/images/hero/birthday2.webp", "/images/hero/birthday3.webp"],
     keywords: [
       { slug: "birthday-surprise-for-boyfriend-vadodara", title: "Birthday Surprise for Boyfriend", h1: "Best Birthday Surprise for Boyfriend in Vadodara", metaTitle: "Birthday Surprise for Boyfriend in Vadodara | Romantic Celebration", metaDescription: "Plan the perfect birthday surprise for your boyfriend in Vadodara. Romantic decorations, cake, and intimate celebration at our couple-friendly cafe." },
       { slug: "birthday-surprise-for-girlfriend-vadodara", title: "Birthday Surprise for Girlfriend", h1: "Romantic Birthday Surprise for Girlfriend in Vadodara", metaTitle: "Birthday Surprise for Girlfriend Vadodara | Make Her Day Special", metaDescription: "Create unforgettable birthday memories for your girlfriend in Vadodara with balloon decorations, cake, flowers and romantic setup." },

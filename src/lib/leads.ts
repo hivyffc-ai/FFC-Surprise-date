@@ -24,15 +24,27 @@ const SITE_NAME = siteConfig.name;
 const WHATSAPP_NUMBER = siteConfig.whatsapp || '917487888730';
 
 export async function submitLead(payload: LeadPayload): Promise<LeadResult> {
-  // 1. Post to CRM
+  // 1. Post to CRM (real schema: name/phone required, everything else optional)
   try {
+    const notesParts = [
+      payload.packageName ? `Package: ${payload.packageName}` : null,
+      payload.message ? `Message: ${payload.message}` : null,
+    ].filter(Boolean);
+
     const crmBody = {
-      ...payload,
-      site: SITE_NAME,
-      submittedAt: new Date().toISOString(),
+      name: payload.name,
+      phone: payload.phone,
+      occasion_type: payload.occasion,
+      preferred_date: payload.date || null,
+      preferred_time: payload.timeSlot,
+      outlet: SITE_NAME,
+      lead_source: 'website',
+      enquiry_channel: 'form',
+      source_domain: siteConfig.website,
+      notes: notesParts.length ? notesParts.join(' | ') : null,
     };
 
-    await fetch(`${CRM_URL}/api/leads`, {
+    await fetch(`${CRM_URL}/api/leads/submit`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(crmBody),

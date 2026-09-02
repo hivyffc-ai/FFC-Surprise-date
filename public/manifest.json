@@ -1,0 +1,53 @@
+{
+  "name": "Friends Factory Cafe Vadodara - Romantic Celebrations",
+  "short_name": "Friends Factory",
+  "description": "Best romantic celebration venue in Vadodara, Gujarat. Birthday surprises, candlelight dinners, anniversary celebrations, proposals, pre-wedding shoots. 100% private rooftop & glass house experiences. Call +91 74878 88730",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FFF7ED",
+  "theme_color": "#D97706",
+  "categories": ["food", "lifestyle", "entertainment"],
+  "lang": "en-IN",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-icon.svg",
+      "sizes": "180x180",
+      "type": "image/svg+xml",
+      "purpose": "apple touch icon"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book Now",
+      "short_name": "Book",
+      "description": "Book your romantic celebration",
+      "url": "/contact",
+      "icons": [{ "src": "/icon.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Our Packages",
+      "short_name": "Packages",
+      "description": "View celebration packages",
+      "url": "/packages",
+      "icons": [{ "src": "/icon.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Virtual Tour",
+      "short_name": "Tour",
+      "description": "Take a virtual tour",
+      "url": "/virtual-tour",
+      "icons": [{ "src": "/icon.svg", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

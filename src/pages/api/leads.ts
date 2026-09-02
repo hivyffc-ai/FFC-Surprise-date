@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { submitLead } from '@/lib/leads';
+import { siteConfig } from '@/lib/ffc-config';
 
 export const prerender = false;
 
@@ -47,7 +48,7 @@ export const POST: APIRoute = async ({ request }) => {
       packageName,
       message,
       source: source || request.headers.get('referer') || 'Unknown',
-      site: 'FFC Rooftop',
+      site: siteConfig.name + ' (Surprise Date)',
     });
 
     return new Response(JSON.stringify(result), { status: 200, headers });
