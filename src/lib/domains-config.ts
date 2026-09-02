@@ -91,7 +91,6 @@ export function getCityAreas(city: "surat" | "vadodara"): string[] {
 // ==================== 9 DOMAIN CONFIGURATIONS ====================
 
 export const domains: DomainConfig[] = [
-  // ==================== 1. BIRTHDAY SURPRISE SURAT ====================
   {
     slug: "birthday-surprise-surat",
     domain: "birthdaysurprisesurat.com",
@@ -140,8 +139,6 @@ export const domains: DomainConfig[] = [
       { slug: "unique-birthday-surprise-surat", title: "Unique Birthday Surprise", h1: "Unique Birthday Surprise in Surat", metaTitle: "Unique Birthday Surprise Surat | Creative Ideas", metaDescription: "Plan a unique birthday surprise in Surat with creative themes and personalized romantic setups." }
     ]
   },
-
-  // ==================== 2. CANDLELIGHT DINNER SURAT ====================
   {
     slug: "candlelight-dinner-surat",
     domain: "candlelightdinnersurat.com",
@@ -190,8 +187,6 @@ export const domains: DomainConfig[] = [
       { slug: "intimate-dinner-surat", title: "Intimate Dinner", h1: "Intimate Dinner in Surat", metaTitle: "Intimate Dinner Surat | Private Experience", metaDescription: "Book an intimate dinner in Surat for a private and romantic dining experience." }
     ]
   },
-
-  // ==================== 3. SURPRISE DATE SURAT ====================
   {
     slug: "surprise-date-surat",
     domain: "surprisedatesurat.com",
@@ -240,8 +235,6 @@ export const domains: DomainConfig[] = [
       { slug: "unique-date-ideas-surat", title: "Unique Date Ideas", h1: "Unique Date Ideas in Surat", metaTitle: "Unique Date Ideas Surat | Creative Options", metaDescription: "Discover unique date ideas in Surat for unforgettable romantic experiences." }
     ]
   },
-
-  // ==================== 4. ANNIVERSARY DINNER SURAT ====================
   {
     slug: "anniversary-dinner-surat",
     domain: "anniversarydinnersurat.com",
@@ -290,8 +283,6 @@ export const domains: DomainConfig[] = [
       { slug: "couple-anniversary-dinner-surat", title: "Couple Anniversary Dinner", h1: "Couple Anniversary Dinner in Surat", metaTitle: "Couple Anniversary Dinner Surat | Romantic Celebration", metaDescription: "Celebrate your love with a couple anniversary dinner in Surat." }
     ]
   },
-
-  // ==================== 5. ANNIVERSARY DINNER VADODARA ====================
   {
     slug: "anniversary-dinner-vadodara",
     domain: "anniversarydinnervadodara.com",
@@ -340,8 +331,6 @@ export const domains: DomainConfig[] = [
       { slug: "couple-anniversary-dinner-vadodara", title: "Couple Anniversary Dinner", h1: "Couple Anniversary Dinner in Vadodara", metaTitle: "Couple Anniversary Dinner Vadodara | Romantic Celebration", metaDescription: "Celebrate your love with a couple anniversary dinner in Vadodara." }
     ]
   },
-
-  // ==================== 6. SURPRISE DATE VADODARA ====================
   {
     slug: "surprise-date-vadodara",
     domain: "surprisedatevadodara.com",
@@ -390,8 +379,6 @@ export const domains: DomainConfig[] = [
       { slug: "unique-date-ideas-vadodara", title: "Unique Date Ideas", h1: "Unique Date Ideas in Vadodara", metaTitle: "Unique Date Ideas Vadodara | Creative Options", metaDescription: "Discover unique date ideas in Vadodara for unforgettable romantic experiences." }
     ]
   },
-
-  // ==================== 7. ROOFTOP DATE VADODARA ====================
   {
     slug: "rooftop-date-vadodara",
     domain: "rooftopdatevadodara.com",
@@ -440,8 +427,6 @@ export const domains: DomainConfig[] = [
       { slug: "intimate-rooftop-dinner-vadodara", title: "Intimate Rooftop Dinner", h1: "Intimate Rooftop Dinner in Vadodara", metaTitle: "Intimate Rooftop Dinner Vadodara | Private Moments", metaDescription: "Enjoy an intimate rooftop dinner in Vadodara with private setup and romantic ambiance." }
     ]
   },
-
-  // ==================== 8. CANDLELIGHT DINNER VADODARA ====================
   {
     slug: "candlelight-dinner-vadodara",
     domain: "candlelightdinnervadodara.com",
@@ -468,7 +453,6 @@ export const domains: DomainConfig[] = [
       { slug: "couple-dinner-vadodara", title: "Couple Dinner", h1: "Couple Dinner in Vadodara", metaTitle: "Couple Dinner Vadodara | Private Dining Experience", metaDescription: "Perfect couple dinner in Vadodara with private setting and romantic ambiance." },
       { slug: "private-dining-vadodara", title: "Private Dining", h1: "Private Dining in Vadodara", metaTitle: "Private Dining Vadodara | Exclusive Experience", metaDescription: "Exclusive private dining in Vadodara for couples seeking intimate and romantic meals." },
       { slug: "candlelight-dinner-for-couples-vadodara", title: "Candlelight Dinner for Couples", h1: "Candlelight Dinner for Couples in Vadodara", metaTitle: "Candlelight Dinner for Couples Vadodara | Book Now", metaDescription: "Special candlelight dinner packages for couples in Vadodara with decorations and romantic setup." },
-      { slug: "rooftop-candlelight-dinner-vadodara", title: "Rooftop Candlelight Dinner", h1: "Rooftop Candlelight Dinner in Vadodara", metaTitle: "Rooftop Candlelight Dinner Vadodara | Sky Dining", metaDescription: "Enjoy rooftop candlelight dinner in Vadodara under the stars with romantic views." },
       { slug: "poolside-candlelight-dinner-vadodara", title: "Poolside Candlelight Dinner", h1: "Poolside Candlelight Dinner in Vadodara", metaTitle: "Poolside Candlelight Dinner Vadodara | Water View Dining", metaDescription: "Romantic poolside candlelight dinner in Vadodara with serene water views and ambiance." },
       { slug: "candlelight-dinner-near-me-vadodara", title: "Candlelight Dinner Near Me", h1: "Candlelight Dinner Near Me in Vadodara", metaTitle: "Candlelight Dinner Near Me Vadodara | Local Options", metaDescription: "Find candlelight dinner options near you in Vadodara. Multiple locations across the city." },
       { slug: "candlelight-dinner-for-boyfriend-vadodara", title: "Candlelight Dinner for Boyfriend", h1: "Candlelight Dinner for Boyfriend in Vadodara", metaTitle: "Candlelight Dinner for Boyfriend Vadodara | Surprise Him", metaDescription: "Plan a candlelight dinner surprise for your boyfriend in Vadodara with romantic setup." },
@@ -490,8 +474,6 @@ export const domains: DomainConfig[] = [
       { slug: "intimate-dinner-vadodara", title: "Intimate Dinner", h1: "Intimate Dinner in Vadodara", metaTitle: "Intimate Dinner Vadodara | Private Experience", metaDescription: "Book an intimate dinner in Vadodara for a private and romantic dining experience." }
     ]
   },
-
-  // ==================== 9. BIRTHDAY SURPRISE VADODARA ====================
   {
     slug: "birthday-surprise-vadodara",
     domain: "birthdaysurprisevadodara.com",
@@ -539,7 +521,7 @@ export const domains: DomainConfig[] = [
       { slug: "birthday-surprise-package-vadodara", title: "Birthday Surprise Package", h1: "Birthday Surprise Package in Vadodara", metaTitle: "Birthday Surprise Package Vadodara | All Inclusive", metaDescription: "Book our all-inclusive birthday surprise package in Vadodara with decorations, cake, and romantic setup." },
       { slug: "unique-birthday-surprise-vadodara", title: "Unique Birthday Surprise", h1: "Unique Birthday Surprise in Vadodara", metaTitle: "Unique Birthday Surprise Vadodara | Creative Ideas", metaDescription: "Plan a unique birthday surprise in Vadodara with creative themes and personalized romantic setups." }
     ]
-  }
+  },
 ];
 
 // ==================== HELPER FUNCTIONS ====================
