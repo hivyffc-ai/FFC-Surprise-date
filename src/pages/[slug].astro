@@ -11,9 +11,13 @@ import {
   vadodaraAreas as areasList,
   getServiceBySlug,
   getAreaBySlug,
+  siteConfig,
+  packages,
   type ServiceCategory,
   type ServiceKeyword,
 } from '@/lib/ffc-config';
+
+const startingPrice = Math.min(...packages.map((p) => p.price));
 
 export const prerender = true;
 
@@ -61,20 +65,63 @@ if (!service && !area && !keyword) {
 let title = '';
 let description = '';
 let keywordsList: string[] = [];
+let pageName = '';
 
 if (service) {
   title = service.metaTitle;
   description = service.metaDescription;
   keywordsList = [service.name, `${service.name} Vadodara`];
+  pageName = service.name;
 } else if (area) {
-  title = area.uniqueContent?.heroSubtitle || `${area.name} Celebration Venue | Friends Factory Cafe`;
+  title = area.uniqueContent?.heroSubtitle || `${area.name} Celebration Venue | ${siteConfig.name}`;
   description = area.uniqueContent?.introduction || `Best private romantic celebration venue in ${area.name}, Vadodara.`;
   keywordsList = [`${area.name} celebration`, `${area.name} romantic cafe`];
+  pageName = `Celebrations in ${area.name}`;
 } else if (keyword) {
   title = keyword.metaTitle;
   description = keyword.metaDescription;
   keywordsList = [keyword.title, `${keyword.title} Vadodara`];
+  pageName = keyword.title;
 }
+
+const canonicalUrl = `${siteConfig.website}/${slug}`;
+
+// GEO: concrete, extractable facts (price, provider, area served) for this
+// page's specific service - not the sitewide LocalBusiness schema alone.
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: pageName,
+  description,
+  provider: {
+    '@type': 'LocalBusiness',
+    name: siteConfig.name,
+    telephone: siteConfig.phone,
+    address: siteConfig.address,
+  },
+  areaServed: area ? area.name : siteConfig.city,
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'INR',
+    price: startingPrice,
+    availability: 'https://schema.org/InStock',
+    url: canonicalUrl,
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.website },
+    ...(keyword && parentService
+      ? [
+          { '@type': 'ListItem', position: 2, name: parentService.name, item: `${siteConfig.website}/${parentService.slug}` },
+          { '@type': 'ListItem', position: 3, name: pageName, item: canonicalUrl },
+        ]
+      : [{ '@type': 'ListItem', position: 2, name: pageName, item: canonicalUrl }]),
+  ],
+};
 ---
 <BaseLayout
   title={title}
@@ -82,6 +129,7 @@ if (service) {
   keywords={keywordsList}
   canonicalPath={`/${slug}`}
   noTemplate={true}
+  extraJsonLd={[serviceSchema, breadcrumbSchema]}
 >
   {
     service && (
