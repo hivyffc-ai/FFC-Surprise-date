@@ -19,7 +19,7 @@ export interface LeadResult {
   whatsappUrl?: string;
 }
 
-const CRM_URL = process.env.NEXT_PUBLIC_CRM_URL || 'https://crm-for-cafe.vercel.app';
+const CRM_URL = process.env.NEXT_PUBLIC_CRM_URL || 'https://crm-theta-plum-25.vercel.app';
 const SITE_NAME = siteConfig.name;
 const WHATSAPP_NUMBER = siteConfig.whatsapp || '917487888730';
 

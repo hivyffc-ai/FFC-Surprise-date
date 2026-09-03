@@ -350,7 +350,7 @@ const cardClasses =
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
 
-      fetch('https://crm.bookmymoment.in/api/leads/submit', {
+      fetch('https://crm-theta-plum-25.vercel.app/api/leads/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
