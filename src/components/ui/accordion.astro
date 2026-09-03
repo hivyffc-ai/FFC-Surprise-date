@@ -14,7 +14,23 @@ export interface Props {
 }
 
 const { items, name, class: className, itemClass } = Astro.props;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
 ---
+{items.length > 0 && (
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+)}
 <div class={cn('space-y-4', className)} data-slot="accordion">
   {items.map((item, index) => (
     <details name={name} class={cn('group border-b last:border-b-0', itemClass)} data-slot="accordion-item">
