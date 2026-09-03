@@ -268,5 +268,30 @@ const jsonLd = {
   <body class="font-sans antialiased" data-whatsapp-number={siteConfig.whatsapp} data-site-city={siteConfig.city}>
     <slot />
     <script defer src="/_vercel/insights/script.js"></script>
+    <script define:vars={{ siteName: siteConfig.name, siteUrl: SITE_URL }} is:inline>
+      (function () {
+        try {
+          var key = 'ffc_session_id';
+          var sessionId = sessionStorage.getItem(key);
+          if (!sessionId) {
+            sessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random());
+            sessionStorage.setItem(key, sessionId);
+          }
+          var payload = JSON.stringify({
+            site: siteName,
+            source_domain: location.hostname,
+            page_path: location.pathname,
+            referrer: document.referrer || null,
+            session_id: sessionId,
+          });
+          var endpoint = 'https://crm-theta-plum-25.vercel.app/api/track';
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon(endpoint, new Blob([payload], { type: 'application/json' }));
+          } else {
+            fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: payload, keepalive: true }).catch(function () {});
+          }
+        } catch (e) {}
+      })();
+    </script>
   </body>
 </html>
