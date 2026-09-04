@@ -63,7 +63,7 @@ He thinks it's a date. Friends jump out. Then family arrives! Multi-layered surp
 
 🎉 **Celebration Vibes**: Party music, energetic atmosphere for surprise party for boyfriend.
 
-🍕 **Party Food**: Finger foods, snacks for surprise party for boyfriend guests.
+🍕 **Party Food**: Finger foods, meal for surprise party for boyfriend guests.
 
 🎂 **Celebration Cake**: Included for surprise party for boyfriend.
 
@@ -91,7 +91,7 @@ Surprise party for boyfriend packages from ₹8,900 (varies by guest count).`
   features: [
     "Private venue for surprise party for boyfriend",
     "Complete balloon and party decorations for surprise party for boyfriend",
-    "Party food and snacks for surprise party for boyfriend",
+    "Party food and meal for surprise party for boyfriend",
     "Celebration cake for surprise party for boyfriend",
     "Music and sound system for surprise party for boyfriend",
     "Multiple photo spots for surprise party for boyfriend",

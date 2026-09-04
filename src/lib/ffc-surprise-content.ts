@@ -390,7 +390,7 @@ From ₹6,900, our birthday surprise for husband packages create marriage magic!
     },
     {
       question: "Is the food portion sufficient for men?",
-      answer: "Definitely! Our birthday surprise for husband dinner is generous – fondue, pasta, snacks, desserts. Most husbands leave happily full. Extra items available if needed!"
+      answer: "Definitely! Our birthday surprise for husband dinner is generous – fondue, pasta, meal, desserts. Most husbands leave happily full. Extra items available if needed!"
     },
     {
       question: "What if our kids call during birthday surprise for husband?",

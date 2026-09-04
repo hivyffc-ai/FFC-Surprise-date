@@ -92,7 +92,7 @@ Starting at just ₹4,700, our birthday surprise for boyfriend packages offer in
       "Balloon arches and heart decorations for birthday surprise for boyfriend",
       "Fairy lights and candle-lit ambiance for birthday surprise for boyfriend",
       "Complimentary celebration cake for birthday surprise for boyfriend",
-      "Welcome drinks and snacks for birthday surprise for boyfriend",
+      "Welcome drinks and meal for birthday surprise for boyfriend",
       "Romantic music playlist for birthday surprise for boyfriend",
       "Multiple photo spots for birthday surprise for boyfriend memories",
       "Surprise coordination assistance for birthday surprise for boyfriend"

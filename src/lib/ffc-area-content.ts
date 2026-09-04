@@ -353,7 +353,7 @@ What makes us click with Akota? We don't try to impress with over-the-top glitz.
     },
     {
       question: "Is it actually worth the price, or marketing hype?",
-      answer: "Akota's practical couples ask this, and we respect it. Our ₹4,700 package includes: 3-hour private booking, decorated setup, welcome drinks, snacks, cake (packages 1-3), and ambient music. Compare with any restaurant's 'couple package' – you'll see we deliver more. No hidden charges either."
+      answer: "Akota's practical couples ask this, and we respect it. Our ₹4,700 package includes: 3-hour private booking, decorated setup, welcome drinks, meal, cake (packages 1-3), and ambient music. Compare with any restaurant's 'couple package' – you'll see we deliver more. No hidden charges either."
     },
     {
       question: "We prefer mild food, not overly spiced. Can you adjust?",
@@ -657,7 +657,7 @@ What makes us perfect for Sayajigunj? We remember what it's like to be young and
     },
     {
       question: "I'm a student with limited budget. Is ₹4,700 worth it?",
-      answer: "Let's break it down: 3 hours of private rooftop, decorated setup, welcome drinks, snacks, ambient music, photo-worthy moments. Compare with: 3 hours at a coffee shop with zero privacy, no decorations, awkward ambiance – for half this cost. For special occasions, this is worth the hostel food savings."
+      answer: "Let's break it down: 3 hours of private rooftop, decorated setup, welcome drinks, meal, ambient music, photo-worthy moments. Compare with: 3 hours at a coffee shop with zero privacy, no decorations, awkward ambiance – for half this cost. For special occasions, this is worth the hostel food savings."
     },
     {
       question: "Can I pay in parts? I need to save up.",

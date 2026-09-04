@@ -105,7 +105,7 @@ Why choose a budget surprise party at our venue? Simple: we've eliminated the hi
 
 **Welcome Drinks**: Refreshing beverages kick off your budget surprise party on a delicious note. Mocktails that feel premium without the premium price!
 
-**Cafe-Style Food**: Your budget surprise party includes tasty snacks and treats. Cheese fondue, garlic bread, and more — all part of the package.
+**Cafe-Style Food**: Your budget surprise party includes tasty meal and treats. Cheese fondue, garlic bread, and more — all part of the package.
 
 **Celebration Cake**: Yes, even the cake is included in our budget surprise party! A beautifully decorated cake ready for the celebration.
 
