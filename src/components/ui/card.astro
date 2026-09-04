@@ -31,6 +31,23 @@ const dataSlot: Record<string, string> = {
   footer: 'card-footer',
 };
 ---
+{/*
+  Every "part" of a card (header/title/description/action/content/footer) is
+  written as its own <Card slot="X"> nested inside the root <Card>. Astro's
+  compiler intercepts that slot="X" attribute and projects the content into
+  a <slot name="X"> on the PARENT - it never reaches this component as a
+  prop unless this template declares a matching named slot. Previously this
+  only rendered <slot /> (the unnamed default), so every slot="X" child was
+  silently dropped: no error, just missing content. Declaring all of them
+  here (plus the unnamed one, for simple non-slotted usage) fixes every
+  usage across the site in one place instead of patching each call site.
+*/}
 <div data-slot={dataSlot[variant]} class={cn(variantClasses[variant], className)} {...rest}>
+  <slot name="header" />
+  <slot name="title" />
+  <slot name="description" />
+  <slot name="action" />
+  <slot name="content" />
   <slot />
+  <slot name="footer" />
 </div>
