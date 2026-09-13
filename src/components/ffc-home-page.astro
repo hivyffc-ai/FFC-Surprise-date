@@ -599,10 +599,30 @@ const reviews = [
       </div>
 
       <!-- Gallery Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" data-gallery-grid>
+      <div class="relative">
+        <button
+          type="button"
+          data-gallery-prev
+          aria-label="Scroll gallery left"
+          class="md:hidden absolute left-1 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white/90 shadow-md flex items-center justify-center text-amber-700"
+        >
+          <Icon name="chevron-left" class="h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          data-gallery-next
+          aria-label="Scroll gallery right"
+          class="md:hidden absolute right-1 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white/90 shadow-md flex items-center justify-center text-amber-700"
+        >
+          <Icon name="chevron-right" class="h-5 w-5" />
+        </button>
+        <div
+          class="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth gap-4 md:grid-cols-3 lg:grid-cols-4 pb-2 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          data-gallery-grid
+        >
         {galleryItems.map((item) => (
           <div
-            class={`relative group overflow-hidden rounded-2xl ${item.featured ? 'col-span-2 row-span-2 gallery-featured-item' : 'aspect-square'}`}
+            class={`relative group overflow-hidden rounded-2xl shrink-0 w-[75%] xs:w-[55%] md:w-auto snap-center ${item.featured ? 'md:col-span-2 md:row-span-2 gallery-featured-item aspect-square md:aspect-auto' : 'aspect-square'}`}
             data-gallery-item
             data-type={item.type === 'image' ? 'photos' : 'videos'}
           >
@@ -646,6 +666,7 @@ const reviews = [
             )}
           </div>
         ))}
+        </div>
       </div>
 
       <!-- View More Button -->
@@ -865,6 +886,19 @@ const reviews = [
         video.currentTime = 0;
       });
     });
+
+    const scrollTrack = section.querySelector<HTMLElement>('[data-gallery-grid]');
+    const prevBtn = section.querySelector<HTMLElement>('[data-gallery-prev]');
+    const nextBtn = section.querySelector<HTMLElement>('[data-gallery-next]');
+    if (scrollTrack && prevBtn && nextBtn) {
+      const scrollByCard = (dir: number) => {
+        const card = scrollTrack.querySelector<HTMLElement>('[data-gallery-item]:not(.hidden)');
+        const amount = (card?.offsetWidth || scrollTrack.clientWidth * 0.75) + 16;
+        scrollTrack.scrollBy({ left: dir * amount, behavior: 'smooth' });
+      };
+      prevBtn.addEventListener('click', () => scrollByCard(-1));
+      nextBtn.addEventListener('click', () => scrollByCard(1));
+    }
   }
 
   document.querySelectorAll<HTMLElement>('[data-home-gallery]').forEach(setupGallery);
