@@ -75,9 +75,29 @@ import { packages } from '@/lib/ffc-config';
         <p class="text-gray-600">Explore our 8 unique celebration spaces</p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="relative" data-setups-gallery>
+        <button
+          type="button"
+          data-setups-prev
+          aria-label="Scroll gallery left"
+          class="md:hidden absolute left-1 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white/90 shadow-md flex items-center justify-center text-amber-700"
+        >
+          <Icon name="chevron-left" class="h-5 w-5" />
+        </button>
+        <button
+          type="button"
+          data-setups-next
+          aria-label="Scroll gallery right"
+          class="md:hidden absolute right-1 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white/90 shadow-md flex items-center justify-center text-amber-700"
+        >
+          <Icon name="chevron-right" class="h-5 w-5" />
+        </button>
+        <div
+          class="flex md:grid overflow-x-auto md:overflow-visible snap-x snap-mandatory scroll-smooth gap-6 md:grid-cols-2 lg:grid-cols-4 pb-2 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          data-setups-track
+        >
         {packages.map((pkg) => (
-          <a href={`/packages/${pkg.slug}`}>
+          <a href={`/packages/${pkg.slug}`} class="shrink-0 w-[75%] xs:w-[55%] md:w-auto snap-center">
             <Card class="overflow-hidden hover:shadow-xl transition-all hover:-translate-y-1 group">
               <div class="aspect-square bg-gradient-to-br from-indigo-100 to-orange-100 relative overflow-hidden">
                 <img
@@ -97,6 +117,7 @@ import { packages } from '@/lib/ffc-config';
             </Card>
           </a>
         ))}
+        </div>
       </div>
     </div>
   </section>
@@ -170,4 +191,21 @@ import { packages } from '@/lib/ffc-config';
   }
 
   document.querySelectorAll<HTMLElement>('[data-virtual-tour-video-wrapper]').forEach(setupVirtualTourVideo);
+
+  function setupSetupsGallery(wrapper: HTMLElement) {
+    const track = wrapper.querySelector<HTMLElement>('[data-setups-track]');
+    const prevBtn = wrapper.querySelector<HTMLElement>('[data-setups-prev]');
+    const nextBtn = wrapper.querySelector<HTMLElement>('[data-setups-next]');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    const scrollByCard = (dir: number) => {
+      const card = track.querySelector<HTMLElement>('a');
+      const amount = (card?.offsetWidth || track.clientWidth * 0.75) + 24;
+      track.scrollBy({ left: dir * amount, behavior: 'smooth' });
+    };
+    prevBtn.addEventListener('click', () => scrollByCard(-1));
+    nextBtn.addEventListener('click', () => scrollByCard(1));
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-setups-gallery]').forEach(setupSetupsGallery);
 </script>
