@@ -284,7 +284,7 @@ const jsonLd = {
             referrer: document.referrer || null,
             session_id: sessionId,
           });
-          var endpoint = 'https://crm-theta-plum-25.vercel.app/api/track';
+          var endpoint = 'https://crm.friendsfactorycafe.com/api/track';
           if (navigator.sendBeacon) {
             navigator.sendBeacon(endpoint, new Blob([payload], { type: 'application/json' }));
           } else {
