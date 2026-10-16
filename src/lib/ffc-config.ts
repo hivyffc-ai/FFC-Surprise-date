@@ -9,7 +9,7 @@ export interface SetupPackage {
   shortDescription: string;
   fullDescription: string;
   price: number;
-  cakeIncluded: boolean; // true for Setup 1-3, false for Setup 4-8 (extra cost)
+  cakeIncluded: boolean; // true for Setup 1-4, false for Setup 5-9 (extra cost)
   features: string[];
   perfectFor: string[];
   thumbnail: string;
@@ -91,13 +91,13 @@ export const siteConfig = {
   }
 };
 
-// ==================== SETUP PACKAGES (8 Setups) ====================
+// ==================== SETUP PACKAGES (9 Setups) ====================
 export const packages: SetupPackage[] = [
   {
     id: "setup-1",
     slug: "forever-us-loveframe-rooftop",
     name: "Forever Us LoveFrame Rooftop",
-    emoji: "",
+    emoji: "💑✨🌃",
     shortDescription: "Celebrate love in a space where every glance, laugh, and memory is framed against the stunning skyline",
     fullDescription: `Forever Us LoveFrame Rooftop - where every moment is a memory, every glance is a story, and love is beautifully framed under the stars.
 
@@ -117,7 +117,7 @@ Romantic accents, twinkling lights, and a warm atmosphere create a perfect backd
 - Candle-Lit Seating & Skyline Views
 Comfortable seating for meaningful conversations, shared smiles, and unforgettable moments under the stars.
 
-- Delicious Meal & Soft Music
+- Delicious Snacks & Soft Music
 Tasty treats and gentle melodies enhance the mood for love, laughter, and celebration.
 
 Perfect For:
@@ -133,29 +133,28 @@ Birthday Surprise Vadodara | Anniversary Celebration | Romantic Proposal | Candl
       "Candle-Lit Seating with premium decor & props",
       "Panoramic Skyline Views of Vadodara",
       "Ambient Lighting & Twinkling Fairy Lights",
-      "Delicious Meal & Soft Romantic Music"
+      "Delicious Snacks & Soft Romantic Music"
     ],
     perfectFor: ["Birthday Surprise", "Anniversary Celebration", "Romantic Proposal", "Candlelight Dinner", "Surprise Party", "Pre-Wedding Shoot", "Baby Moments"],
-    thumbnail: "/packages/thumbnails/forever-us-loveframe-rooftop.webp",
+    thumbnail: "/packages/6900/Cover.webp",
     images: [
-      "/packages/forever-us-loveframe-rooftop/images/2.webp",
-      "/packages/forever-us-loveframe-rooftop/images/3.webp",
-      "/packages/forever-us-loveframe-rooftop/images/4.webp",
-      "/packages/forever-us-loveframe-rooftop/images/5.webp",
-      "/packages/forever-us-loveframe-rooftop/images/6.webp",
-      "/packages/forever-us-loveframe-rooftop/images/7.webp",
-      "/packages/forever-us-loveframe-rooftop/images/8.webp",
-      "/packages/forever-us-loveframe-rooftop/images/9.webp",
-      "/packages/forever-us-loveframe-rooftop/images/10.webp",
-      "/packages/forever-us-loveframe-rooftop/images/11.webp",
-      "/packages/forever-us-loveframe-rooftop/images/12.webp",
-      "/packages/forever-us-loveframe-rooftop/images/13.webp",
-      "/packages/forever-us-loveframe-rooftop/images/14.webp",
-      "/packages/forever-us-loveframe-rooftop/images/15.webp",
-      "/packages/forever-us-loveframe-rooftop/images/16.webp",
-      "/packages/forever-us-loveframe-rooftop/images/17.webp",
-      "/packages/forever-us-loveframe-rooftop/images/18.webp",
-      "/packages/forever-us-loveframe-rooftop/images/19.webp"
+      "/packages/6900/Cover.webp",
+      "/packages/6900/2.webp",
+      "/packages/6900/3.webp",
+      "/packages/6900/4.webp",
+      "/packages/6900/5.webp",
+      "/packages/6900/6.webp",
+      "/packages/6900/7.webp",
+      "/packages/6900/8.webp",
+      "/packages/6900/9.webp",
+      "/packages/6900/10.webp",
+      "/packages/6900/11.webp",
+      "/packages/6900/12.webp",
+      "/packages/6900/13.webp",
+      "/packages/6900/14.webp",
+      "/packages/6900/15.webp",
+      "/packages/6900/16.webp",
+      "/packages/6900/17.webp"
     ]
   },
   {
@@ -183,7 +182,7 @@ Graceful curtains, glowing lights, and elegant accents create a stunning setting
 Comfortable seating with premium décor and panoramic skyline views, designed for intimate conversations and meaningful celebrations 💑
 
 • Tasty Bites & Gentle Music 🍽️🎶
-A soothing soundtrack and delicious meal to elevate the mood and complete the experience ✨
+A soothing soundtrack and delicious snacks to elevate the mood and complete the experience ✨
 
 🎉 Ideal For
 Birthday Celebration Vadodara | Anniversary Surprise | Romantic Proposal Venue | Candlelight Dinner | Surprise Party | Pre-Wedding Photoshoot | Baby Moments (Pregnancy Announcement)
@@ -201,44 +200,106 @@ Birthday Celebration Vadodara | Anniversary Surprise | Romantic Proposal Venue |
       "Tasty Bites & Gentle Romantic Music 🎶"
     ],
     perfectFor: ["Birthday Celebration", "Anniversary Surprise", "Romantic Proposal", "Candlelight Dinner", "Surprise Party", "Pre-Wedding Photoshoot", "Baby Moments"],
-    thumbnail: "/packages/thumbnails/eternal-love-rooftop-celebration.webp",
+    thumbnail: "/packages/6500/Cover.webp",
     images: [
-      "/packages/eternal-love-rooftop-celebration/images/21.webp",
-      "/packages/eternal-love-rooftop-celebration/images/22.webp",
-      "/packages/eternal-love-rooftop-celebration/images/23.webp",
-      "/packages/eternal-love-rooftop-celebration/images/24.webp",
-      "/packages/eternal-love-rooftop-celebration/images/25.webp",
-      "/packages/eternal-love-rooftop-celebration/images/26.webp",
-      "/packages/eternal-love-rooftop-celebration/images/27.webp",
-      "/packages/eternal-love-rooftop-celebration/images/28.webp",
-      "/packages/eternal-love-rooftop-celebration/images/29.webp",
-      "/packages/eternal-love-rooftop-celebration/images/30.webp",
-      "/packages/eternal-love-rooftop-celebration/images/31.webp",
-      "/packages/eternal-love-rooftop-celebration/images/32.webp",
-      "/packages/eternal-love-rooftop-celebration/images/33.webp",
-      "/packages/eternal-love-rooftop-celebration/images/34.webp",
-      "/packages/eternal-love-rooftop-celebration/images/35.webp",
-      "/packages/eternal-love-rooftop-celebration/images/36.webp",
-      "/packages/eternal-love-rooftop-celebration/images/37.webp",
-      "/packages/eternal-love-rooftop-celebration/images/38.webp",
-      "/packages/eternal-love-rooftop-celebration/images/39.webp",
-      "/packages/eternal-love-rooftop-celebration/images/40.webp",
-      "/packages/eternal-love-rooftop-celebration/images/41.webp",
-      "/packages/eternal-love-rooftop-celebration/images/42.webp",
-      "/packages/eternal-love-rooftop-celebration/images/43.webp",
-      "/packages/eternal-love-rooftop-celebration/images/44.webp",
-      "/packages/eternal-love-rooftop-celebration/images/45.webp",
-      "/packages/eternal-love-rooftop-celebration/images/46.webp",
-      "/packages/eternal-love-rooftop-celebration/images/47.webp",
-      "/packages/eternal-love-rooftop-celebration/images/48.webp",
-      "/packages/eternal-love-rooftop-celebration/images/49.webp",
-      "/packages/eternal-love-rooftop-celebration/images/50.webp"
+      "/packages/6500/Cover.webp",
+      "/packages/6500/2.webp",
+      "/packages/6500/3.webp",
+      "/packages/6500/4.webp",
+      "/packages/6500/5.webp",
+      "/packages/6500/6.webp",
+      "/packages/6500/7.webp",
+      "/packages/6500/8.webp",
+      "/packages/6500/9.webp",
+      "/packages/6500/10.webp",
+      "/packages/6500/11.webp",
+      "/packages/6500/12.webp",
+      "/packages/6500/13.webp"
     ]
   },
   {
     id: "setup-3",
+    slug: "royal-red",
+    name: "Royal Red",
+    emoji: "❤️👑🕯️",
+    shortDescription: "Experience luxury with royal red velvet drapes, romantic candlelight, rose petals. Non-alcoholic champagne & celebration cake included.",
+    fullDescription: `ROYAL RED ❤️ | ₹6,500/-
+
+Make your loved one's special day unforgettable with our luxurious Royal Red decoration at Friends Factory Cafe, Vadodara. Experience the charm of red velvet drapes, romantic candlelight, beautiful rose petals and an elegant celebration backdrop. Non-alcoholic champagne & celebration cake are included!
+
+Experience Highlights:
+
+- 🍾 Sparkling Non-Alcoholic Champagne & 🎂 Celebration Cake Included
+A bottle of sparkling non-alcoholic champagne to pop and toast, plus a delicious fresh celebration cake.
+
+- 3 Hours of Private Celebration
+Exclusive time for one couple in a beautifully decorated setting.
+
+- Complete Vegetarian Meal
+Welcome drink, café-style food, cold drinks and dessert, as per the confirmed menu.
+
+- Royal Red Luxury Decor
+Royal red velvet canopy with elegant draping, red carpet-style flooring, and decorative floor seating with a traditional patterned round rug.
+
+- Candlelight & Rose Petal Romance
+Heart-shaped rose petal arrangement surrounded by glowing candles, warm candlelight ambience, and decorative rose petal flooring.
+
+- Circular Happy Birthday Neon Sign & Photo-Friendly Backdrop
+A stunning celebration backdrop with elegant floral accents featuring red ornamental arrangements.
+
+- Romantic Background Music & Dedicated Staff Assistance
+Enjoy your special moments with a romantic musical ambiance and dedicated support throughout your celebration.
+
+Perfect For:
+🎂 Birthday surprises
+❤️ Anniversary celebrations
+🕯️ Romantic candlelight dates
+💍 Marriage proposals
+🎁 Special surprises for your partner
+
+Friends Factory Cafe – Where Every Celebration Becomes a Lifetime Memory.`,
+    price: 6500,
+    cakeIncluded: true,
+    features: [
+      "🍾 Non-Alcoholic Champagne Included",
+      "🎂 Celebration Cake Included",
+      "3 Hours of Private Celebration (Exclusive for 1 Couple)",
+      "Complete Vegetarian Meal (Welcome Drink, Food, Cold Drinks & Dessert)",
+      "Royal Red Velvet Canopy with Elegant Draping",
+      "Heart-Shaped Rose Petal Arrangement with Glowing Candles",
+      "Circular Happy Birthday Neon Sign & Floral Accents",
+      "Red Carpet-Style Flooring & Traditional Round Rug Floor Seating",
+      "Romantic Background Music & Dedicated Staff Assistance"
+    ],
+    perfectFor: [
+      "Birthday Surprise",
+      "Anniversary Celebration",
+      "Romantic Candlelight Date",
+      "Marriage Proposal",
+      "Special Surprises"
+    ],
+    thumbnail: "/packages/thumbnails/royal-red.webp",
+    images: [
+      "/packages/7900/Cover.webp",
+      "/packages/7900/1.webp",
+      "/packages/7900/2.webp",
+      "/packages/7900/3.webp",
+      "/packages/7900/4.webp",
+      "/packages/7900/5.webp",
+      "/packages/7900/6.webp",
+      "/packages/7900/7.webp",
+      "/packages/7900/8.webp",
+      "/packages/7900/9.webp",
+      "/packages/7900/10.webp",
+      "/packages/7900/11.webp",
+      "/packages/7900/12.webp",
+      "/packages/7900/13.webp"
+    ]
+  },
+  {
+    id: "setup-4",
     slug: "golden-promise-glass-house",
-    name: "Golden Promise Glass House (Indoor)",
+    name: "Golden Promise Glass House",
     emoji: "✨💛🏡",
     shortDescription: "Step into a radiant space where every moment glows with love, warmth, and elegance ✨",
     fullDescription: `✨💛🏡 Golden Promise Glass House — where love shines brighter, moments feel magical, and every celebration turns golden
@@ -259,7 +320,7 @@ Warm lighting, stylish accents, and thoughtful décor create the perfect backdro
 • Candle-Lit Seating & Panoramic Views 🕯️💑
 Comfortable seating designed for deep conversations, cherished moments, and intimate celebrations 🌅
 
-• Delicious Meal & Soothing Music 🍽️🎶
+• Delicious Snacks & Soothing Music 🍽️🎶
 A delightful culinary experience paired with gentle music to set the perfect mood for love and joy ✨
 
 🎉 Perfect For
@@ -275,39 +336,33 @@ Birthday Surprise Vadodara | Anniversary Celebration | Romantic Proposal | Candl
       "Flower Decorations & Premium Props 🌸",
       "Candle-Lit Seating with Panoramic Views",
       "Climate Controlled Environment",
-      "Delicious Meal & Soothing Music 🎶"
+      "Delicious Snacks & Soothing Music 🎶"
     ],
     perfectFor: ["Birthday Surprise", "Anniversary Celebration", "Romantic Proposal", "Candlelight Dinner", "Surprise Party", "Pre-Wedding Photoshoot", "Baby Moments"],
-    thumbnail: "/packages/thumbnails/golden-promise-glass-house.webp",
+    thumbnail: "/packages/6000/Cover.webp",
     images: [
-      "/packages/golden-promise-glass-house/images/52.webp",
-      "/packages/golden-promise-glass-house/images/53.webp",
-      "/packages/golden-promise-glass-house/images/54.webp",
-      "/packages/golden-promise-glass-house/images/55.webp",
-      "/packages/golden-promise-glass-house/images/56.webp",
-      "/packages/golden-promise-glass-house/images/57.webp",
-      "/packages/golden-promise-glass-house/images/58.webp",
-      "/packages/golden-promise-glass-house/images/59.webp",
-      "/packages/golden-promise-glass-house/images/60.webp",
-      "/packages/golden-promise-glass-house/images/61.webp",
-      "/packages/golden-promise-glass-house/images/62.webp",
-      "/packages/golden-promise-glass-house/images/63.webp",
-      "/packages/golden-promise-glass-house/images/64.webp",
-      "/packages/golden-promise-glass-house/images/65.webp",
-      "/packages/golden-promise-glass-house/images/66.webp",
-      "/packages/golden-promise-glass-house/images/67.webp",
-      "/packages/golden-promise-glass-house/images/68.webp",
-      "/packages/golden-promise-glass-house/images/69.webp",
-      "/packages/golden-promise-glass-house/images/70.webp",
-      "/packages/golden-promise-glass-house/images/71.webp",
-      "/packages/golden-promise-glass-house/images/72.webp",
-      "/packages/golden-promise-glass-house/images/73.webp"
+      "/packages/6000/Cover.webp",
+      "/packages/6000/2.webp",
+      "/packages/6000/3.webp",
+      "/packages/6000/4.webp",
+      "/packages/6000/5.webp",
+      "/packages/6000/6.webp",
+      "/packages/6000/7.webp",
+      "/packages/6000/8.webp",
+      "/packages/6000/9.webp",
+      "/packages/6000/10.webp",
+      "/packages/6000/11.webp",
+      "/packages/6000/12.webp",
+      "/packages/6000/13.webp",
+      "/packages/6000/14.webp",
+      "/packages/6000/15.webp",
+      "/packages/6000/16.webp"
     ]
   },
   {
-    id: "setup-4",
+    id: "setup-5",
     slug: "moonlit-romance-experience",
-    name: "Moonlit Romance Experience (Indoor)",
+    name: "Moonlit Romance Experience",
     emoji: "🌙💞",
     shortDescription: "Step into a serene night where love unfolds beneath a glowing moon and shimmering city lights ✨🌌",
     fullDescription: `🌙💞 Moonlit Romance Experience — where every glance feels warmer, every moment feels closer, and love glows softly under the night sky ✨
@@ -321,7 +376,7 @@ A peaceful, candle-kissed setting perfect for romantic proposals, anniversary di
 
 • Elegant Welcome Treats 🥂🍰
 Delight in hand-picked refreshments and curated treats, ideal for special moments and heartfelt announcements 🎉
-💡 Celebration Cake available at extra cost (₹500)
+💡 Celebration Cake available at extra cost (₹350)
 
 • Dreamy Moonlight Décor ✨💡
 Soft drapes, glowing lights, and subtle romantic details create a stunning backdrop for pre-wedding shoots and timeless photos 📸
@@ -330,7 +385,7 @@ Soft drapes, glowing lights, and subtle romantic details create a stunning backd
 Comfortable seating with skyline views, crafted for quiet conversations, deep connections, and shared smiles 💑
 
 • Gentle Music & Tasty Bites 🎶🍽️
-A soothing playlist paired with delicious meal to set the perfect mood for the evening 💫
+A soothing playlist paired with delicious snacks to set the perfect mood for the evening 💫
 
 🎉 Perfect For
 Romantic Proposal Vadodara | Anniversary Dinner | Candlelight Dinner for Couples | Surprise Date Night | Pre-Wedding Photoshoot | Baby Moments (Pregnancy Announcement)
@@ -344,31 +399,27 @@ Romantic Proposal Vadodara | Anniversary Dinner | Candlelight Dinner for Couples
       "Dreamy Moon-themed Décor with silver accents ✨",
       "Candle Pathway & Romantic Seating 🕯️",
       "Panoramic Skyline Views & Starlit Ambiance 🌆",
-      "Gentle Music & Delicious Meal 🎶",
-      "Celebration Cake available (+₹500) 🍰"
+      "Gentle Music & Delicious Snacks 🎶",
+      "Celebration Cake available (+₹350) 🍰"
     ],
     perfectFor: ["Romantic Proposal", "Anniversary Dinner", "Candlelight Dinner", "Surprise Date Night", "Pre-Wedding Photoshoot", "Baby Moments"],
-    thumbnail: "/packages/thumbnails/moonlit-romance-experience.webp",
+    thumbnail: "/packages/5100/Cover.webp",
     images: [
-      "/packages/moonlit-romance-experience/images/24.webp",
-      "/packages/moonlit-romance-experience/images/25.webp",
-      "/packages/moonlit-romance-experience/images/26.webp",
-      "/packages/moonlit-romance-experience/images/27.webp",
-      "/packages/moonlit-romance-experience/images/28.webp",
-      "/packages/moonlit-romance-experience/images/29.webp",
-      "/packages/moonlit-romance-experience/images/30.webp",
-      "/packages/moonlit-romance-experience/images/31.webp",
-      "/packages/moonlit-romance-experience/images/32.webp",
-      "/packages/moonlit-romance-experience/images/33.webp",
-      "/packages/moonlit-romance-experience/images/34.webp",
-      "/packages/moonlit-romance-experience/images/35.webp",
-      "/packages/moonlit-romance-experience/images/36.webp"
+      "/packages/5100/Cover.webp",
+      "/packages/5100/2.webp",
+      "/packages/5100/3.webp",
+      "/packages/5100/4.webp",
+      "/packages/5100/5.webp",
+      "/packages/5100/6.webp",
+      "/packages/5100/7.webp",
+      "/packages/5100/8.webp",
+      "/packages/5100/9.webp"
     ]
   },
   {
-    id: "setup-5",
+    id: "setup-6",
     slug: "the-promise-creative-area",
-    name: "The Promise Creative Area (Indoor)",
+    name: "The Promise Creative Area",
     emoji: "💍",
     shortDescription: "Ignite joy under the stars at The Promise Creative Area — a magical rooftop space designed for unforgettable celebrations 🎉🌌",
     fullDescription: `💍 The Promise Creative Area — where every occasion turns into a forever memory under the stars ✨🌙
@@ -384,7 +435,7 @@ Perfect for Birthday Surprises, Anniversary Celebrations, Romantic Proposals & C
 
 • Curated Treats with Welcome Drink 🥂
 Ideal for special occasions and heartfelt celebrations
-💡 Celebration Cake available at extra cost (₹500) 🍰
+💡 Celebration Cake available at extra cost (₹350) 🍰
 
 • Festive Tent Setup with elegant curtains, balloons 🎈 & twinkling lights 💡
 A dreamy backdrop for Pre-Wedding Shoots, Proposals & Romantic Moments 📸
@@ -392,7 +443,7 @@ A dreamy backdrop for Pre-Wedding Shoots, Proposals & Romantic Moments 📸
 • Candle-Lit Seating with props, premium décor & panoramic skyline views 🌅
 Crafted for Anniversaries, Candlelight Dinners & Intimate Surprises 💑
 
-• Delicious Meal 🍽️ & Soft, Joyful Music 🎶
+• Delicious Snacks 🍽️ & Soft, Joyful Music 🎶
 Creating the perfect mood for Every Celebration & Love Story ✨
 
 🎉 Perfect For
@@ -408,8 +459,8 @@ Birthday Surprise Vadodara | Anniversary Celebration | Romantic Proposal | Candl
       "Twinkling Lights & Romantic Décor 💡",
       "Candle-Lit Seating with premium props 🕯️",
       "Panoramic Skyline Views of Vadodara 🌅",
-      "Delicious Meal & Joyful Music 🎶",
-      "Celebration Cake available (+₹500) 🍰"
+      "Delicious Snacks & Joyful Music 🎶",
+      "Celebration Cake available (+₹350) 🍰"
     ],
     perfectFor: ["Birthday Surprise", "Anniversary Celebration", "Romantic Proposal", "Candlelight Dinner", "Surprise Party", "Pre-Wedding Photoshoot", "Baby Moments"],
     thumbnail: "/packages/thumbnails/the-promise-creative-area.webp",
@@ -430,9 +481,9 @@ Birthday Surprise Vadodara | Anniversary Celebration | Romantic Proposal | Candl
     ]
   },
   {
-    id: "setup-6",
+    id: "setup-7",
     slug: "timeless-bond-glass-house",
-    name: "Timeless Bond Glass House (Indoor)",
+    name: "Timeless Bond Glass House",
     emoji: "♾️💞🏡",
     shortDescription: "Step into an elegant glass house where love feels calm, pure, and everlasting ✨",
     fullDescription: `♾️💞🏡 Timeless Bond Glass House — where love stands still, moments feel eternal, and every celebration becomes a beautiful memory
@@ -446,7 +497,7 @@ An intimate and peaceful setting, ideal for anniversary surprises, romantic prop
 
 • Warm Welcome with Curated Treats 🥂🍰
 Thoughtfully arranged refreshments, perfect for baby moments, pregnancy announcements, and special occasions 🎉
-💡 Celebration Cake available at extra cost (₹500)
+💡 Celebration Cake available at extra cost (₹350)
 
 • Elegant Glass Décor & Soft Lighting 💡🌿
 Minimal yet romantic décor with glowing lights creates a stunning atmosphere for pre-wedding shoots and timeless photographs 📸
@@ -455,7 +506,7 @@ Minimal yet romantic décor with glowing lights creates a stunning atmosphere fo
 Cozy seating designed for deep conversations, shared smiles, and unforgettable memories 🌸
 
 • Delicious Bites & Soothing Music 🍽️🎶
-Gentle melodies and tasty meal complete the experience with warmth and charm ✨
+Gentle melodies and tasty snacks complete the experience with warmth and charm ✨
 
 🎉 Perfect For
 Birthday Celebration Vadodara | Anniversary Surprise | Romantic Proposal | Candlelight Dinner for Couples | Surprise Party | Pre-Wedding Photoshoot | Baby Moments (Pregnancy Announcement)
@@ -469,8 +520,8 @@ Birthday Celebration Vadodara | Anniversary Surprise | Romantic Proposal | Candl
       "Minimalist Elegant White Theme Décor",
       "Flower Arrangements & Candle Setup 🌸",
       "Soft Lighting & Instagram-worthy Spots 📸",
-      "Delicious Meal & Soothing Music 🎶",
-      "Celebration Cake available (+₹500) 🍰"
+      "Delicious Snacks & Soothing Music 🎶",
+      "Celebration Cake available (+₹350) 🍰"
     ],
     perfectFor: ["Birthday Celebration", "Anniversary Surprise", "Romantic Proposal", "Candlelight Dinner", "Surprise Party", "Pre-Wedding Photoshoot", "Baby Moments"],
     thumbnail: "/packages/thumbnails/timeless-bond-glass-house.webp",
@@ -493,9 +544,9 @@ Birthday Celebration Vadodara | Anniversary Surprise | Romantic Proposal | Candl
     ]
   },
   {
-    id: "setup-7",
+    id: "setup-8",
     slug: "sweet-together-glass-house",
-    name: "Sweet Together Glass House (Indoor)",
+    name: "Sweet Together Glass House",
     emoji: "🍯💖",
     shortDescription: "Step into a charming space where love feels cozy, laughter is shared, and every moment is sweeter than the last ✨",
     fullDescription: `🍯💖 Sweet Together Glass House — where love is warm, moments are sweeter, and memories last forever 🏡
@@ -509,7 +560,7 @@ A delightful, intimate space perfect for birthday surprises, anniversary dinners
 
 • Curated Treats & Welcome Drink 🥂🍰
 Enjoy handpicked refreshments, ideal for baby moments, pregnancy announcements, and special celebrations 🎉
-💡 Celebration Cake available at extra cost (₹500)
+💡 Celebration Cake available at extra cost (₹350)
 
 • Romantic & Cozy Décor 💡🌸
 Soft lighting, elegant décor, and thoughtful details create a perfect backdrop for pre-wedding shoots and picture-perfect moments 📸
@@ -517,7 +568,7 @@ Soft lighting, elegant décor, and thoughtful details create a perfect backdrop 
 • Candle-Lit Seating & Cozy Corners 🕯️💑
 Comfortable seating designed for shared smiles, heart-to-heart conversations, and memorable experiences 🌿
 
-• Delicious Meal & Gentle Music 🍽️🎶
+• Delicious Snacks & Gentle Music 🍽️🎶
 Tasty bites paired with a soft playlist to set the mood for love and laughter ✨
 
 🎉 Perfect For
@@ -532,8 +583,8 @@ Birthday Surprise Vadodara | Anniversary Dinner | Romantic Proposal | Candleligh
       "Sweet & Cozy Theme with warm décor 🌸",
       "Balloon Arrangements & Romantic Props 🎈",
       "Candle-Lit Seating & Cozy Corners 🕯️",
-      "Delicious Meal & Gentle Music 🎶",
-      "Celebration Cake available (+₹500) 🍰"
+      "Delicious Snacks & Gentle Music 🎶",
+      "Celebration Cake available (+₹350) 🍰"
     ],
     perfectFor: ["Birthday Surprise", "Anniversary Dinner", "Romantic Proposal", "Candlelight Dinner", "Surprise Date", "Pre-Wedding Photoshoot", "Baby Moments"],
     thumbnail: "/packages/thumbnails/sweet-together-glass-house.webp",
@@ -555,9 +606,9 @@ Birthday Surprise Vadodara | Anniversary Dinner | Romantic Proposal | Candleligh
     ]
   },
   {
-    id: "setup-8",
+    id: "setup-9",
     slug: "pure-love-glass-house",
-    name: "Pure Love Glass House (Indoor)",
+    name: "Pure Love Glass House",
     emoji: "🤍💍🏡",
     shortDescription: "Welcome to a serene glass house where emotions are honest, moments are gentle, and love is beautifully pure ✨",
     fullDescription: `🤍💍🏡 Pure Love Glass House — where simplicity meets romance, and every moment is wrapped in love ✨
@@ -571,7 +622,7 @@ A peaceful and intimate setting, perfect for anniversary celebrations, romantic 
 
 • Warm Welcome with Curated Treats 🥂🍰
 Delightful refreshments, ideal for baby moments, pregnancy announcements, and joyful occasions 🎉
-💡 Celebration Cake available at extra cost (₹500)
+💡 Celebration Cake available at extra cost (₹350)
 
 • Minimal Romantic Décor with Soft Lights 💡🌿
 A clean, elegant setup that enhances emotions and creates a stunning backdrop for pre-wedding shoots and timeless photos 📸
@@ -580,7 +631,7 @@ A clean, elegant setup that enhances emotions and creates a stunning backdrop fo
 Comfortable seating designed for quiet conversations, deep connections, and unforgettable moments 💞
 
 • Tasty Bites & Gentle Music 🍽️🎶
-Soft music and delicious meal to complete a calm, love-filled experience ✨
+Soft music and delicious snacks to complete a calm, love-filled experience ✨
 
 🎉 Perfect For
 Birthday Surprise Vadodara | Anniversary Celebration | Romantic Proposal | Candlelight Dinner for Couples | Surprise Party | Pre-Wedding Photoshoot | Baby Moments (Pregnancy Announcement)
@@ -594,8 +645,8 @@ Birthday Surprise Vadodara | Anniversary Celebration | Romantic Proposal | Candl
       "Pure White Theme with elegant simplicity 🤍",
       "Rose Petals & Candle Pathway 🌹",
       "Minimal Romantic Décor & Soft Lights 💡",
-      "Delicious Meal & Gentle Music 🎶",
-      "Celebration Cake available (+₹500) 🍰"
+      "Delicious Snacks & Gentle Music 🎶",
+      "Celebration Cake available (+₹350) 🍰"
     ],
     perfectFor: ["Birthday Surprise", "Anniversary Celebration", "Romantic Proposal", "Candlelight Dinner", "Surprise Party", "Pre-Wedding Photoshoot", "Baby Moments"],
     thumbnail: "/packages/thumbnails/pure-love-glass-house.webp",

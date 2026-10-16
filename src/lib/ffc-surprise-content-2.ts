@@ -345,7 +345,7 @@ Display photos from Feb 14ths past. Your valentines surprise celebrates your lov
 
 💐 **Bouquet**: Take-home roses from valentines surprise.
 
-Valentines surprise packages from ₹7,900. BOOK EARLY – slots fill quickly!`
+Valentines surprise packages from ₹6,500. BOOK EARLY – slots fill quickly!`
     }
   ],
 

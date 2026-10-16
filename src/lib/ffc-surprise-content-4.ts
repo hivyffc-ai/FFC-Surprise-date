@@ -75,7 +75,7 @@ Sophisticated setup for 50th birthday surprise!`
 
 👨‍👩‍👧 **Family Welcome**: Can include family in 50th birthday surprise.
 
-Starting at ₹7,900 – honor 50 years with 50th birthday surprise!`
+Starting at ₹6,500 – honor 50 years with 50th birthday surprise!`
     }
   ],
 

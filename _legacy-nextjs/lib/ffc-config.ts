@@ -9,7 +9,7 @@ export interface SetupPackage {
   shortDescription: string;
   fullDescription: string;
   price: number;
-  cakeIncluded: boolean; // true for Setup 1-3, false for Setup 4-8 (extra cost)
+  cakeIncluded: boolean; // true for Setup 1-4, false for Setup 5-9 (extra cost)
   features: string[];
   perfectFor: string[];
   thumbnail: string;
@@ -91,13 +91,13 @@ export const siteConfig = {
   }
 };
 
-// ==================== SETUP PACKAGES (8 Setups) ====================
+// ==================== SETUP PACKAGES (9 Setups) ====================
 export const packages: SetupPackage[] = [
   {
     id: "setup-1",
     slug: "forever-us-loveframe-rooftop",
     name: "Forever Us LoveFrame Rooftop",
-    emoji: "",
+    emoji: "💑✨🌃",
     shortDescription: "Celebrate love in a space where every glance, laugh, and memory is framed against the stunning skyline",
     fullDescription: `Forever Us LoveFrame Rooftop - where every moment is a memory, every glance is a story, and love is beautifully framed under the stars.
 
@@ -219,6 +219,85 @@ Birthday Celebration Vadodara | Anniversary Surprise | Romantic Proposal Venue |
   },
   {
     id: "setup-3",
+    slug: "royal-red",
+    name: "Royal Red",
+    emoji: "❤️👑🕯️",
+    shortDescription: "Experience luxury with royal red velvet drapes, romantic candlelight, rose petals. Non-alcoholic champagne & celebration cake included.",
+    fullDescription: `ROYAL RED ❤️ | ₹6,500/-
+
+Make your loved one's special day unforgettable with our luxurious Royal Red decoration at Friends Factory Cafe, Vadodara. Experience the charm of red velvet drapes, romantic candlelight, beautiful rose petals and an elegant celebration backdrop. Non-alcoholic champagne & celebration cake are included!
+
+Experience Highlights:
+
+- 🍾 Sparkling Non-Alcoholic Champagne & 🎂 Celebration Cake Included
+A bottle of sparkling non-alcoholic champagne to pop and toast, plus a delicious fresh celebration cake.
+
+- 3 Hours of Private Celebration
+Exclusive time for one couple in a beautifully decorated setting.
+
+- Complete Vegetarian Meal
+Welcome drink, café-style food, cold drinks and dessert, as per the confirmed menu.
+
+- Royal Red Luxury Decor
+Royal red velvet canopy with elegant draping, red carpet-style flooring, and decorative floor seating with a traditional patterned round rug.
+
+- Candlelight & Rose Petal Romance
+Heart-shaped rose petal arrangement surrounded by glowing candles, warm candlelight ambience, and decorative rose petal flooring.
+
+- Circular Happy Birthday Neon Sign & Photo-Friendly Backdrop
+A stunning celebration backdrop with elegant floral accents featuring red ornamental arrangements.
+
+- Romantic Background Music & Dedicated Staff Assistance
+Enjoy your special moments with a romantic musical ambiance and dedicated support throughout your celebration.
+
+Perfect For:
+🎂 Birthday surprises
+❤️ Anniversary celebrations
+🕯️ Romantic candlelight dates
+💍 Marriage proposals
+🎁 Special surprises for your partner
+
+Friends Factory Cafe – Where Every Celebration Becomes a Lifetime Memory.`,
+    price: 6500,
+    cakeIncluded: true,
+    features: [
+      "🍾 Non-Alcoholic Champagne Included",
+      "🎂 Celebration Cake Included",
+      "3 Hours of Private Celebration (Exclusive for 1 Couple)",
+      "Complete Vegetarian Meal (Welcome Drink, Food, Cold Drinks & Dessert)",
+      "Royal Red Velvet Canopy with Elegant Draping",
+      "Heart-Shaped Rose Petal Arrangement with Glowing Candles",
+      "Circular Happy Birthday Neon Sign & Floral Accents",
+      "Red Carpet-Style Flooring & Traditional Round Rug Floor Seating",
+      "Romantic Background Music & Dedicated Staff Assistance"
+    ],
+    perfectFor: [
+      "Birthday Surprise",
+      "Anniversary Celebration",
+      "Romantic Candlelight Date",
+      "Marriage Proposal",
+      "Special Surprises"
+    ],
+    thumbnail: "/packages/thumbnails/royal-red.webp",
+    images: [
+      "/packages/7900/Cover.webp",
+      "/packages/7900/1.webp",
+      "/packages/7900/2.webp",
+      "/packages/7900/3.webp",
+      "/packages/7900/4.webp",
+      "/packages/7900/5.webp",
+      "/packages/7900/6.webp",
+      "/packages/7900/7.webp",
+      "/packages/7900/8.webp",
+      "/packages/7900/9.webp",
+      "/packages/7900/10.webp",
+      "/packages/7900/11.webp",
+      "/packages/7900/12.webp",
+      "/packages/7900/13.webp"
+    ]
+  },
+  {
+    id: "setup-4",
     slug: "golden-promise-glass-house",
     name: "Golden Promise Glass House",
     emoji: "✨💛🏡",
@@ -281,7 +360,7 @@ Birthday Surprise Vadodara | Anniversary Celebration | Romantic Proposal | Candl
     ]
   },
   {
-    id: "setup-4",
+    id: "setup-5",
     slug: "moonlit-romance-experience",
     name: "Moonlit Romance Experience",
     emoji: "🌙💞",
@@ -297,7 +376,7 @@ A peaceful, candle-kissed setting perfect for romantic proposals, anniversary di
 
 • Elegant Welcome Treats 🥂🍰
 Delight in hand-picked refreshments and curated treats, ideal for special moments and heartfelt announcements 🎉
-💡 Celebration Cake available at extra cost (₹500)
+💡 Celebration Cake available at extra cost (₹350)
 
 • Dreamy Moonlight Décor ✨💡
 Soft drapes, glowing lights, and subtle romantic details create a stunning backdrop for pre-wedding shoots and timeless photos 📸
@@ -321,7 +400,7 @@ Romantic Proposal Vadodara | Anniversary Dinner | Candlelight Dinner for Couples
       "Candle Pathway & Romantic Seating 🕯️",
       "Panoramic Skyline Views & Starlit Ambiance 🌆",
       "Gentle Music & Delicious Snacks 🎶",
-      "Celebration Cake available (+₹500) 🍰"
+      "Celebration Cake available (+₹350) 🍰"
     ],
     perfectFor: ["Romantic Proposal", "Anniversary Dinner", "Candlelight Dinner", "Surprise Date Night", "Pre-Wedding Photoshoot", "Baby Moments"],
     thumbnail: "/packages/5100/Cover.webp",
@@ -338,7 +417,7 @@ Romantic Proposal Vadodara | Anniversary Dinner | Candlelight Dinner for Couples
     ]
   },
   {
-    id: "setup-5",
+    id: "setup-6",
     slug: "the-promise-creative-area",
     name: "The Promise Creative Area",
     emoji: "💍",
@@ -356,7 +435,7 @@ Perfect for Birthday Surprises, Anniversary Celebrations, Romantic Proposals & C
 
 • Curated Treats with Welcome Drink 🥂
 Ideal for special occasions and heartfelt celebrations
-💡 Celebration Cake available at extra cost (₹500) 🍰
+💡 Celebration Cake available at extra cost (₹350) 🍰
 
 • Festive Tent Setup with elegant curtains, balloons 🎈 & twinkling lights 💡
 A dreamy backdrop for Pre-Wedding Shoots, Proposals & Romantic Moments 📸
@@ -381,7 +460,7 @@ Birthday Surprise Vadodara | Anniversary Celebration | Romantic Proposal | Candl
       "Candle-Lit Seating with premium props 🕯️",
       "Panoramic Skyline Views of Vadodara 🌅",
       "Delicious Snacks & Joyful Music 🎶",
-      "Celebration Cake available (+₹500) 🍰"
+      "Celebration Cake available (+₹350) 🍰"
     ],
     perfectFor: ["Birthday Surprise", "Anniversary Celebration", "Romantic Proposal", "Candlelight Dinner", "Surprise Party", "Pre-Wedding Photoshoot", "Baby Moments"],
     thumbnail: "/packages/thumbnails/the-promise-creative-area.webp",
@@ -402,7 +481,7 @@ Birthday Surprise Vadodara | Anniversary Celebration | Romantic Proposal | Candl
     ]
   },
   {
-    id: "setup-6",
+    id: "setup-7",
     slug: "timeless-bond-glass-house",
     name: "Timeless Bond Glass House",
     emoji: "♾️💞🏡",
@@ -418,7 +497,7 @@ An intimate and peaceful setting, ideal for anniversary surprises, romantic prop
 
 • Warm Welcome with Curated Treats 🥂🍰
 Thoughtfully arranged refreshments, perfect for baby moments, pregnancy announcements, and special occasions 🎉
-💡 Celebration Cake available at extra cost (₹500)
+💡 Celebration Cake available at extra cost (₹350)
 
 • Elegant Glass Décor & Soft Lighting 💡🌿
 Minimal yet romantic décor with glowing lights creates a stunning atmosphere for pre-wedding shoots and timeless photographs 📸
@@ -442,7 +521,7 @@ Birthday Celebration Vadodara | Anniversary Surprise | Romantic Proposal | Candl
       "Flower Arrangements & Candle Setup 🌸",
       "Soft Lighting & Instagram-worthy Spots 📸",
       "Delicious Snacks & Soothing Music 🎶",
-      "Celebration Cake available (+₹500) 🍰"
+      "Celebration Cake available (+₹350) 🍰"
     ],
     perfectFor: ["Birthday Celebration", "Anniversary Surprise", "Romantic Proposal", "Candlelight Dinner", "Surprise Party", "Pre-Wedding Photoshoot", "Baby Moments"],
     thumbnail: "/packages/thumbnails/timeless-bond-glass-house.webp",
@@ -465,7 +544,7 @@ Birthday Celebration Vadodara | Anniversary Surprise | Romantic Proposal | Candl
     ]
   },
   {
-    id: "setup-7",
+    id: "setup-8",
     slug: "sweet-together-glass-house",
     name: "Sweet Together Glass House",
     emoji: "🍯💖",
@@ -481,7 +560,7 @@ A delightful, intimate space perfect for birthday surprises, anniversary dinners
 
 • Curated Treats & Welcome Drink 🥂🍰
 Enjoy handpicked refreshments, ideal for baby moments, pregnancy announcements, and special celebrations 🎉
-💡 Celebration Cake available at extra cost (₹500)
+💡 Celebration Cake available at extra cost (₹350)
 
 • Romantic & Cozy Décor 💡🌸
 Soft lighting, elegant décor, and thoughtful details create a perfect backdrop for pre-wedding shoots and picture-perfect moments 📸
@@ -505,7 +584,7 @@ Birthday Surprise Vadodara | Anniversary Dinner | Romantic Proposal | Candleligh
       "Balloon Arrangements & Romantic Props 🎈",
       "Candle-Lit Seating & Cozy Corners 🕯️",
       "Delicious Snacks & Gentle Music 🎶",
-      "Celebration Cake available (+₹500) 🍰"
+      "Celebration Cake available (+₹350) 🍰"
     ],
     perfectFor: ["Birthday Surprise", "Anniversary Dinner", "Romantic Proposal", "Candlelight Dinner", "Surprise Date", "Pre-Wedding Photoshoot", "Baby Moments"],
     thumbnail: "/packages/thumbnails/sweet-together-glass-house.webp",
@@ -527,7 +606,7 @@ Birthday Surprise Vadodara | Anniversary Dinner | Romantic Proposal | Candleligh
     ]
   },
   {
-    id: "setup-8",
+    id: "setup-9",
     slug: "pure-love-glass-house",
     name: "Pure Love Glass House",
     emoji: "🤍💍🏡",
@@ -543,7 +622,7 @@ A peaceful and intimate setting, perfect for anniversary celebrations, romantic 
 
 • Warm Welcome with Curated Treats 🥂🍰
 Delightful refreshments, ideal for baby moments, pregnancy announcements, and joyful occasions 🎉
-💡 Celebration Cake available at extra cost (₹500)
+💡 Celebration Cake available at extra cost (₹350)
 
 • Minimal Romantic Décor with Soft Lights 💡🌿
 A clean, elegant setup that enhances emotions and creates a stunning backdrop for pre-wedding shoots and timeless photos 📸
@@ -567,7 +646,7 @@ Birthday Surprise Vadodara | Anniversary Celebration | Romantic Proposal | Candl
       "Rose Petals & Candle Pathway 🌹",
       "Minimal Romantic Décor & Soft Lights 💡",
       "Delicious Snacks & Gentle Music 🎶",
-      "Celebration Cake available (+₹500) 🍰"
+      "Celebration Cake available (+₹350) 🍰"
     ],
     perfectFor: ["Birthday Surprise", "Anniversary Celebration", "Romantic Proposal", "Candlelight Dinner", "Surprise Party", "Pre-Wedding Photoshoot", "Baby Moments"],
     thumbnail: "/packages/thumbnails/pure-love-glass-house.webp",
