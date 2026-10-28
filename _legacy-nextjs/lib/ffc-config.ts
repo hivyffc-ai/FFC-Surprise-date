@@ -223,7 +223,7 @@ Birthday Celebration Vadodara | Anniversary Surprise | Romantic Proposal Venue |
     name: "Royal Red",
     emoji: "❤️👑🕯️",
     shortDescription: "Experience luxury with royal red velvet drapes, romantic candlelight, rose petals. Non-alcoholic champagne & celebration cake included.",
-    fullDescription: `ROYAL RED ❤️ | ₹6,500/-
+    fullDescription: `ROYAL RED ❤️ | ₹5,500/-
 
 Make your loved one's special day unforgettable with our luxurious Royal Red decoration at Friends Factory Cafe, Vadodara. Experience the charm of red velvet drapes, romantic candlelight, beautiful rose petals and an elegant celebration backdrop. Non-alcoholic champagne & celebration cake are included!
 
@@ -258,7 +258,7 @@ Perfect For:
 🎁 Special surprises for your partner
 
 Friends Factory Cafe – Where Every Celebration Becomes a Lifetime Memory.`,
-    price: 6500,
+    price: 5500,
     cakeIncluded: true,
     features: [
       "🍾 Non-Alcoholic Champagne Included",
