@@ -269,7 +269,7 @@ export default function FFCPackageDetailPage({ package: pkg }: PackageDetailPage
                   </>
                 ) : (
                   <>
-                    <p className="text-amber-700 text-sm md:text-base"><strong>Cake:</strong> ₹500/- (Extra Cost)</p>
+                    <p className="text-amber-700 text-sm md:text-base"><strong>Cake:</strong> ₹350/- (Extra Cost)</p>
                     <p className="text-gray-700 text-sm md:text-base mt-1"><strong>Champagne:</strong> ₹500/- (Non-Alcoholic Fruit Flavour)</p>
                   </>
                 )}

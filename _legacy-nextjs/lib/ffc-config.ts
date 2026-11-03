@@ -222,21 +222,19 @@ Birthday Celebration Vadodara | Anniversary Surprise | Romantic Proposal Venue |
     slug: "royal-red",
     name: "Royal Red",
     emoji: "❤️👑🕯️",
-    shortDescription: "Experience luxury with royal red velvet drapes, romantic candlelight, rose petals. Non-alcoholic champagne & celebration cake included.",
+    shortDescription: "Experience luxury with royal red velvet drapes, romantic candlelight, rose petals, and an elegant celebration backdrop.",
     fullDescription: `ROYAL RED ❤️ | ₹5,500/-
 
-Make your loved one's special day unforgettable with our luxurious Royal Red decoration at Friends Factory Cafe, Vadodara. Experience the charm of red velvet drapes, romantic candlelight, beautiful rose petals and an elegant celebration backdrop. Non-alcoholic champagne & celebration cake are included!
+Make your loved one's special day unforgettable with our luxurious Royal Red decoration at Friends Factory Cafe, Vadodara. Experience the charm of red velvet drapes, romantic candlelight, beautiful rose petals and an elegant celebration backdrop.
 
 Experience Highlights:
-
-- 🍾 Sparkling Non-Alcoholic Champagne & 🎂 Celebration Cake Included
-A bottle of sparkling non-alcoholic champagne to pop and toast, plus a delicious fresh celebration cake.
 
 - 3 Hours of Private Celebration
 Exclusive time for one couple in a beautifully decorated setting.
 
 - Complete Vegetarian Meal
 Welcome drink, café-style food, cold drinks and dessert, as per the confirmed menu.
+💡 Celebration Cake available at extra cost (₹350)
 
 - Royal Red Luxury Decor
 Royal red velvet canopy with elegant draping, red carpet-style flooring, and decorative floor seating with a traditional patterned round rug.
@@ -259,17 +257,16 @@ Perfect For:
 
 Friends Factory Cafe – Where Every Celebration Becomes a Lifetime Memory.`,
     price: 5500,
-    cakeIncluded: true,
+    cakeIncluded: false,
     features: [
-      "🍾 Non-Alcoholic Champagne Included",
-      "🎂 Celebration Cake Included",
       "3 Hours of Private Celebration (Exclusive for 1 Couple)",
       "Complete Vegetarian Meal (Welcome Drink, Food, Cold Drinks & Dessert)",
       "Royal Red Velvet Canopy with Elegant Draping",
       "Heart-Shaped Rose Petal Arrangement with Glowing Candles",
       "Circular Happy Birthday Neon Sign & Floral Accents",
       "Red Carpet-Style Flooring & Traditional Round Rug Floor Seating",
-      "Romantic Background Music & Dedicated Staff Assistance"
+      "Romantic Background Music & Dedicated Staff Assistance",
+      "Celebration Cake available (+₹350) 🍰"
     ],
     perfectFor: [
       "Birthday Surprise",
